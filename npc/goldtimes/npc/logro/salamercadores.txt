@@ -1,0 +1,42 @@
+prontera,134,202,5	script	Sala dos Mercadores#1::mercyo	121,{
+mes "[Sala dos Mercadores]";
+mes "Olá "+StrCharInfo(0)+", gostaria de visitar a Sala dos Mercadores do ragna^CC6600YOKAI^000000?";
+mes "Sala dos Mercadores [^CC6600"+getmapusers("mercadores")+"^000000]";
+next;
+if( select("Sim, vamos até lá!:Não, talvez outra hora.") == 1){
+		mes "[Sala dos Mercadores]";
+		mes "Certo, vamos lá.";
+		close2;
+		warp "mercadores",49,88;
+		end;
+}
+		mes "[Sala dos Mercadores]";
+		mes "Certo, volte quando desejar.";
+		close;
+
+		
+OnInit:
+waitingroom "Sala dos Mercadores",0;
+end;
+}
+
+mercadores,49,91,5	script	Informações#merc	121,{
+mes "[Informações]";
+mes "Olá "+StrCharInfo(0)+", Bem vindo a Sala dos Mercadores! Aqui é permitido você fazer sua loja, mas somente nas calçadas.Boas compras/vendas e obrigado por jogar no servidor RagnaYokai!";
+close;		
+OnInit:
+waitingroom "Informações",0;
+end;
+}
+
+
+morocc,164,97,5	duplicate(mercyo)	Sala dos Mercadores#2	121
+geffen,111,62,5	duplicate(mercyo)	Sala dos Mercadores#3	121
+payon,165,232,5	duplicate(mercyo)	Sala dos Mercadores#4	121
+
+mercadores	mapflag	nosave
+mercadores	mapflag	noteleport
+mercadores	mapflag	nobranch
+mercadores	mapflag	nowarpto
+mercadores	mapflag	nowarp
+mercadores	mapflag	autotrade

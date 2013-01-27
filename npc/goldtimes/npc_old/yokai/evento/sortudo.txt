@@ -1,0 +1,366 @@
+//=========================================================== 
+//-- NPC - Sortudo - 
+//*********************************************************** 
+//=========================================================== 
+prontera,164,170,3	script	Sortudo	869,{ 
+mes "[Sortudo]"; 
+if(getgmlevel()>10 && getgmlevel()<99){ 
+mes "GM's não podem participar dos eventos!"; 
+close; 
+} 
+mes "O que deseja fazer?"; 
+if(getgmlevel()>59){ menu "Ir até o evento",Evento,"Tutorial do NPC",Tutorial,"Alterar Drops",Alterar; } 
+menu "Ir até o evento",Evento,"Tutorial do NPC",Tutorial; 
+
+Alterar: 
+next; 
+mes "[Painel do GM]"; 
+mes "Digite a ID do item que poderá será dropado!"; 
+input @ID; 
+next; 
+mes "[Painel do GM]"; 
+mes "Digite o segundo item que poderá ser dropado!"; 
+input @ID1; 
+next; 
+mes "[Painel do GM]"; 
+mes "Digite o terceiro item que poderá ser dropado!"; 
+input @ID2; 
+next; 
+mes "[Painel do GM]"; 
+mes "Digite o quarto item que poderá ser dropado!"; 
+input @ID3; 
+next; 
+mes "[Painel do GM]"; 
+mes "Digite o quinto item que poderá ser dropado!"; 
+input @ID4; 
+next; 
+mes "[Painel do GM]"; 
+mes "Digite o sexto item que poderá ser dropado!"; 
+input @ID5; 
+next; 
+mes "[Painel do GM]"; 
+mes "Digite o sétimo item que poderá ser dropado!"; 
+input @ID6; 
+next; 
+mes "[Painel do GM]"; 
+mes "Digite o oitavo item que poderá ser dropado!"; 
+input @ID7; 
+next; 
+mes "[Painel do GM]"; 
+mes "Você escolheu os items:"; 
+mes ""+getitemname(@ID)+""; 
+mes ""+getitemname(@ID1)+""; 
+mes ""+getitemname(@ID2)+"";
+mes ""+getitemname(@ID3)+"";
+mes ""+getitemname(@ID4)+"";
+mes ""+getitemname(@ID5)+"";
+mes ""+getitemname(@ID6)+"";
+mes ""+getitemname(@ID7)+"";
+next; 
+mes "[Painel do GM]"; 
+mes "Deseja estes items ou deseja mudar?"; 
+menu "Sim, este item!",PremioZeny,"Não, quero mudar a ID",Alterar; 
+
+PremioZeny: 
+next; 
+mes "[Painel do GM]"; 
+mes "Caso o jogador não drope o item, ele morrerá ou ganhará uma quantia em zeny"; 
+next; 
+mes "[Painel do GM]"; 
+mes "Digite qual será esta quantia"; 
+input @Zeny; 
+next; 
+mes "[Painel do GM]"; 
+mes "Você digitou "+@Zeny+" está correto?"; 
+menu "Sim, está",R_Confirma,"Não, quero mudar a quantia",PremioZeny; 
+
+R_Confirma: 
+next; 
+mes "[Painel do GM]"; 
+mes "Obrigado por utilizar meu NPC!"; 
+set $PremioItem,@ID; 
+set $PremioZeny,@Zeny; 
+set $PremioItem1,@ID1; 
+set $PremioItem2,@ID2;
+set $PremioItem3,@ID3;
+set $PremioItem4,@ID4;
+set $PremioItem5,@ID5;
+set $PremioItem6,@ID6;
+set $PremioItem7,@ID7;
+close; 
+
+OnHour03: 
+set $Evento,2; 
+Announce "NPC Sortudo: O Evento da sorte está prestes a começar,Seja rápido e corra você tem 5 minutos!",0; 
+end; 
+
+OnClock0305: 
+set $Evento,1; 
+Announce "NPC Sortudo: Os warps fecharam, sinto muito tente da próxima vez, dentro de alguns minutos skill ligadas!",0; 
+end; 
+
+OnHour11: 
+set $Evento,2; 
+Announce "NPC Sortudo: O Evento da sorte está prestes a começar,Seja rápido e corra você tem 5 minutos!",0; 
+end; 
+
+OnClock1205: 
+set $Evento,1; 
+Announce "NPC Sortudo: Os warps fecharam, sinto muito tente da próxima vez, dentro de alguns minutos skill ligadas!",0; 
+end; 
+
+OnHour15: 
+set $Evento,2; 
+Announce "NPC Sortudo: O Evento da sorte está prestes a começar,Seja rápido e corra você tem 5 minutos!",0; 
+end; 
+
+OnClock1505: 
+set $Evento,1; 
+Announce "NPC Sortudo: Os warps fecharam, sinto muito tente da próxima vez, dentro de alguns minutos skill ligadas!",0; 
+end; 
+
+OnHour21: 
+set $Evento,2; 
+Announce "NPC Sortudo: O Evento da sorte está prestes a começar,Seja rápido e corra você tem 5 minutos!",0; 
+end; 
+
+OnClock2105: 
+set $Evento,1; 
+Announce "NPC Sortudo: Os warps fecharam, sinto muito tente da próxima vez, dentro de alguns minutos skill ligadas!",0; 
+end; 
+
+Evento: 
+next; 
+mes "[Sortudo]"; 
+if($Evento < 2){ 
+mes "Desculpe estamos fechados"; 
+close; 
+} 
+mes "Vamos lá!"; 
+set @evento, rand(1,8); 
+if(@evento == 1){ 
+warp "quiz_02",318,34; 
+close; 
+} 
+if(@evento == 2){ 
+warp "quiz_02",37,52; 
+close; 
+} 
+if(@evento == 3){ 
+warp "quiz_02",73,52; 
+close; 
+} 
+if(@evento == 4){ 
+warp "quiz_02",330,34; 
+close; 
+} 
+if(@evento == 5){ 
+warp "quiz_02",49,52; 
+close; 
+} 
+if(@evento == 6){ 
+warp "quiz_02",342,34; 
+close; 
+} 
+if(@evento == 7){ 
+warp "quiz_02",354,34; 
+close; 
+} 
+if(@evento == 8){ 
+warp "quiz_02",61,52; 
+close; 
+} 
+
+Tutorial: 
+next; 
+mes "[Sortudo]"; 
+mes "O evento se chama ^FF0000Evento da Sorte^000000 pois"; 
+mes "você precissa de muita sorte nele"; 
+next; 
+mes "[Sortudo]"; 
+mes "Você entra em uma sala, onde será pvp!"; 
+next; 
+mes "[Sortudo]"; 
+mes "No final do PvP aparecerá um baú para você"; 
+next; 
+mes "[Sortudo]"; 
+mes "Os itens que serão dropados do baú serão selecionados pela staff"; 
+next;
+mes "[Sortudo]";
+mes "O Evento será aberto ás 03:00,12:00,15:00 e ás 21:00";
+close; 
+} 
+
+
+quiz_02.gat,0,0,0	script	AtivadorPVP	-1,{ 
+
+OnClock0305: 
+atcommand "@pvpon"; 
+atcommand "@skillon";
+end; 
+
+OnClock0310: 
+atcommand "@pvpoff"; 
+monster    "quiz_02",77,52,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",314,34,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",33,52,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",331,34,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",49,52,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",342,34,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",354,34,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",61,73,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+end; 
+
+OnClock1105: 
+atcommand "@pvpon"; 
+atcommand "@skillon";
+end; 
+
+OnClock1110: 
+atcommand "@pvpoff"; 
+monster    "quiz_02",77,52,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",314,34,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",33,52,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",331,34,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",49,52,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",342,34,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",354,34,    "Tesouro",1732,1,"Premio::OnAlguemGanhou";
+monster    "quiz_02",61,73,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+end; 
+
+OnClock1505: 
+atcommand "@pvpon"; 
+atcommand "@skillon";
+end; 
+
+OnClock1510: 
+atcommand "@pvpoff"; 
+monster    "quiz_02",77,52,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",314,57,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",33,73,    "Tesouro",1732,1,"Premio::OnAlguemGanhou";  
+monster    "quiz_02",331,57,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",49,73,    "Tesouro",1732,1,"Premio::OnAlguemGanhou";  
+monster    "quiz_02",342,57,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",354,34,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",61,73,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+end; 
+
+OnClock2105: 
+atcommand "@pvpon"; 
+atcommand "@skillon";
+end; 
+
+OnClock2110: 
+atcommand "@pvpoff"; 
+monster    "quiz_02",77,52,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",314,34,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",33,52,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",331,34,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",49,52,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",342,34,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",354,34,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+monster    "quiz_02",61,73,    "Tesouro",1732,1,"Premio::OnAlguemGanhou"; 
+end; 
+
+OnHour02: 
+atcommand "@killmonster"; 
+end; 
+
+OnHour10: 
+atcommand "@killmonster"; 
+end; 
+
+OnHour14: 
+atcommand "@killmonster"; 
+end; 
+
+OnHour20: 
+atcommand "@killmonster"; 
+end;
+} 
+
+-	script	Premio	-1,{ 
+
+OnAlguemGanhou: 
+set @Prize, rand(1,12); 
+if(@Prize == 1){ 
+getitem $PremioItem,1; 
+warp "prontera.gat",155,185; 
+Announce "NPC Sortudo: O jogador "+strcharinfo(0)+" quebrou um dos baús, seu prêmio foi: "+getitemname($PremioItem)+"",0; 
+end; 
+} 
+if(@Prize == 2){ 
+set Zeny,Zeny+$Premiozeny; 
+warp "prontera.gat",155,185; 
+Announce "NPC Sortudo: O jogador "+strcharinfo(0)+" quebrou um dos baús, seu prêmio foi "+$Premiozeny+" zenys",0; 
+end; 
+} 
+if(@Prize == 3){ 
+atcommand "@kill "+strcharinfo(0)+""; 
+Announce "NPC Sortudo: Mas que pena, o jogador "+strcharinfo(0)+" quebrou um dos baús e além de não ganhar nada morreu!",0; 
+end; 
+} 
+if(@Prize == 4){ 
+getitem $PremioItem1,1; 
+warp "prontera.gat",155,185; 
+Announce "NPC Sortudo: O jogador "+strcharinfo(0)+" quebrou um dos baús, seu prêmio foi: "+getitemname($PremioItem1)+"",0; 
+end;
+} 
+if(@Prize == 5){ 
+getitem $PremioItem2,1; 
+warp "prontera.gat",155,185; 
+Announce "NPC Sortudo: O jogador "+strcharinfo(0)+" quebrou um dos baús, seu prêmio foi: "+getitemname($PremioItem2)+"",0; 
+end; 
+} 
+if(@Prize == 6){ 
+getitem $PremioItem3,1; 
+warp "prontera.gat",155,185; 
+Announce "NPC Sortudo: O jogador "+strcharinfo(0)+" quebrou um dos baús, seu prêmio foi: "+getitemname($PremioItem3)+"",0; 
+end; 
+} 
+if(@Prize == 7){ 
+getitem $PremioItem4,1; 
+warp "prontera.gat",155,185; 
+Announce "NPC Sortudo: O jogador "+strcharinfo(0)+" quebrou um dos baús, seu prêmio foi: "+getitemname($PremioItem4)+"",0; 
+end; 
+} 
+if(@Prize == 8){ 
+getitem $PremioItem5,1; 
+warp "prontera.gat",155,185; 
+Announce "NPC Sortudo: O jogador "+strcharinfo(0)+" quebrou um dos baús, seu prêmio foi: "+getitemname($PremioItem5)+"",0; 
+end; 
+} 
+if(@Prize == 9){ 
+getitem $PremioItem6,1; 
+warp "prontera.gat",155,185; 
+Announce "NPC Sortudo: O jogador "+strcharinfo(0)+" quebrou um dos baús, seu prêmio foi: "+getitemname($PremioItem6)+"",0; 
+end;
+}
+if(@Prize == 10){ 
+getitem $PremioItem7,1; 
+warp "prontera.gat",155,185; 
+Announce "NPC Sortudo: O jogador "+strcharinfo(0)+" quebrou um dos baús, seu prêmio foi: "+getitemname($PremioItem7)+"",0; 
+end;
+}
+if(@Prize == 11){ 
+atcommand "@kill "+strcharinfo(0)+""; 
+Announce "NPC Sortudo: Mas que pena, o jogador "+strcharinfo(0)+" quebrou um dos baús e além de não ganhar nada morreu!",0; 
+end;
+}
+if(@Prize == 12){ 
+set Zeny,Zeny+$Premiozeny; 
+warp "prontera.gat",155,185; 
+Announce "NPC Sortudo: O jogador "+strcharinfo(0)+" quebrou um dos baús, seu prêmio foi "+$Premiozeny+" zenys",0; 
+end; 
+} 
+} 
+//MapFlag 
+quiz_02.gat	mapflag	nosave	SavePoint
+quiz_02.gat	mapflag	nowarp
+quiz_02.gat	mapflag	nowarpto
+quiz_02.gat	mapflag	nomemo
+quiz_02.gat	mapflag	noicewall
+quiz_02.gat	mapflag	noreturn
+quiz_02.gat	mapflag	nobranch
+quiz_02.gat	mapflag	nopenalty
+quiz_02.gat	mapflag	noteleport

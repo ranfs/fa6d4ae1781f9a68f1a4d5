@@ -1,0 +1,255 @@
+bat_room,163,146,2	script	Telma	701,{
+	mes "[Telma]";
+	mes "Bem-vindo guerreiro, poderoso.";
+	mes "Você precisa de fornecimento para suas batalhas?";
+	mes "Eu posso trocar-lhe uma boa quantia de seus emblemas ou abrir a loja da fonte normal de suplementos para você.";
+	next;
+	switch( select("^FF0000Consumíveis Gerais:Consumíveis para Woe^000000:Cancelar") )
+	{
+	case 1: // BG Supply
+		setarray .@Items[0],   547,  522,  505,  678, 7135, 7136, 7137, 7138, 7139,  715,  716,  717, 12016, 1025, 7321,12250,12251,12252,12253,12254,12255,12299,12028,12029,12030,12031,12032,12033,12034,606,12114,12115,12116,12117,12118,12119,12120,12121,526,12247,14537,14536,656,657,645;
+		setarray .@Amount[0],  150,  100,  100,   10,   40,   40,   30,   30,   25,   50,  100,  200,   10,   40,   25,       1,    1,    1,    1,    1,    1,   1,	10,	10,	10,	10,	10,	10,	10,	10,	10,	10,	10,	10,	10,	10,	10,	10,	10, 20, 20, 20, 20, 20, 20;
+		setarray .@Value[0],     3,    2,    3,    1,    2,    2,    2,    2,    3,    1,    2,    3,    2 ,   3,    3,       6,    6,    6,    6,    6,	6,	1,	2,	2,	2,	2,	2,	2,	2,	2,	2,	2,	2,	2,	2,	2,	2,	3,	3,	100,100,100,2,	2,	2;
+		//set .@cID, getbattleflag("bg_reserved_char_id");
+		set .@Tarjet$, "Battleground";
+		break;
+			
+	case 2: // WoE Supply Items
+		setarray .@Items[0],  7137, 7138,  662,12072,12077,12082,12087,12092,12097,14287,14288;
+		setarray .@Amount[0],   30,   30,   10,    6,    6,    6,    6,    6,    6,    5,    5;
+		setarray .@Value[0],     2,    2,    2,    5,    5,    5,    5,    5,    5,    5,    5;
+		//set .@cID, getbattleflag("woe_reserved_char_id");
+		set .@Tarjet$, "War of Emperium or GvG";
+		break;
+			
+	case 3:
+		mes "[Telma]";
+		mes "Okay, volte quando precisar dos meus stuffs!";
+		close;	
+	}
+
+	set .@Menu$, "";
+	for( set .@i, 0; .@i < getarraysize(.@Items); set .@i, .@i + 1 )
+		set .@Menu$, .@Menu$ + .@Amount[.@i] + " " + getitemname(.@Items[.@i]) + " (" + .@Value[.@i] + " badges):";
+	set .@j, select(.@Menu$) - 1;
+
+	mes "[Telma]";
+	mes "^0000FF" + .@Amount[.@j] + " " + getitemname(.@Items[.@j]) + "^000000";
+	mes "Vai custar-lhe " + .@Value[.@j] + " emblemas por pacotes.";
+	mes "Lembre-se isso só pode ser usado em " + .@Tarjet$ + ".";
+	next;
+	
+	mes "[Telma]";
+	mes "Mas diga-me em primeiro lugar, onde você deseja receber os itens?";
+	next;
+	set .@Destiny, select("Aqui, no meu inventário:Direto para o meu armazém") - 1;
+
+	mes "[Telma]";
+	mes "Quantos pacotes você quer comprar? (1..100)";
+	next;
+
+	input .@total;
+	if( .@total < 1 || .@total > 100 )
+	{
+		mes "[Telma]";
+		mes "Lamento, por favor, introduzir um valor de 1-100.";
+		mes "Fale comigo de novo quando fizer suas seleções.";
+		close;
+	}
+	
+	set .@vtotal, .@total * .@Value[.@j]; // Value of all Packages
+	set .@total, .@total * .@Amount[.@j]; // Total Amount of Items
+
+	if( .@Destiny )
+	{ // Check Storage Space Limit
+		if( .@cID )
+		{
+			if( checkspace(.@Items[.@j],.@total,1,0,0,254,0,.@cID&0xffff,(.@cID>>16)&0xffff) == 0 )
+			{
+				mes "[Telma]";
+				mes "Seu armazém está cheio demais";
+				mes "Verifique o espaço livre.";
+				close;
+			}
+		}
+		else
+		{
+			if( checkspace(.@Items[.@j],.@total,1,0,0,0,0,0,0) == 0 )
+			{
+				mes "[Telma]";
+				mes "Seu armazém está cheio demais";
+				mes "Verifique o espaço livre.";
+				close;
+			}
+		}
+	}
+	else
+	{ // Check Weight Limit
+		if( checkweight(.@Items[.@j],.@total) == 0 )
+		{
+			mes "[Telma]";
+			mes "Você não pode carregar essa quantia de itens";
+			mes "Vá ao armazém e guarde alguns itens";
+			close;
+		}
+	}
+
+	if( countitem(7828) + countitem(7829) + countitem(7773) < .@vtotal )
+	{
+		mes "[Telma]";
+		mes "Emblemas necessário: ^0000FF" + .@vtotal + "^000000";
+		mes "Você não tem Emblemas suficiente. Desculpe ...";
+		mes "Participe de arenas Battleground para recebê-lo.";
+		close;
+	}
+	set .@vcount, .@vtotal;
+	set .@i7828, 0;
+	set .@i7829, 0;
+	set .@i7773, 0;
+
+	// Bravery Badges
+	if( countitem(7828) > 0 )
+	{
+		mes "[Telma]";
+		mes "Emblemas necessário: ^0000FF" + .@vcount + "^000000";
+		mes "Quantos emblemas de Bravura você quer gastar:";
+		next;
+		input .@i7828;
+		if( .@i7828 < 0 || .@i7828 > countitem(7828) )
+		{
+			mes "[Telma]";
+			mes "Numero invalido... Desculpe.";
+			close;
+		}
+		
+		if( .@i7828 > .@vcount ) set .@i7828,.@vcount;
+		set .@vcount, .@vcount - .@i7828;
+	}
+
+	// Valor Badges
+	if( .@vcount && countitem(7829) > 0 )
+	{
+		mes "[Telma]";
+		mes "Emblemas necessários: ^0000FF" + .@vcount + "^000000";
+		mes "Quantos emblemas de Valor você quer gastar:";
+		next;
+		input .@i7829;
+		if( .@i7829 < 0 || .@i7829 > countitem(7829) )
+		{
+			mes "[Telma]";
+			mes "Numero invalido... Desculpe.";
+			close;
+		}
+		
+		if( .@i7829 > .@vcount ) set .@i7829,.@vcount;
+		set .@vcount, .@vcount - .@i7829;
+	}
+
+	// Heroism Badges
+	if( .@vcount && countitem(7773) > 0 )
+	{
+		mes "[Telma]";
+		mes "Emblemas necessários: ^0000FF" + .@vcount + "^000000";
+		mes "Quantos emblemas de Guerra você quer gastar:";
+		next;
+		input .@i7773;
+		if( .@i7773 < 0 || .@i7773 > countitem(7773) )
+		{
+			mes "[Telma]";
+			mes "Numero invalido... Desculpe.";
+			close;
+		}
+
+		if( .@i7773 > .@vcount ) set .@i7773, .@vcount;
+		set .@vcount, .@vcount - .@i7773;
+	}
+
+	// Final Checks
+	if( .@vcount != 0 )
+	{
+		mes "[Telma]";
+		mes "Desculpe, você não tem emblemas suficiente para pagar o valor total.";
+		close;
+	}
+
+	mes "[Telma]";
+	mes "Você está pronto para pagar e receber seus itens?";
+	mes "Seus detalhes de pagamento:";
+	mes "^0000FF" + .@i7828 + "^000000 Emblemas de Bravura";
+	mes "^0000FF" + .@i7829 + "^000000 Emblemas de Valor";
+	mes "^0000FF" + .@i7773 + "^000000 Emblemas de Guerra";
+	next;
+
+	if( select("Sim, faça isto:Sinto muito... agora não") == 2 )
+	{
+		mes "[Telma]";
+		mes "Ok, volte, se você mudar de idéia.";
+		close;
+	}
+
+	if( .@Destiny )
+	{ // Check Storage Space Limit
+		if( .@cID )
+		{
+			if( checkspace(.@Items[.@j],.@total,1,0,0,254,0,.@cID&0xffff,(.@cID>>16)&0xffff) == 0 )
+			{
+				mes "[Telma]";
+				mes "Seu armazém está cheio demais";
+				mes "Verifique o espaço livre.";
+				close;
+			}
+		}
+		else
+		{
+			if( checkspace(.@Items[.@j],.@total,1,0,0,0,0,0,0) == 0 )
+			{
+				mes "[Telma]";
+				mes "Seu armazém está cheio demais";
+				mes "Verifique o espaço livre.";
+				close;
+			}
+		}
+	}
+	else
+	{ // Check Weight Limit
+		if( checkweight(.@Items[.@j],.@total) == 0 )
+		{
+			mes "[Telma]";
+			mes "Você não pode carregar essa quantia de itens";
+			mes "Vá ao armazém e guarde alguns itens.";
+			close;
+		}
+	}
+
+	if( .@i7828 > countitem(7828) || .@i7829 > countitem(7829) || .@i7773 > countitem(7773) )
+	{
+		mes "[Telma]";
+		mes "O quê?, Você é um mago ou um ladrão? O que você fez com seus crachás!?";
+		mes "Saia daqui!";
+		close;
+	}
+
+	delitem 7828,.@i7828;
+	delitem 7829,.@i7829;
+	delitem 7773,.@i7773;
+
+	if( .@cID )
+	{
+		if( .@Destiny )
+			storeitem2 .@Items[.@j],.@total,1,0,0,254,0,.@cID&0xffff,(.@cID>>16)&0xffff;
+		else
+			getitem2 .@Items[.@j],.@total,1,0,0,254,0,.@cID&0xffff,(.@cID>>16)&0xffff;
+	}
+	else
+	{
+		if( .@Destiny )
+			storeitem .@Items[.@j],.@total;
+		else
+			getitem .@Items[.@j],.@total;
+	}
+
+	mes "[Telma]";
+	mes "Aqui está... Agora tome cuidado e lute pela honra e glória de seu príncipe.";
+	close;
+	
+}

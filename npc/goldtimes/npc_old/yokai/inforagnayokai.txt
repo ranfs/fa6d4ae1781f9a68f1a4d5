@@ -1,0 +1,43 @@
+bat_room,159,155,3	script	Informações R.Yokai::infoyk	837,{
+	mes "[^FF0000 Informações RagnaYokai^000000]";
+	mes "Fique atento às informações do servidor. Acesse frequentemente o NPC de informações e o nosso fórum: www.ragnayokai.com/forum";
+	next;
+	mes "[^FF0000 Informações RagnaYokai - 1^000000]";
+	mes "Não existe como duplicar itens; não há maneiras de torna-lo mais forte; não acredite em promessas para ser GM/ADM em outro servidor! São tentativas de roubar a sua conta! Só baixe arquivos do nosso site! Não compartilhe sua conta ou itens! A STAFF não se responsabiliza.";
+	next;
+	mes "[^FF0000 Informações RagnaYokai - 2^000000]";
+	mes "Leia as Regras de Conduta do Jogo, evite ser banido. As regras existem, cabe a você conhece-las.";
+	next;
+	mes "[^FF0000 Informações RagnaYokai - 3^000000]";
+	mes "É extremamente proibida a troca/compra/venda de itens de Pack Guild. Você será banido permanentemente, sem aviso pérvio.";
+	next;
+	mes "[^FF0000 Informações RagnaYokai - 4^000000]";
+	mes "Curta nossa página no facebook. Fique por dentro de promoções e sorteios. Aproveite promoções e faça uma doação para ajudar o servidor. Acesse: www.ragnayokai.com";
+	close;
+	OnInit:
+	waitingroom "Informações RagnaYokai",0; 
+	end;
+}
+morocc,150,97,5	duplicate(infoyk)	Informações R.Yokai#i3	837
+geffen,125,70,5	duplicate(infoyk)	Informações R.Yokai#i4	837
+payon,179,226,5	duplicate(infoyk)	Informações R.Yokai#i5	837
+alberta,198,151,5	duplicate(infoyk)	Informações R.Yokai#i6	837
+izlude,121,121,5	duplicate(infoyk)	Informações R.Yokai#i7	837
+aldebaran,144,128,5	duplicate(infoyk)	Informações R.Yokai#i8	837
+xmas,155,135,5	duplicate(infoyk)	Informações R.Yokai#i9	837
+comodo,212,148,5	duplicate(infoyk)	Informações R.Yokai#i10	837
+yuno,165,44,5	duplicate(infoyk)	Informações R.Yokai#i11	837
+amatsu,202,91,5	duplicate(infoyk)	Informações R.Yokai#i12	837
+gonryun,165,117,5	duplicate(infoyk)	Informações R.Yokai#i13	837
+umbala,99,156,5	duplicate(infoyk)	Informações R.Yokai#i14	837
+louyang,226,99,5	duplicate(infoyk)	Informações R.Yokai#i15	837
+new_1-1,47,110,5	duplicate(infoyk)	Informações R.Yokai#i16	837
+jawaii,253,138,5	duplicate(infoyk)	Informações R.Yokai#i17	837
+ayothaya,155,113,5	duplicate(infoyk)	Informações R.Yokai#i18	837
+einbroch,75,202,5	duplicate(infoyk)	Informações R.Yokai#i19	837
+lighthalzen,153,85,5	duplicate(infoyk)	Informações R.Yokai#i20	837
+einbech,73,87,5	duplicate(infoyk)	Informações R.Yokai#i21	837
+hugel,102,150,5	duplicate(infoyk)	Informações R.Yokai#i22	837
+rachel,122,103,5	duplicate(infoyk)	Informações R.Yokai#i23	837
+veins,211,118,5	duplicate(infoyk)	Informações R.Yokai#i24	837
+moscovia,230,184,5	duplicate(infoyk)	Informações R.Yokai#i25	837

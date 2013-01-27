@@ -1,0 +1,46 @@
+//===== Maya Script ==================================================
+//= Dr.Rey
+//===== Por: =========================================================
+//= Axl
+//===== Versão Atual: ================================================
+//= 1.0
+//===== Compatível com: ==============================================
+//= eAthena; rAthena; Cronus; brAthena; Maya SVN.
+//===== Descrição: ===================================================
+//= Troca o Sexo dos jogadores
+//===== Comentários Adicionais: ======================================
+//= 1.0 Script Iniciado. [Axl]
+//====================================================================
+poring_w02,95,202,5	script	Dr.Rey	832,{
+	mes "[ ^008B00"+strnpcinfo(1)+"^000000 ]";
+	mes "Olá.";
+	mes "eu sou o ^008B00"+strnpcinfo(1)+"^000000";
+	mes "renomado cirusgião plastico nos EUA.";
+	mes "Tento conseguir alegrar mais as pessoas que estão infelizes com seu corpo...";
+	mes "Estou aqui para ser voluntário a fazer cirurgias pra mudança de sexo das pessoas.";
+	mes "Com isso possa ser que elas fiquem mais felizes...";
+	next;
+	mes "[ ^008B00"+strnpcinfo(1)+"^000000 ]";
+	mes "Bom o que você me diz, quer fazer a cirurgia?";
+	next;
+	mes "[ ^008B00"+strnpcinfo(1)+"^000000 ]";
+	mes "^FF0000ATENÇÂO^000000: Caso tenha um personagem da Classe ^9370DBBardo/Menestrel^000000 ou ^9370DBCigana/Odalisca^000000 é aconselhável que faça a troca de sexo com esess personagens.";
+	next;
+	if (select ("Sim! Mudar agora!:Não, sem chance!") == 2) close;
+	mes "[ ^008B00"+strnpcinfo(1)+"^000000 ]";
+	mes "Então vamos começar...";
+	next;
+	sc_end SC_ALL;
+	nude;
+	mes "[ ^008B00"+strnpcinfo(1)+"^000000 ]";
+	mes "Agulha... Bisturi...";
+	next;
+	mes "Algumas horas depois...";
+	next;
+	mes "[ ^008B00"+strnpcinfo(1)+"^000000 ]";
+	mes "Pronto, sua cirurgia foi um sucesso.";
+	mes "sempre que precisarem de mim estarei aqui.";
+	next;
+	changesex;
+	close;
+}

@@ -1,0 +1,18 @@
+prontera,150,150,5	script	salagm	-1,{
+
+OnWhisperGlobal:
+if (getgmlevel () < 40) { end; }
+
+
+warp "lhz_in01",270,261;
+end;
+}
+
+lhz_in01	mapflag	noreturn
+lhz_in01	mapflag	nosave
+lhz_in01	mapflag	noteleport
+lhz_in01	mapflag	nowarpto
+lhz_in01	mapflag	nowarp
+lhz_in01	mapflag	nomemo
+lhz_in01	mapflag	nopenalty
+lhz_in01	mapflag	nobranch

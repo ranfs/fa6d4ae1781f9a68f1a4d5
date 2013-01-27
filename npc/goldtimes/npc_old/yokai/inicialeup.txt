@@ -1,0 +1,27 @@
+-	script	RagnaYOKAI#bonus2	-1,{
+OnPCLoginEvent:
+if(#bonus2 == 1) { end; }
+mes "[^FF0000Boas Vindas RagnaYOKAI^000000]";
+mes "Bem vindo(a) ao Servidor.";
+mes "Vote todos os dias & Convide seus amigos para jogar conosco.";
+next;
+mes "[^FF0000Boas Vindas RagnaYOKAI^000000]";
+mes "Obrigado por ter escolhido nosso Servidor,";
+mes "desde já a Equipe RagnaYOKAI agradece sua preferencia!";
+next;
+query_sql "UPDATE `login` SET `level`='1',`diasvip`='7' WHERE `account_id` = '"+ getcharid(3) +"'";
+mes "[^FF0000Boas Vindas RagnaYOKAI^000000]";
+mes "Iremos te presentiar com um Pack de Itens,";
+mes "onde eles duraram 10 horas, após isso sumiram do seu iventario/Storage/Cart";
+mes "e 7 dias VIP.";
+close2;
+rentitem 5859,36000;
+rentitem 2101,36000;
+rentitem 5288,36000;
+rentitem 2546,36000;
+rentitem 2441,36000;
+rentitem 5846,36000;
+set #bonus2,1;
+end;
+
+}

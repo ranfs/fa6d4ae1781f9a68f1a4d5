@@ -1,0 +1,11 @@
+payold,97,132,3	script	Infos WoE::infoyk	837,{
+	mes "[^FF0000 Info Woe ^000000]";
+	mes "Domingo - 21h ás 23h.";
+	mes "Castelos:";
+	mes "^008B00Canopus^000000.";
+	mes "^008B00Astrum^000000.";
+	close;
+	OnInit:
+	waitingroom "Infos WoE",0; 
+	end;
+}

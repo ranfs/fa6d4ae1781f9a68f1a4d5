@@ -1,0 +1,34 @@
+// This is the region database, to group maps
+// Also requires to add mapflags
+// RegionID;Region Name;Bonus Exp;Bonus Job;Tax;+%DropRate
+
+
+// Rune Midgard Republic
+1;Prontera, Capital of Rune Midgard;0;0;0;0
+7;Payon Town;0;0;0;0
+8;Morroc Town;0;0;0;0
+9;Wootan Tribe's Village, Umbala;0;0;0;0
+10;Beach Town, Comodo;0;0;0;0
+11;Niflheim, Realm of the Dead;0;0;0;0
+12;Aldebaran;0;0;0;0
+13;Geffen;0;0;0;0
+
+// Schwarzwald Republic
+2;Yuno, Capital of Schwarzwald Republic;0;0;0;0
+3;Hugel, the Quaint Garden Village;0;0;0;0
+4;Lighthalzen, the City of Prosperity;0;0;0;0
+5;Einbroch, the City of Steel;0;0;0;0
+6;Einbech, the Mining Village;0;0;0;0
+
+// Arunafelz Republic
+14;Rachel, Capital of Arunafelz;0;0;0;0
+15;Veins, the Desert Village;0;0;0;0
+
+// Islands
+16;The Nameless Island;0;0;0;0
+17;Louyang, the Highland;0;0;0;0
+18;Gonryun, the Hermit Land;0;0;0;0
+19;Ayothaya;0;0;0;0
+20;Moscovia;0;0;0;0
+21;Lutie, the Snow Village;0;0;0;0
+22;Amatsu, the Land of Destiny;0;0;0;0

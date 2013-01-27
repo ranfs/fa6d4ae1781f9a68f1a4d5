@@ -1,0 +1,284 @@
+prt_in,118,31,5	script	Devil Square	705,{
+/*     ---    CONFIGURAÇÕES     ---       */
+
+set .n$, "[Guarda Devil Square]"; /* NOME DO NPC */
+set @map$, "guild_vs3"; /* MAPA DO EVENTO */
+set @x,50; /* COORDENADA X */
+set @y,49; /* COORDENADA Y */
+
+/*   ---    FIM DAS CONFIGURAÇÕES ---      */
+
+mes .n$;
+mes "Bem-Vindo para a porta do ^FF0000Devil Square^000000";
+mes "A Devil Square abre de 6 em 6 hora";
+mes "Deseja entrar?";
+switch(select("- Sim, quero entrar","- Como funciona?","- Não, Obrigado")){
+
+  case 1:
+	if(Baselevel < 50){
+		next;
+		mes .n$;
+		mes "O nível mínimo é 50!";
+		close;
+	}
+	if($DScomecou == 0){
+		next;
+		mes .n$;
+		mes "O Devil Square está fechado agora.";
+		mes "Ela abre";
+		mes "^FF0000Dias:^000000 Todos os dias da semana.";
+		mes "^FF0000Horas:^000000 O evento começa ás 06:30.";
+		mes "^FF0000Horas:^000000 O evento começa ás 12:30.";
+		mes "^FF0000Horas:^000000 O evento começa ás 18:30.";
+		mes "^FF0000Horas:^000000 O evento começa ás 00:30.";
+		close; 
+	}	
+		next;
+		mes .n$;
+		mes "Divirta-se!";
+		close2;
+		percentheal 100,100;
+		dispbottom "Para sair da Devil Square é só relogar ou procurar o NPC Saida!";
+		warp @map$,@x,@y;
+		end;
+		
+  case 2:
+		next;
+		mes .n$;
+		mes "No ^FF0000Devil Square^000000 há 6 níveis de dificuldade.";
+		mes "Cada nível ultrapassado, a dificuldade fica maior!!";
+		next;
+		mes .n$;
+		mes "Lembrando que, não é fácil. Por isso, prepare-se com itens de cura, equipamentos e cartas.";
+		mes "Caso você termine a ^FF0000Devil Square^000000, será possível abrir ^FF8C0010 Caixas do Tesouro.^000000";
+		mes "Podendo assim, ganhar alguns itens!!!";
+		close;
+		
+  case 3:
+		next;
+		mes .n$;
+		mes "Volte se mudar de idéia.";
+		close;
+
+	}
+	
+}
+
+guild_vs3,49,87,5	script	checagem	-1,{
+
+OnTimer30000:
+if($status == 0) end;
+if (getmapusers("guild_vs3") == 0){
+Announce "Todos os players foram mortos no Devil Square!!",8;
+killmonsterall "guild_vs3";
+set $status,0;
+end;
+}
+if($status == 1){
+Announce getmapusers("guild_vs3") + " jogador(es) está(ão) sobrevivendo no Devil Square!",8;
+initnpctimer;
+end;
+}
+}
+
+guild_vs3,50,12,5	script	HiddenNpc	-1,{
+OnClock0630:
+OnClock1230:
+OnClock1830:
+OnClock0030:
+Announce "O portal para o Devil Square está aberto, e em 5 minutos ele começará!",8;
+disablenpc "Saída";
+initnpctimer;
+set $DScomecou,1;
+killmonsterall "guild_vs3";
+end;
+
+OnTimer60000:
+Announce "O portal para Devil Square está aberto, e em 4 minutos ele irá começar!",8;
+end;
+
+OnTimer130000:
+Announce "O portal para Devil Square está aberto, e em 3 minutos ele irá começar!",8;
+end;
+
+OnTimer180000:
+Announce "O portal para Devil Square está aberto, e em 2 minutos ele irá começar!",8;
+end;
+
+OnTimer240000:
+Announce "O portal para Devil Square está aberto, e em 1 minuto ele irá começar!",8;
+end;
+
+OnTimer300000:
+Announce "A Devil Square Começou!",8;
+initnpctimer "checagem";
+set $DScomecou,0;
+set $status,1;
+set $mob,120;
+monster "guild_vs3",0,0,"[DS] Orc Zumbi",1153,13,"HiddenNpc::Ondevildead";
+monster "guild_vs3",0,0,"[DS] Orc Esqueleto",1152,13,"HiddenNpc::Ondevildead";
+monster "guild_vs3",0,0,"[DS] Familiar",1005,14,"HiddenNpc::Ondevildead";
+monster "guild_vs3",0,0,"[DS] Drainliar",1111,13,"HiddenNpc::Ondevildead";
+monster "guild_vs3",0,0,"[DS] Chon Chon de Aço",1042,7,"HiddenNpc::Ondevildead";
+monster "guild_vs3",0,0,"[DS] Zenorc",1177,13,"HiddenNpc::Ondevildead";
+monster "guild_vs3",0,0,"[DS] Orc Arqueiro",1189,14,"HiddenNpc::Ondevildead";
+monster "guild_vs3",0,0,"[DS] Sorrateiro",1037,13,"HiddenNpc::Ondevildead";
+monster "guild_vs3",0,0,"[DS] Lobo",1013,20,"HiddenNpc::Ondevildead";
+end;
+
+Ondevildead:
+if($status == 0) end;
+set $mob,$mob-1;
+if($mob == 25) Announce "Devil Square: 25 monstros para começar o 2º round",8;
+if($mob == 5) Announce "Devil Square: 5 monstros para começar o 2º round",8;
+if($mob == 0) Announce "Começou o 2º Round da Devil Square!",8; 
+if($mob == 0) goto Ondevil2;
+end;
+
+
+Ondevil2:
+set $mob,120;
+monster "guild_vs3",0,0,"[DS] Esqueleto Soldado",1028,20,"HiddenNpc::Ondevildead2";
+monster "guild_vs3",0,0,"[DS] Orc Arqueiro",1189,20,"HiddenNpc::Ondevildead2";
+monster "guild_vs3",0,0,"[DS] Arenoso",1165,20,"HiddenNpc::Ondevildead2";
+monster "guild_vs3",0,0,"[DS] Esqueleto Arqueiro",1016,20,"HiddenNpc::Ondevildead2";
+monster "guild_vs3",0,0,"[DS] Minorus",1149,20,"HiddenNpc::Ondevildead2";
+monster "guild_vs3",0,0,"[DS] Réquiem",1164,20,"HiddenNpc::Ondevildead2";
+end;
+
+Ondevildead2:
+if($status == 0) end;
+set $mob,$mob-1;
+if($mob == 25) Announce "Devil Square: 25 monstros para começar o 3º round",8;
+if($mob == 5) Announce "Devil Square: 5 monstros para começar o 3º round",8;
+if($mob == 0) Announce "Começou o 3º Round da Devil Square!",8; 
+if($mob == 0) goto Ondevil3;
+end;
+
+
+
+Ondevil3:
+set $mob,100;
+monster "guild_vs3",0,0,"[DS] Diabinho",1292,16,"HiddenNpc::Ondevildead3";
+monster "guild_vs3",0,0,"[DS] Leib Olmai",1306,13,"HiddenNpc::Ondevildead3";
+monster "guild_vs3",0,0,"[DS] Gullinbursti",1311,22,"HiddenNpc::Ondevildead3";
+monster "guild_vs3",0,0,"[DS] Verme Ancião",1567,19,"HiddenNpc::Ondevildead3";
+monster "guild_vs3",0,0,"[DS] Esqueleto General",1290,12,"HiddenNpc::Ondevildead3";
+monster "guild_vs3",0,0,"[DS] Gato de Nove Caudas",1307,18,"HiddenNpc::Ondevildead3";
+end;
+
+Ondevildead3:
+if($status == 0) end;
+set $mob,$mob-1;
+if($mob == 25) Announce "Devil Square: 25 monstros para começar o 4º round",8;
+if($mob == 5) Announce "Devil Square: 5 monstros para começar o 4º round",8;
+if($mob == 0) Announce "Começou o 4º Round da Devil Square!",8; 
+if($mob == 0) goto Ondevil4;
+end;
+
+
+
+Ondevil4:
+set $mob,25;
+monster "guild_vs3",0,0,"[DS] Seyren Windsor",1634,5,"HiddenNpc::Ondevildead4";
+monster "guild_vs3",0,0,"[DS] Eremes Guile",1635,5,"HiddenNpc::Ondevildead4";
+monster "guild_vs3",0,0,"[DS] Howard Alt-Eisen",1636,5,"HiddenNpc::Ondevildead4";
+monster "guild_vs3",0,0,"[DS] Margaretha Sorin",1637,5,"HiddenNpc::Ondevildead4";
+monster "guild_vs3",0,0,"[DS] Kathryne Keyron",1639,5,"HiddenNpc::Ondevildead4";
+end;
+
+Ondevildead4:
+if($status == 0) end;
+set $mob,$mob-1;
+if($mob == 15) Announce "Devil Square: 15 monstros para começar o 5º round",8;
+if($mob == 5) Announce "Devil Square: 5 monstros para começar o 5º round",8;
+if($mob == 0) Announce "Começou o 5º Round da Devil Square!",8; 
+if($mob == 0) goto Ondevil5;
+end;
+
+
+Ondevil5:
+set $mob,30;
+monster "guild_vs3",0,0,"[DS] Salamandra",1831,5,"HiddenNpc::Ondevildead5";
+monster "guild_vs3",0,0,"[DS] Guardião Espadachim",1829,5,"HiddenNpc::Ondevildead5";
+monster "guild_vs3",0,0,"[DS] Kasa",1833,5,"HiddenNpc::Ondevildead5";
+monster "guild_vs3",0,0,"[DS] Kasa",1833,5,"HiddenNpc::Ondevildead5";
+monster "guild_vs3",0,0,"[DS] Byorgue",1839,5,"HiddenNpc::Ondevildead5";
+monster "guild_vs3",0,0,"[DS] Guardião Arqueiro",1830,5,"HiddenNpc::Ondevildead5";
+end;
+
+Ondevildead5:
+if($status == 0) end;
+set $mob,$mob-1;
+if($mob == 15) Announce "Devil Square: 15 monstros para começar o 6º round",8;
+if($mob == 5) Announce "Devil Square: 5 monstros para começar o 6º round",8;
+if($mob == 0) Announce "Começou o 6º Round da Devil Square!",8;
+if($mob == 0) goto Ondevil6;
+end;
+
+
+Ondevil6:
+set $mob,6;
+monster "guild_vs3",0,0,"[DS] Amon-Rá",1511,1,"HiddenNpc::Ondevildead6";
+monster "guild_vs3",0,0,"[DS] Hatii",1252,1,"HiddenNpc::Ondevildead6";
+monster "guild_vs3",0,0,"[DS] General Tartaruga",1312,1,"HiddenNpc::Ondevildead6";
+monster "guild_vs3",0,0,"[DS] Besouro Ladrão Dourado",1086,1,"HiddenNpc::Ondevildead6";
+monster "guild_vs3",0,0,"[DS] Tao Gunka",1583,1,"HiddenNpc::Ondevildead6";
+monster "guild_vs3",0,0,"[DS] Bafomé",1039,1,"HiddenNpc::Ondevildead6";
+end;
+
+Ondevildead6:
+if($status == 0) end;
+set $mob,$mob-1;
+if($mob == 1) Announce "Devil Square: 1 monstros para vitória!",8;
+if($mob == 0) Announce "Devil Square: Parabéns! 10 Caixas do Tesouro para você(s).",8; 
+if($mob == 0) goto Ondevilfinal;
+end;
+
+
+
+Ondevilfinal:
+set $mob,10;
+monster "guild_vs3",0,0,"Caixa do Tesouro",1325,10,"HiddenNpc::Onboxdead";
+end;
+
+Onboxdead:
+getitem 9000,rand(1,3);
+if ($status == 0) end;
+set $mob,$mob-1;
+Announce "Devil Square: " + strcharinfo(0) +" Abriu a Caixa do Tesouro.",8;
+if($mob == 0){
+set $status,0;
+enablenpc "Saída#DS";
+announce "A Devil Square acabou, obrigado a todos que participaram.!",8;
+end;
+}
+}
+
+guild_vs3,50,49,5	script	Saída#DS	705,{
+
+mes "[Saída]";
+mes "Deseja sair da Devil Square?";
+	if(select("- Não, Obrigado:- Sim, Por favor")==1) close;
+		next;
+		mes "[Saída]";
+		mes "Até logo!";
+		close2;
+		warp "SavePoint",0,0;
+		end;
+}
+
+
+/* -- Mapflags (Mapa do DS) -- */
+
+guild_vs3	mapflag	nowarp
+guild_vs3	mapflag	nowarpto
+guild_vs3	mapflag	noteleport
+guild_vs3	mapflag	nosave	SavePoint
+guild_vs3	mapflag	nomemo
+guild_vs3	mapflag	nobranch
+guild_vs3	mapflag	nopenalty
+guild_vs3	mapflag	pvp	off
+guild_vs3	mapflag	gvg	off
+
+/* -- Fim dos Mapflags -- */

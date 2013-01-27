@@ -1,0 +1,173 @@
+poring_w02,104,202,6	script	Refinador Especial	813,{
+
+
+set .n$, "[ Refinador Especial ]";
+
+if (getgmlevel() < 1 ){
+mes .n$;
+mes "Você não é um player vip, saia daqui!";
+close;
+}
+
+
+
+mes .n$;
+mes "Olá Senhor oque deseja refinar?";
+next;
+        setarray .@position$[1], "Cabeça cima","Corpo","Mão esquerda","Mão direita","Capa","Botas","Accessório 1","Accessório 2","Cabeça meio","Cabeça baixo";
+        set .@menu$,"";
+        for( set .@i,1; .@i <= 10; set .@i,.@i+1 )
+        {
+                if( getequipisequiped(.@i) )
+                        set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
+
+                set .@menu$, .@menu$ + ":";
+        }
+        set .@part,select(.@menu$);
+if(getequiprefinerycnt(.@part) >= 10)
+{
+mes .n$;
+mes "Eu não posso refinar este item.";
+mes "Ele ja foi refinado ao máximo permitido.";
+close;
+}
+
+
+if(!getequipisenableref(.@part)) {
+                mes .n$;
+                mes "Eu acho que não posso";
+                mes "refinar este item...";
+                close;
+        }
+switch(getequipweaponlv(.@part)){
+        case 0:         //Refine Armor
+                set .@price,2000;
+                set .@material,985;
+                set .@safe,4;
+                break;
+        case 1:         //Refine Level 1 Weapon
+                set .@price,50;
+                set .@material,1010;
+                set .@safe,7; 
+                break;
+        case 2:         //Refine Level 2 Weapon
+                set .@price,200;
+                set .@material,1011;
+                set .@safe,6; 
+                break;
+        case 3:         //Refine Level 3 Weapon
+                set .@price,5000;
+                set .@material,984;
+                set .@safe,5; 
+                break;
+        case 4:         //Refine Level 4 Weapon
+                set .@price,20000;
+                set .@material,984;
+                set .@safe,4; 
+                break;
+        case 5:         //Refine other stuff?
+                set .@price,2000;
+                set .@material,985;
+                set .@safe,4; 
+                break;
+}
+
+set .@refineitemid, getequipid(.@part);
+mes .n$;
+mes "Eu posso refinar seu item até uma quantia segura... A escolha é sua!";
+set .@menu2$,select("Para uma limite seguro.","Eu irei decidir quantas vezes!","Eu mudei de idéia");
+switch(.@menu2$){
+
+case 01:
+if(getequiprefinerycnt(.@part) >= .@safe)
+{
+next;
+mes .n$;
+mes "Este item já foi refinado ao máximo do seguro.";
+close;
+}
+set .@refinecnt,.@safe - getequiprefinerycnt(.@part);
+break;
+
+case 02:
+next;
+mes .n$;
+mes "Digite quantas vezes deseja refinar seu item..";
+next;
+input .@refinecnt;
+set .@refinecheck,.@refinecnt+getequiprefinerycnt(.@part);
+if(.@refinecnt <1 || .@refinecheck >10){
+mes .n$;
+mes "Não posso refinar esse item tantas vezes.";
+close;
+
+}
+if(.@refinecheck > .@safe)
+{
+set .@refinecheck,.@refinecheck-.@safe;
+mes .n$;
+mes "Eu irei tentar refinar o equipamento "+.@refinecheck+" do limite seguro... Seu equipamento pode ser destruído, Está bem?";
+next;
+if(select("Sim:Não")==2){
+mes .n$;
+mes "Bem.. que assi seja.";
+close;
+}
+}
+break;
+case 03:
+next;
+mes .n$;
+mes "Bem.. que assim seja!";
+close;
+}
+set .@fullprice,.@price * .@refinecnt;
+next;
+mes .n$;
+mes "Isso irá te custar "+.@refinecnt+" "+getitemname(.@material)+" e "+.@fullprice+" Zeny, Está ok?";
+if(select("Sim:Não")==2){
+next;
+mes .n$;
+mes "Bem.. que assim seja!";
+close;
+}
+if(countitem(.@material) <.@refinecnt || Zeny < .@fullprice) {
+next;
+mes .n$;
+mes "È tudo que você tem? Desculpe, Não posso trabalhar por um preço baixo ou pouco itens.";
+close;
+}
+set Zeny,Zeny-.@fullprice;
+delitem .@material,.@refinecnt;
+while(.@refinecnt){
+if (getequipid(.@part) != .@refineitemid || (.@menu2 == 1 && getequippercentrefinery(.@part) < 100)) {
+mes .n$;
+mes "Acha que sou estúpido!?";
+mes "Você trocou de item..";
+mes "Saia daqui antes que eu te estoure com meu martelo!!!";
+close;
+}
+next;
+mes "Clang, Clang!!";
+if(getequippercentrefinery(.@part) <= rand(100)) {
+failedrefitem .@part;
+emotion 23;
+next;
+mes .n$;
+mes "WAHHHH...Me desculpe...Eu avisei que poderia acontecer!!";
+set .@refinecnt,.@refinecnt-1;
+if(.@refinecnt==0)close;
+mes "Aqui está os itens que não usei";
+getitem .@material,.@refinecnt;
+set Zeny,Zeny+.@fullprice;
+close;
+}
+successrefitem .@part;
+emotion 21;
+set .@refinecnt,.@refinecnt-1;
+next;
+}
+mes .n$;
+mes "Tudo pronto.. Volte aqui quando quiser";
+close;
+}   

@@ -1,0 +1,86 @@
+quiz_02,304,245,0	script	Nidhoggr's Shadow	2022,{warp "2@nyd",0,0; end;}
+quiz_02,296,250,0	script	Assassin Cross Eremes 	1647,{warp "lhz_dun03",0,0; end;}
+quiz_02,299,250,0	script	Lord Knight Seyren 	1646,{warp "lhz_dun03",0,0; end;}
+quiz_02,302,250,0	script	Whitesmith Harword 	1648,{warp "lhz_dun03",0,0; end;}
+quiz_02,305,250,0	script	High Priest Magaleta 	1649,{warp "lhz_dun03",0,0; end;}
+quiz_02,308,250,0	script	Sniper Cecil 	1650,{warp "lhz_dun03",0,0; end;}
+quiz_02,311,250,0	script	High Wizard Katrinn 	1651,{warp "lhz_dun03",0,0; end;}
+//-----------------------
+quiz_02,287,266,4	script	Amon Ra	1511,{warp "moc_pryd06",0,0; end;}
+quiz_02,290,266,4	script	Atroce	1785,{warp "ra_fild03",0,0; end;}
+quiz_02,292,266,4	script	Bacsojin	1630,{warp "lou_dun03",0,0; end;}
+quiz_02,294,266,4	script	Beelzebub 	1874,{warp "abbey03",0,0; end;}
+quiz_02,297,266,4	script	Baphomet	1039,{warp "prt_maze03",0,0; end;}
+quiz_02,301,266,4	script	Detale	1719,{warp "abyss_03",0,0; end;}
+quiz_02,303,266,4	script	Doppelganger	1046,{warp "gef_dun02",0,0; end;}
+quiz_02,305,266,4	script	Dracula	1389,{warp "gef_dun01",0,0; end;}
+quiz_02,307,266,4	script	Drake	1112,{warp "treasure02",0,0; end;}
+quiz_02,309,266,4	script	Eddga	1115,{warp "pay_fild11",0,0; end;}
+quiz_02,312,266,4	script	Evil Snake Lord	1418,{warp "gon_dun03",0,0; end;}
+quiz_02,315,266,4	script	Garm	1252,{warp "xmas_fild01",0,0; end;}
+quiz_02,317,266,4	script	Gloom Under Night	1768,{warp "ra_san05",0,0; end;}
+quiz_02,319,266,4	script	Golden Thief Bug	1086,{warp "prt_sewb4",0,0; end;}
+//-----------------------
+quiz_02,288,262,6	script	Knight of Windstorm	1251,{warp "xmas_dun02",0,0; end;}
+quiz_02,288,259,6	script	Ktullanux	1779,{warp "ice_dun03",0,0; end;}
+quiz_02,288,256,6	script	Lady Tanee	1688,{warp "ayo_dun02",0,0; end;}
+quiz_02,288,253,6	script	Maya	1147,{warp "anthell02",0,0; end;}
+quiz_02,288,251,6	script	Mistress	1059,{warp "mjolnir_04",0,0; end;}
+quiz_02,288,249,6	script	Moonlight Flower	1150,{warp "pay_dun04",0,0; end;}
+quiz_02,288,247,6	script	Orc Hero	1087,{warp "gef_fild14",0,0; end;}
+quiz_02,288,245,6	script	Orc Lord	1190,{warp "gef_fild10",0,0; end;}
+quiz_02,288,243,6	script	Osiris	1038,{warp "moc_pryd04",0,0; end;}
+quiz_02,288,241,6	script	Pharaoh	1157,{warp "in_sphinx5",0,0; end;}
+quiz_02,288,239,6	script	Phreeoni	1159,{warp "moc_fild17",0,0; end;}
+quiz_02,288,235,6	script	RSX 0806	1623,{warp "ein_dun02",0,0; end;}
+//-----------------------
+quiz_02,320,262,3	script	Tao Gunka	1583,{warp "beach_dun",0,0; end;}
+quiz_02,320,260,3	script	Turtle General	1312,{warp "tur_dun04",0,0; end;}
+quiz_02,320,257,3	script	Valkyrie Randgris	1751,{warp "odin_tem03",0,0; end;}
+quiz_02,320,254,3	script	Egnigem Cenia	1658,{warp "lhz_dun02",0,0; end;}
+quiz_02,320,252,3	script	Incantation Samurai	1492,{warp "ama_dun03",0,0; end;}
+quiz_02,320,249,3	script	Ifrit	1832,{warp "thor_v03",0,0; end;}
+quiz_02,320,246,3	script	Kiel D-01	1734,{warp "kh_dun02",0,0; end;}
+quiz_02,320,243,3	script	Lord of Death	1373,{warp "niflheim",0,0; end;}
+quiz_02,320,239,3	script	Fallen Bishop	1871,{warp "abbey02",0,0; end;}
+quiz_02,320,236,3	script	Dark Lord	1272,{warp "gl_chyard",0,0; end;}
+//----------------------- Mini Bross
+quiz_02,292,235,0	script	Angeling	1096,{warp "pay_fild04",0,0; end;}
+quiz_02,294,235,0	script	Archangeling	1388,{warp "yuno_fild05",0,0; end;}
+quiz_02,302,236,0	script	Bow Guardian	1830,{warp "thor_v03",0,0; end;}
+quiz_02,306,236,0	script	Sword Guardian	1829,{warp "thor_v03",0,0; end;}
+quiz_02,304,236,0	script	Byorgue	1839,{warp "thor_v03",0,0; end;}
+quiz_02,309,235,0	script	Cat o' Nine Tails	1307,{warp "pay_dun04",0,0; end;}
+quiz_02,296,235,0	script	Deviling	1582,{warp "yuno_fild03",0,0; end;}
+quiz_02,298,235,0	script	Ghostring	1120,{warp "pay_fild04",0,0; end;}
+//-----------------------
+quiz_02,311,235,0	script	Hardrock Mammoth	1990,{warp "man_fild03",0,0; end;}
+quiz_02,314,235,0	script	Hydrolancer	1720,{warp "abyss_03",0,0; end;}
+quiz_02,317,235,0	script	Maya Purple	1289,{warp "anthell01",0,0; end;}
+
+quiz_02,295,239,0	script	Tendrillion	1991,{warp "spl_fild03",0,0; end;}
+quiz_02,312,239,0	script	Valkyrie	1765,{warp "odin_tem03",0,0; end;}
+
+quiz_02,307,242,0	script	Thanatos Dolor	1707,{warp "tha_t05",0,0; end;}
+quiz_02,305,242,0	script	Thanatos Maero	1706,{warp "tha_t06",0,0; end;}
+quiz_02,303,242,0	script	Thanatos Odium	1704,{warp "tha_t08",0,0; end;}
+quiz_02,301,242,0	script	Thanatos Despero	1705,{warp "tha_t07",0,0; end;}
+
+
+
+
+
+
+
+
+
+//----------------------
+prontera,147,196,5	script	MvP Search	416,{
+mes "[MvP Search]";
+	mes "Olá ^FF0000"+strcharinfo(0)+"^000000, seja bem-vindo ao serviço de teletransporte MvP Search!";
+	mes "Aqui você pode ir diretamente no mapa onde nasce o MvP ou Mini Boss!";
+	mes "Gostaria de ir?";
+	if(select("Sim:Não")==2)close;
+	warp "quiz_02",304,257;
+	end;
+	}

@@ -1,0 +1,33 @@
+payold,85,129,6	script	Curandeira#hG1-1::HealerG	936,{
+	callfunc "curandyokai",0;
+	end;
+OnInit:
+waitingroom "Curandeira",0;
+end;
+}
+
+function	script	curandyokai	{
+	if (getgmlevel() > 0) {
+		sc_start SC_INCREASEAGI, 240000, 10;
+		sc_start SC_BLESSING, 240000, 10;
+		dispbottom "[Curandeira]: Obrigado por ajudar o servidor e ser jogador ViP! Bom jogo!"; 
+	}
+	
+	setarray .@debuff[0], 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 33;
+	for (set .@i, 0; .@i < getarraysize(.@debuff); set .@i, .@i + 1) {
+		if (agitcheck())
+			break;
+		sc_end .@debuff[.@i];
+	}
+	if(getbrokenid(1)==NULL) {
+   		dispbottom "[Curandeira]: Você não tem itens para consertar!";
+  	} else {
+  		repairall;
+   	}
+	percentheal 100,100;
+
+	if (rand(15) == 3)
+		emotion 51;
+
+	end;
+}

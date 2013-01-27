@@ -1,0 +1,64 @@
+prontera,152,173,5	script	Natália	714,{
+mes "[^FF0000"+strnpcinfo(0)+"^000000]";
+if(natal == 1) {
+mes "Olá "+strcharinfo(0)+"";
+mes "Retornou rapido ein ...";
+next;
+mes "[^FF0000"+strnpcinfo(0)+"^000000]";
+if(countitem(7034) >= 10 && countitem(949) >= 250 && countitem(947) >= 150)
+callsub OnNatal,0;
+else
+mes "Mas ainda não conseguiu meus itens? ...........";
+mes "x10 ^FF0000"+getitemname(7034)+"^000000 (ID: 7034)";
+mes "x250 ^FF0000"+getitemname(949)+"^000000 (ID: 949)";
+mes "x150 ^FF0000"+getitemname(947)+"^000000 (ID: 947)";
+close;
+}
+mes "Entrando no espírito de Natal, nós do ^FF0000RagnaYOKAI^000000 estamos trazendo para você";
+mes "uma quest Natalina! Você precisará achar Antonios que estão espalhados por Lutie, Izlude e Geffen!";
+mes "Deseja tentar?";
+next;
+if(select("Claro!!!!!:Não, Obrigado.")==2){
+mes "[^FF0000"+strnpcinfo(0)+"^000000]";
+mes "Que pena.. Até a próxima então.";
+close;
+}
+mes "[^FF0000"+strnpcinfo(0)+"^000000]";
+OnNatal:
+if(countitem(7034) >= 10 && countitem(949) >= 250 && countitem(947) >= 150) {
+mes "Parabéns! Vejo que conseguiu os itens necessários.";
+mes "Receba seu premio.";
+mes "x1 ^FF0000"+getitemname(5742)+"^000000";
+announce "[ "+strcharinfo(0)+" ] - Olá pessoal! Acabo de completar a quest natalina ragnaYOKAI! Muito lindo o prêmio, faça você também!",bc_all,0xFF0000;
+delitem 7034,10; // <- Deletar itens
+delitem 949,250; // <- Deletar itens
+delitem 947,150; // <- Deletar itens
+getitem 5742,1; // <- Entregar Prêmio
+set natal,0;
+close;
+}
+set natal,1;
+mes "Pois bem, preciso que você me traga os seguintes itens:";
+mes "x10 ^FF0000"+getitemname(7034)+"^000000 (ID: 7034)";
+mes "x250 ^FF0000"+getitemname(949)+"^000000 (ID: 949)";
+mes "x150 ^FF0000"+getitemname(947)+"^000000 (ID: 947)";
+next;
+mes "[^FF0000"+strnpcinfo(0)+"^000000]";
+mes "Quando tiver os itens, retorne a falar comigo.";
+close;
+}
+
+-	script	questnatalmob	-1,{
+
+OnMinute30:
+announce "[ Natália ] - Os Antonio acabam de invadir Lutie, Izlude e Geffen!!!",bc_all,0xFF0000;
+monster "xmax",0,0,"Antonio",1247,3,"questnatalmob::OnTonho";
+monster "izlude",0,0,"Antonio",1247,1,"questnatalmob::OnTonho";
+monster "geffen",0,0,"Antonio",1247,1,"questnatalmob::OnTonho";
+end;
+
+OnTonho:
+announce "[ Natália ] - Hey! O "+strcharinfo(0)+" acaba de elimitar um Antonio, que mal!",bc_all,0xFF0000;
+end;
+
+}

@@ -1,0 +1,1 @@
+prtg_cas01	mapflag	nocmd	storage

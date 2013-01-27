@@ -1,0 +1,44 @@
+ra_in01,253,302,3	shop	Vendedora de Chapeus	69,2218:300,2201:5000,2241:5000,2232:7500,2216:9000,2239:10000,2226:12000,2243:20000,2242:24000,2228:44000,2230:50000
+ra_in01,255,300,3	shop	Vendedora de Armaduras	745,2301:10,2303:200,2305:1000,2321:8000,2328:5500,2323:6500,2332:7000,2307:10000,2309:22000,2312:48000,2325:54000,2314:65000,2330:71000,2335:74000,2316:80000,2340:89000,2341:94000
+ra_in01,257,299,3	shop	Vendedora de Escudos	75,2101:500,2103:14000,2105:56000,2107:60000
+ra_in01,253,296,3	shop	Vendedora de Capas	68,2501:1000,2503:5000,2505:32000
+ra_in01,248,302,0	shop	Vendedora de Sapatos	66,2401:400,2403:3500,2405:18000,2411:48000
+ra_in01,256,269,3	shop	Utilidades#yokai::ultyokai	838,611:40,506:40,501:50,502:200,503:550,504:1200,525:500,601:60,602:300,1065:100,645:800,656:1500,657:3000,610:4000,514:200,533:300,521:400,522:8500,578:500,715:600,717:600,716:600,7521:150,7522:150,7523:150,7524:300,1750:1,1751:3,1756:3,1752:3,1755:3,1754:3,1771:50,713:6
+ra_in01,257,265,3	shop	Cozinheiro	829,12075:100000,12090:100000,12085:100000,12080:100000,12095:100000,12100:100000
+ra_in01,245,296,4	shop	Comida para Pet	62,910:40,912:480,911:160,537:1000,531:20,511:10,716:600,1002:50,507:18,532:20,534:20,518:500,711:16,508:40,619:1000,929:374,7824:20,504:1200,7823:20,7822:20,539:3000
+
+
+
+
+
+
+
+//duplicatas Cozinheiro
+prt_in,127,75,4	duplicate(Cozinheiro)	Cozinheiro#2	829
+
+//duplicatas Utilidades
+prt_in,129,75,4	duplicate(ultyokai)	Utilidades#yo2	838
+prontera,166,198,5	duplicate(ultyokai)	Utilidades#yo3	838
+morocc,160,97,5	duplicate(ultyokai)	Utilidades#yo4	838
+geffen,126,64,5	duplicate(ultyokai)	Utilidades#yo5	838
+payon,177,226,5	duplicate(ultyokai)	Utilidades#yo6	838
+alberta,194,149,5	duplicate(ultyokai)	Utilidades#yo7	838
+izlude,131,119,5	duplicate(ultyokai)	Utilidades#yo8	838
+aldebaran,135,116,5	duplicate(ultyokai)	Utilidades#yo9	838
+xmas,151,136,5	duplicate(ultyokai)	Utilidades#yo10	838
+comodo,206,150,5	duplicate(ultyokai)	Utilidades#yo11	838
+yuno,153,49,5	duplicate(ultyokai)	Utilidades#yo12	838
+amatsu,192,89,5	duplicate(ultyokai)	Utilidades#yo13	838
+gonryun,155,122,5	duplicate(ultyokai)	Utilidades#yo14	838
+umbala,94,161,5	duplicate(ultyokai)	Utilidades#yo15	838
+louyang,217,104,5	duplicate(ultyokai)	Utilidades#yo16	838
+new_1-1,57,114,5	duplicate(ultyokai)	Utilidades#yo17	838
+jawaii,239,148,5	duplicate(ultyokai)	Utilidades#yo18	838
+ayothaya,144,119,5	duplicate(ultyokai)	Utilidades#yo19	838
+einbroch,65,203,5	duplicate(ultyokai)	Utilidades#yo20	838
+lighthalzen,158,100,5	duplicate(ultyokai)	Utilidades#yo21	838
+einbech,74,96,5	duplicate(ultyokai)	Utilidades#yo22	838
+hugel,87,151,5	duplicate(ultyokai)	Utilidades#yo23	838
+rachel,125,117,5	duplicate(ultyokai)	Utilidades#yo24	838
+veins,226,123,5	duplicate(ultyokai)	Utilidades#yo25	838
+moscovia,227,191,5	duplicate(ultyokai)	Utilidades#yo26	838

@@ -1,0 +1,263 @@
+-	script	Teletransportadora#01::cWarp	-1,{
+
+//===== Configurações: ======================================= 
+set @lwarp,	1;	// Habilitar último warp gravado? (Nota 1)
+set @sdung,	1;	// Exibir calabouços no menu? (Nota 1)
+//============================================================ 
+
+	mes "[Teletransportadora]";
+	mes "Olá "+strcharinfo(0)+", seja bem-vindo ao Serviço de Teletransporte!";
+	mes "Para onde você gostaria de ir?";
+	next;
+	switch (select (((@lwarp)?"Último Destino":"")+"","Cidades",""+((@sdung)?"Outros Lugares":""),"Castelos","Zoológico"))
+	{
+		case 1:
+			if (lwarpx)
+			{
+				warp lwarp$, lwarpx, lwarpy;
+				end;
+			}
+			else
+			{
+				next;
+				mes "[Teletransportadora]";
+				mes "Você ainda não utilizou nosso serviço!";
+				close;
+			}
+		
+		case 2:	
+			mes "[Teletransportadora]";
+			mes "Selecione o seu destino:";
+			next;
+			switch (select ("Prontera","Alberta","Aldebaran","Amatsu","Ayothaya","Brasilis","Comodo","Einbech","Einbroch","Esplendor","Geffen","Gonryun",
+							"Hugel","Izlude","Jawaii","Juno","Lighthalzen","Louyang","Lutie","Manuka","Morroc","Moscovia","Ilha Esquecida","Niflheim",
+							"Payon","Rachel","Umbala","Veins"))
+			{
+			
+				case 1: callsub F_DoWarp, "prontera", 156, 191;	
+				case 2: callsub F_DoWarp, "alberta", 192, 147;
+				case 3: callsub F_DoWarp, "aldebaran", 140, 131;
+				case 4: callsub F_DoWarp, "amatsu", 198, 84;
+				case 5: callsub F_DoWarp, "ayothaya", 151, 117;
+				case 6: callsub F_DoWarp, "brasilis", 195, 218;
+				case 7: callsub F_DoWarp, "comodo", 209, 143;
+				case 8: callsub F_DoWarp, "einbech", 70, 95;
+				case 9: callsub F_DoWarp, "einbroch", 64, 200;
+				case 10: callsub F_DoWarp, "splendide", 202, 150;
+				case 11: callsub F_DoWarp, "geffen", 119, 59;;
+				case 12: callsub F_DoWarp, "gonryun", 160, 120;
+				case 13: callsub F_DoWarp, "hugel", 96, 145;
+				case 14: callsub F_DoWarp, "izlude", 128, 114;
+				case 15: callsub F_DoWarp, "jawaii", 249, 127;
+				case 16: callsub F_DoWarp, "yuno", 157, 51;
+				case 17: callsub F_DoWarp, "lighthalzen", 158, 92;
+				case 18: callsub F_DoWarp, "louyang", 217, 40;
+				case 19: callsub F_DoWarp, "xmas", 147, 134;
+				case 20: callsub F_DoWarp, "manuk", 295, 190;
+				case 21: callsub F_DoWarp, "morocc", 156, 93;
+				case 22: callsub F_DoWarp, "moscovia", 223, 184;
+				case 23: callsub F_DoWarp, "nameless_i", 175, 256;
+				case 24: callsub F_DoWarp, "niflheim", 21, 153;
+				case 25: callsub F_DoWarp, "payon", 162, 233;
+				case 26: callsub F_DoWarp, "rachel", 130, 110;
+				case 27: callsub F_DoWarp, "umbala", 89, 157;
+				case 28: callsub F_DoWarp, "veins", 216, 123;
+			}
+		
+		case 3:
+			mes "[Teletransportadora]";
+			mes "Selecione o seu destino:";
+			next;
+			switch (select ("Monastério","Lago do Abismo","Labirinto de Tatames","Formigueiro Infernal","Labirinto do Santuário Ancestral","Ilha de Byalan","Caverna de Comodo","Torre do Relógio","Mina de Carvão",
+							"Calabouço da Mina","Gefenia","Calabouço de Geffen","Glast Heim","Santuário de Xi Wang Mu","Labirinto da Floresta","Caverna de Gelo","Ruínas de Juperos","Fábrica de Robôs","Biolaboratório de Somatologia",
+							"A Tumba Real","Calabouço de Magma","Floresta Encantada","Campos de Niflheim","Santuário de Odin","Caverna dos Orcs","Caverna de Payon","Esgoto de Prontera",
+							"Pirâmide","Santuário de Rachel","Esfinge","Navio Fantasma","Torre de Thanatos","Vulcão de Thor","Fábrica de Brinquedos","Ilha da Tartaruga","Loja de Carpintaria","Caverna das Cataratas",
+							"Poringlândia","Praia das Focas"))
+			{
+			
+				case 1: callsub F_DoWarp, "nameless_n", 164, 184;
+				case 2: callsub F_DoWarp, "abyss_01", 264, 271;
+				case 3: callsub F_DoWarp, "ama_dun01", 229, 10;
+				case 4: callsub F_DoWarp, "moc_fild20", 163, 145;
+				case 5: callsub F_DoWarp, "ayo_fild02", 277, 150;
+				case 6: callsub F_DoWarp, "izlu2dun", 107, 89;
+				case 7: 
+					mes "[Teletransportadora]";
+					mes "Por favor, seja mais específico:";
+					next;
+					switch (select ("Caverna do Oeste:Caverna do Norte:Caverna do Leste"))
+					{
+						case 1: callsub F_DoWarp, "comodo", 30, 215;
+						case 2: callsub F_DoWarp, "comodo", 176, 352;
+						case 3: callsub F_DoWarp, "comodo", 327, 175;
+					}
+				case 8: callsub F_DoWarp, "c_tower1", 199, 159;
+				case 9: callsub F_DoWarp, "mjolnir_02", 79, 360;
+				case 10: callsub F_DoWarp, "ein_dun01", 22, 14;
+				case 11: callsub F_DoWarp, "gefenia01", 60, 169;
+				case 12: callsub F_DoWarp, "gef_tower", 153, 34;
+				case 13: callsub F_DoWarp, "glast_01", 370, 304;
+				case 14: callsub F_DoWarp, "gon_dun01", 153, 48;
+				case 15: callsub F_DoWarp, "prt_maze01", 99, 31;
+				case 16: callsub F_DoWarp, "ra_fild01", 233, 327;
+				case 17: callsub F_DoWarp, "yuno_fild07", 213, 175;
+				case 18: callsub F_DoWarp, "kh_dun01", 3, 230;
+				case 19: callsub F_DoWarp, "lhz_dun01", 149, 286;
+				case 20: callsub F_DoWarp, "lou_dun01", 218, 195;
+				case 21: callsub F_DoWarp, "yuno_fild03", 38, 138;
+				case 22: callsub F_DoWarp, "mosk_dun01", 189, 45;
+				case 23: callsub F_DoWarp, "nif_fild01", 315, 66;
+				case 24: callsub F_DoWarp, "odin_tem01", 100, 146;
+				case 25: callsub F_DoWarp, "gef_fild10", 62, 329;
+				case 26: callsub F_DoWarp, "pay_arche", 41, 135;
+				case 27: callsub F_DoWarp, "prt_sewb1", 131, 247;
+				case 28: callsub F_DoWarp, "moc_ruins", 64, 155;
+				case 29: callsub F_DoWarp, "ra_san01", 140, 135;
+				case 30: callsub F_DoWarp, "moc_fild19", 106, 99;
+				case 31: callsub F_DoWarp, "alb2trea", 75, 98;
+				case 32: callsub F_DoWarp, "tha_t01", 149, 38;
+				case 33: callsub F_DoWarp, "ve_fild03", 168, 234;
+				case 34: callsub F_DoWarp, "xmas_dun01", 205, 16;
+				case 35: callsub F_DoWarp, "tur_dun01", 157, 39;
+				case 36: callsub F_DoWarp, "umbala", 110, 281;
+				case 37: callsub F_DoWarp, "bra_dun01", 88, 47;
+				case 38: callsub F_DoWarp, "pay_fild04", 20, 165;
+				case 39: callsub F_DoWarp, "cmd_fild02", 222, 372;
+			}
+			
+			
+		case 4:	
+			mes "[Teletransportadora]";
+			mes "Selecione o Feudo:";
+			next;
+			switch (select ("Feudo de Britoniah (Geffen)","Feudo das Valquírias (Prontera)","Feudo de Luina (Aldebaran)","Feudo do Bosque Celestial (Payon)","(SE) Feudo de Nithafjoll (Schwartzwald)","(SE) Feudo de Valfreyja (Arunafeltz)"))
+			{
+			
+					case 1:	
+				mes "[Teletransportadora]";
+				mes "Selecione o Castelo de Geffen:";
+				next;
+				switch (select ("Arsulf","Trapesac","Ruaden","Saffran","Arima"))
+				{
+					case 1: callsub F_DoWarp, "gef_fild13", 159, 47;
+					case 2: callsub F_DoWarp, "gef_fild13", 308, 238;
+					case 3: callsub F_DoWarp, "gef_fild13", 150, 242;
+					case 4: callsub F_DoWarp, "gef_fild13", 190, 277;
+					case 5: callsub F_DoWarp, "gef_fild13", 311, 86;
+				
+				}
+				
+				case 2:	
+				mes "[Teletransportadora]";
+				mes "Selecione o Castelo de Prontera:";
+				next;
+				switch (select ("Kriemhild","Hrist","Brynhildr","Skoegul","Gondul"))
+				{
+					case 1: callsub F_DoWarp, "prt_gld", 142, 64;
+					case 2: callsub F_DoWarp, "prt_gld", 240, 131;
+					case 3: callsub F_DoWarp, "prt_gld", 153, 134;
+					case 4: callsub F_DoWarp, "prt_gld", 120, 239;
+					case 5: callsub F_DoWarp, "prt_gld", 199, 239;
+				
+				}
+				
+				case 3:	
+				mes "[Teletransportadora]";
+				mes "Selecione o Castelo de Aldebaran:";
+				next;
+				switch (select ("Sirius","Astrum","Canopus","Rigel","Acrux"))
+				{
+					case 1: callsub F_DoWarp, "alde_gld", 48, 88;
+					case 2: callsub F_DoWarp, "alde_gld", 96, 245;
+					case 3: callsub F_DoWarp, "alde_gld", 142, 88;
+					case 4: callsub F_DoWarp, "alde_gld", 236, 242;
+					case 5: callsub F_DoWarp, "alde_gld", 267, 90;
+				
+				}
+				
+				case 4:	
+				mes "[Teletransportadora]";
+				mes "Selecione o Castelo de Payon:";
+				next;
+				switch (select ("Palácio do Sol","Palácio do Lago Sagrado","Palácio da Sombra","Palácio Escarlate","Palácio da Colina"))
+				{
+					case 1: callsub F_DoWarp, "pay_gld", 122, 230;
+					case 2: callsub F_DoWarp, "pay_gld", 296, 107;
+					case 3: callsub F_DoWarp, "pay_gld", 314, 291;
+					case 4: callsub F_DoWarp, "pay_gld", 140, 166;
+					case 5: callsub F_DoWarp, "pay_gld", 192, 267;
+				
+				}
+				
+				case 5:	
+				mes "[Teletransportadora]";
+				mes "Selecione o Castelo de Schwartzwald:";
+				next;
+				switch (select ("Himinn","Andlangr","Vidblainn","Hljod","Skatyrnir"))
+				{
+					case 1: callsub F_DoWarp, "sch_gld", 294, 100;
+					case 2: callsub F_DoWarp, "sch_gld", 288, 249;
+					case 3: callsub F_DoWarp, "sch_gld", 97, 191;
+					case 4: callsub F_DoWarp, "sch_gld", 137, 89;
+					case 5: callsub F_DoWarp, "sch_gld", 73, 315;
+				
+				}
+				
+				case 6:	
+				mes "[Teletransportadora]";
+				mes "Selecione o Castelo de Arunafeltz:";
+				next;
+				switch (select ("Mardol","Syr","Horn","Gefn","Vanadis"))
+				{
+					case 1: callsub F_DoWarp, "aru_gld", 159, 268;
+					case 2: callsub F_DoWarp, "aru_gld", 88, 47;
+					case 3: callsub F_DoWarp, "aru_gld", 68, 158;
+					case 4: callsub F_DoWarp, "aru_gld", 300, 345;
+					case 5: callsub F_DoWarp, "aru_gld", 299, 107;
+				
+				}
+				
+			}
+			
+		case 5: callsub F_DoWarp, "sec_in02", 133, 162;
+			
+	}
+	
+	F_DoWarp:
+		if (@lwarp)
+		{
+			set lwarp$, getarg(0);
+			set lwarpx, getarg(1);
+			set lwarpy, getarg(2);
+		}
+		warp getarg(0), getarg(1), getarg(2);
+		end;
+	return;
+}
+
+//===== Duplicações: =========================================
+//Cidades 
+prontera,169,202,5	duplicate(cWarp)	Teletransportadora#02	721
+morocc,154,97,5	duplicate(cWarp)	Teletransportadora#03	721
+geffen,125,67,5	duplicate(cWarp)	Teletransportadora#04	721
+payon,173,226,5	duplicate(cWarp)	Teletransportadora#05	721
+alberta,185,147,5	duplicate(cWarp)	Teletransportadora#06	721
+izlude,123,119,5	duplicate(cWarp)	Teletransportadora#07	721
+aldebaran,135,120,5	duplicate(cWarp)	Teletransportadora#08	721
+xmas,145,136,5	duplicate(cWarp)	Teletransportadora#09	721
+comodo,202,150,5	duplicate(cWarp)	Teletransportadora#10	721
+yuno,162,49,5	duplicate(cWarp)	Teletransportadora#11	721
+amatsu,192,85,5	duplicate(cWarp)	Teletransportadora#12	721
+gonryun,157,122,5	duplicate(cWarp)	Teletransportadora#13	721
+umbala,88,159,5	duplicate(cWarp)	Teletransportadora#14	721
+louyang,213,104,5	duplicate(cWarp)	Teletransportadora#15	721
+new_1-1,55,114,5	duplicate(cWarp)	Teletransportadora#16	721
+jawaii,241,145,5	duplicate(cWarp)	Teletransportadora#17	721
+ayothaya,144,117,5	duplicate(cWarp)	Teletransportadora#18	721
+einbroch,61,203,5	duplicate(cWarp)	Teletransportadora#19	721
+lighthalzen,162,100,5	duplicate(cWarp)	Teletransportadora#20	721
+einbech,67,97,5	duplicate(cWarp)	Teletransportadora#21	721
+hugel,89,151,5	duplicate(cWarp)	Teletransportadora#22	721
+rachel,133,117,5	duplicate(cWarp)	Teletransportadora#23	721
+veins,222,123,5	duplicate(cWarp)	Teletransportadora#24	721
+moscovia,225,191,5	duplicate(cWarp)	Teletransportadora#25	721

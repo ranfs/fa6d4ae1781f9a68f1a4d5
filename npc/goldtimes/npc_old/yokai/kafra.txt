@@ -1,0 +1,249 @@
+// Pequena Otimização == Goizandro
+prontera,138,202,5	script	Funcionária Kafra#ypro	894,{
+
+	cutin "kafra_06",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra~";
+	mes "Os Serviços Kafra estão";
+	mes "sempre aqui para ajudá-lo.";
+	mes "Então, como posso";
+	mes "ajudá-lo hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "prontera",156,191;
+	callfunc "F_KafEnd",0,1,"na cidade de Prontera";
+}
+
+alberta,194,147,5	script	Funcionária Kafra#ygo4	894,{
+
+	cutin "kafra_06",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra~";
+	mes "Os Serviços Kafra estão";
+	mes "sempre aqui para ajudá-lo.";
+	mes "Então, como posso";
+	mes "ajudá-lo hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "alberta",192,147;
+	callfunc "F_KafEnd",0,1,"na cidade de Alberta";
+}
+
+izlude,127,118,5	script	Funcionária Kafra#ygo5	894,{
+
+	cutin "kafra_06",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra~";
+	mes "Os Serviços Kafra estão";
+	mes "sempre aqui para ajudá-lo.";
+	mes "Então, como posso";
+	mes "ajudá-lo hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "izlude",128,114;
+	callfunc "F_KafEnd",0,1,"na cidade de Izlude";
+}
+
+xmas,147,136,5	script	Funcionária Kafra#ygo7	894,{
+
+	cutin "kafra_06",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra~";
+	mes "Os Serviços Kafra estão";
+	mes "sempre aqui para ajudá-lo.";
+	mes "Então, como posso";
+	mes "ajudá-lo hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "xmas",147,134;
+	callfunc "F_KafEnd",0,1,"na cidade de Lutie";
+}
+
+yuno,162,47,5	script	Funcionária Kafra#ygo9	894,{
+
+	cutin "kafra_06",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra~";
+	mes "Os Serviços Kafra estão";
+	mes "sempre aqui para ajudá-lo.";
+	mes "Então, como posso";
+	mes "ajudá-lo hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "yuno",157,51;
+	callfunc "F_KafEnd",0,1,"na cidade de Juno";
+}
+
+amatsu,192,83,5	script	Funcionária Kafra#ygo10	894,{
+
+	cutin "kafra_06",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra~";
+	mes "Os Serviços Kafra estão";
+	mes "sempre aqui para ajudá-lo.";
+	mes "Então, como posso";
+	mes "ajudá-lo hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "amatsu",198,84;
+	callfunc "F_KafEnd",0,1,"na cidade de Amatsu";
+}
+
+umbala,86,160,5	script	Funcionária Kafra#ygo12	894,{
+
+	cutin "kafra_06",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra~";
+	mes "Os Serviços Kafra estão";
+	mes "sempre aqui para ajudá-lo.";
+	mes "Então, como posso";
+	mes "ajudá-lo hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "umbala",86,157;
+	callfunc "F_KafEnd",0,1,"na cidade de Umbala";
+}
+
+
+
+
+jawaii,245,143,5	script	Funcionária Kafra#ygo17	894,{
+
+	cutin "kafra_06",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra~";
+	mes "Os Serviços Kafra estão";
+	mes "sempre aqui para ajudá-lo.";
+	mes "Então, como posso";
+	mes "ajudá-lo hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "jawaii",241,140;
+	callfunc "F_KafEnd",0,1,"na cidade de Jawaii";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+ayothaya,144,115,5	script	Funcionária Kafra#ygo18	894,{
+
+	cutin "kafra_06",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra~";
+	mes "Os Serviços Kafra estão";
+	mes "sempre aqui para ajudá-lo.";
+	mes "Então, como posso";
+	mes "ajudá-lo hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "ayothaya",151,117;
+	callfunc "F_KafEnd",0,1,"na cidade de Ayotaya";
+}
+
+einbech,67,99,5	script	Funcionária Kafra#ygo21	894,{
+
+	cutin "kafra_06",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra~";
+	mes "Os Serviços Kafra estão";
+	mes "sempre aqui para ajudá-lo.";
+	mes "Então, como posso";
+	mes "ajudá-lo hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "einbech",70,95;
+	callfunc "F_KafEnd",0,1,"na cidade de Einbech";
+}
+
+hugel,92,154,5	script	Funcionária Kafra#ygo22	894,{
+
+	cutin "kafra_06",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra~";
+	mes "Os Serviços Kafra estão";
+	mes "sempre aqui para ajudá-lo.";
+	mes "Então, como posso";
+	mes "ajudá-lo hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "hugel",96,145;
+	callfunc "F_KafEnd",0,1,"na cidade de Hugel";
+}
+
+rachel,129,117,5	script	Funcionária Kafra#ygo23	894,{
+
+	cutin "kafra_06",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra~";
+	mes "Os Serviços Kafra estão";
+	mes "sempre aqui para ajudá-lo.";
+	mes "Então, como posso";
+	mes "ajudá-lo hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "rachel",130,110;
+	callfunc "F_KafEnd",0,1,"na cidade de Rachel";
+}
+
+veins,220,123,5	script	Funcionária Kafra#ygo24	894,{
+
+	cutin "kafra_06",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra~";
+	mes "Os Serviços Kafra estão";
+	mes "sempre aqui para ajudá-lo.";
+	mes "Então, como posso";
+	mes "ajudá-lo hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "veins",216,123;
+	callfunc "F_KafEnd",0,1,"na cidade de Veins";
+}

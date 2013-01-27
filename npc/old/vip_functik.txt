@@ -1,0 +1,68 @@
+function	script	ticketvip30	{
+	mes "[^FF3355RagnaYokai^000000]";
+	mes "Deseja adicionar dias como usuário ViP?";
+	if (select("- Sim:- Não") == 1) {
+	next;
+	mes "["+strnpcinfo(1)+"]";
+	mes "Parabéns seus dias como usuário vip foram adicionados. Relogue para ser ativado.";
+	query_sql "UPDATE `login` SET `level`='1',`diasvip`=`diasvip`+30 WHERE `account_id`='"+ getcharid(3) +"'";
+	query_sql "SELECT `diasvip` FROM `login` WHERE `account_id` = '"+ getcharid(3) +"'", .@diasvip;
+	dispbottom "[Controle VIP]";
+	dispbottom "Você acaba de receber 30 dias VIP, agora você tem "+.@diasvip+" dias VIP";
+	next;
+	atcommand "@kick "+strcharinfo(0);
+	close2;
+	end;
+	}
+	next; 
+	mes "[^FF3355RagnaYokai^000000]";                                             
+	mes "Tem certeza? Vai perder muitas vantagens. Ative o item novamente quando quiser ser ViP.";
+	getitem 4000,1; // ID do ticekt vip	 
+	close; 
+}
+
+function	script	ticketvip1	{
+	mes "[^FF3355RagnaYokai^000000]";
+	mes "Deseja adicionar dias como usuário ViP?";
+	if (select("- Sim:- Não") == 1) {
+	next;
+	mes "["+strnpcinfo(1)+"]";
+	mes "Parabéns seus dias como usuário vip foram adicionados. Relogue para ser ativado.";
+	query_sql "UPDATE `login` SET `level`='1',`diasvip`=`diasvip`+1 WHERE `account_id`='"+ getcharid(3) +"'";
+	query_sql "SELECT `diasvip` FROM `login` WHERE `account_id` = '"+ getcharid(3) +"'", .@diasvip;
+	dispbottom "[RagnaYokai]";
+	dispbottom "Você acaba de receber 1 dia VIP, agora você tem "+.@diasvip+" dias VIP";	
+	next;
+	atcommand "@kick "+strcharinfo(0);
+	close2;
+	end;
+	}
+	next; 
+	mes "[^FF3355RagnaYokai^000000]";                                             
+	mes "Tem certeza? Vai perder muitas vantagens. Ative o item novamente quando quiser ser ViP.";
+	getitem 10116,1; // ID do ticekt vip	 
+	close; 
+}
+
+function	script	ticketvip10	{
+	mes "[^FF3355RagnaYokai^000000]";
+	mes "Deseja adicionar dias como usuário ViP?";
+	if (select("- Sim:- Não") == 1) {
+	next;
+	mes "["+strnpcinfo(1)+"]";
+	mes "Parabéns seus dias como usuário vip foram adicionados. Relogue para ser ativado.";
+	query_sql "UPDATE `login` SET `level`='1',`diasvip`=`diasvip`+10 WHERE `account_id`='"+ getcharid(3) +"'";
+	query_sql "SELECT `diasvip` FROM `login` WHERE `account_id` = '"+ getcharid(3) +"'", .@diasvip;
+	dispbottom "[Controle VIP]";
+	dispbottom "Você acaba de receber 10 dias VIP, agora você tem "+.@diasvip+" dias VIP";
+	next;
+	atcommand "@kick "+strcharinfo(0);
+	close2;
+	end;
+	}
+	next; 
+	mes "[^FF3355RagnaYokai^000000]";                                             
+	mes "Tem certeza? Vai perder muitas vantagens. Ative o item novamente quando quiser ser ViP.";
+	getitem 10139,1; // ID do ticekt vip	 
+	close; 
+}

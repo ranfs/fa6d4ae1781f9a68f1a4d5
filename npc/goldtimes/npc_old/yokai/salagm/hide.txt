@@ -1,0 +1,49 @@
+-	script	GM Control#v1	-1,{
+
+OnPCLoginEvent:
+if (getgmlevel() < 40){ end; }
+mes "["+strnpcinfo(1)+"]";
+atcommand "@hide";
+atcommand "@speed 0";
+mes "Senhas administrativas ragnaYOKAI";
+next;
+mes "["+strnpcinfo(1)+"]";
+mes "Digite a 1º senha Administrativa.";
+input @senha1$; //xhupodahlejinyqkie7456
+next;
+if(@senha1$ != "xhupodahlejinyqkie7456") {
+goto OnBan;
+}
+mes "["+strnpcinfo(1)+"]";
+mes "Digite a 2º senha Administrativa.";
+input @senha2$; //faikdeuhbnxaymeljdyen2546
+next;
+if(@senha2$ != "faikdeuhbnxaymeljdyen2546") {
+goto OnBan;
+}
+mes "["+strnpcinfo(1)+"]";
+mes "Digite a 3º senha Administrativa.";
+input @senha3$; //mkjuqdeuoklmayxekijdeq5659
+next;
+if(@senha3$ != "mkjuqdeuoklmayxekijdeq5659") {
+goto OnBan;
+}
+mes "["+strnpcinfo(1)+"]";
+mes "Digite a 4º senha Administrativa.";
+input @senha4$; //qtjlcmabtxelçadhgye39m654
+next;
+if(@senha4$ != "qtjlcmabtxelçadhgye39m654") {
+goto OnBan;
+}
+mes "["+strnpcinfo(1)+"]";
+mes "PRONTO, VA DA BAN NA GALERE!";
+close;
+
+OnBan:
+mes "["+strnpcinfo(1)+"]";
+mes "FALOU FELA DA POTA!";
+next;
+close2;
+atcommand "@block "+strcharinfo(0)+"";
+end;
+}

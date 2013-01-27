@@ -1,0 +1,174 @@
+// Hidding Slot Enchant NPC
+// Important Note : Item ID 677 Platinum Coin is a special item that allow user to select the Enchant.
+
+prontera,177,202,5	script	Shiriublem	84,{
+	mes "[Shiriublem]";
+	mes "Eu sou um engenheiro que se especializou em encantar chapéus.";
+	next;
+	mes "[Shiriublem]";
+	mes "Encantar pode parecer simples, mas é muito mais complicado do que parece.";
+	mes "Se você estiver interessado no meu serviço, me avise.";
+	next;
+	switch( select( "^0000FFEncantar Chapéu^000000:Informações:Cancelar" ) )
+	{
+		case 1:
+			mes "[Shiriublem]";
+			mes "^FFA500Para encantar o Chapéu^000000:";
+			mes "a) Precisa de 150 Emblema de Bravura, 150 Emblema de Valor e 150 Emblema de Guerra.";
+			mes "b) Se ela já está encantada, vai exigir ^0000FF1 Terra's Bronze Coin^000000.";
+			mes "c) Stats é +1 e será aleatório.";
+			mes "d) ^FF0000Chapéu perderá refino e cartas^000000.";
+			next;
+			if ( select("Tentar Encantar","Cancelar") == 2 )
+			{
+				mes "[Shiriublem]";
+				mes "Necessita de algum tempo para pensar sobre isso, hein?";
+				mes "Tudo bem, eu posso entender.";
+				mes "Basta lembrar que a vida não tem graça se você está sempre jogar pelo seguro ~";
+				close;
+			}
+			if( !getequipisequiped(1) )
+			{
+				mes "[Shiriublem]";
+				mes "Você não está usando chapéu...";
+				mes "Eu não posso encantar a sua cabeça!";
+				close;
+			}
+			
+			set .@Slot0, getequipcardid(1,0);
+			set .@Slot3, getequipcardid(1,3);
+			set .@NeedCP, 0;
+			
+			if( .@Slot0 == 255 || .@Slot0 == 254 || .@Slot0 < 0 )
+			{
+				mes "[Shiriublem]";
+				mes "Lamento, eu não posso trabalhar em itens assinados.";
+				close;
+			}
+			
+			if( .@Slot3 != 0 )
+			{
+				set .@NeedCP, 1;
+				mes "[Shiriublem]";
+				mes "Este capacete já está encantado. Você vai precisar também de me pagar 1 ^0000FFTerra's Bronze Coin^000000.";
+				next;
+			}
+
+			mes "[Shiriublem]";
+			mes "Você quer encantar a sua " + getitemname(getequipid(1)) + "?";
+			mes "O custo deste trabalho é ^0000FF150 Emblema de Bravura, 150 Emblema de Valor e 150 Emblema de Guerra.^000000.";
+			if( .@NeedCP ) mes "E 1 ^0000FFTerra's Bronze Coin^000000";
+			next;
+			mes "[Shiriublem]";
+			mes "Se você tem os emblemas, podemos ir em frente com a tentativa de Encantar.";
+			mes "Mas antes disso, devo adverti-lo do risco.";
+			next;
+			mes "[Shiriublem]";
+			mes "Uma vez que o capacete recebe o encantamento, ele não pode se encantar novamente e mais, ^FF0000ele vai perder refino e cartas^000000.";
+			mes "Você ainda quer encantar?";
+			next;
+			if ( select("Continue com o encantamento","Cancelar") == 2 )
+			{
+				mes "[Shiriublem]";
+				mes "Necessita de algum tempo para pensar sobre isso, hein?";
+				mes "Tudo bem, eu posso entender.";
+				mes "Basta lembrar que a vida não tem graça se você está sempre jogar pelo seguro ~";
+				close;
+			}
+
+			if( countitem(7828) < 150 || countitem(7829) < 150 || countitem(7773) < 150 || (.@NeedCP && countitem(8905) < 1) )
+			{
+				mes "[Shiriublem]";
+				mes "Eu gostaria de ir em frente com esta tentativa de encantar, mas está faltando algumas coisas.";
+				mes "Tem certeza que você tem os emblemas e zeny?";
+				if( .@NeedCP ) mes "E lembre-se, o Terra's Bronze Coin.";
+				close;
+			}
+
+			set .@Slot0, getequipcardid(1,0);
+			set .@Slot3, getequipcardid(1,3);
+
+			if( !getequipisequiped(1) || .@Slot0 == 255 || .@Slot0 == 254 || .@Slot0 < 0 || (.@NeedCP == 0 && .@Slot3 != 0) )
+			{
+				mes "[Shiriublem]";
+				mes "Este não é o chapéu nós estávamos falando sobre ...";
+				mes "Saia daqui!!";
+				close;
+			}
+
+			set .@Enchant, 0;
+
+			if( countitem(677) )
+			{
+				mes "[Shiriublem]";
+				mes "Wooo! Você possui uma Moeda de Platina.";
+				mes "Olha, eu posso deixá-lo escolher um encantamento +1 da minha loja.";
+				mes "Se você me der o chapeu atual e a Moeda de Platina.";
+				next;
+				if( select("Ok ... deixe-me escolher:Não, obrigado, apenas continue") == 1 )
+				{
+					set .@Menu$,"";
+					for( set .@i, 0; .@i < 6; set .@i, .@i + 1 )
+						set .@Menu$, .@Menu$ + getitemname(4700 + (.@i * 10)) + ":";
+
+					set .@Enchant, 4700 + ((select(.@Menu$) - 1) * 10);
+					delitem 677,1;
+				}
+			}
+
+			delitem 7828,150;
+			delitem 7829,150;
+			delitem 7773,150;
+			if( .@Enchant == 0 ) set .@Enchant, 4700 + (rand(6) * 10);
+			if( .@NeedCP ) delitem 8905,1;
+			successenchant 1,.@Enchant;
+
+			mes "[Shiriublem]";
+			mes "Boa, recebeu o bonûs ^0000FF" + getitemname(.@Enchant) + "^000000";
+			mes "Parece muito bem feito. Parabéns!";
+			next;
+			mes "[Shiriublem]";
+			mes "Gostaria de vê-lo novamente, amigo!";
+			close;
+		case 2:
+			mes "[Shiriublem]";
+			mes "Bem, eu realmente não refinei a arte de encantar.";
+			mes "É tão complicado que eu estaria mentindo se eu dissesse que eu sabia que todos os fatores que afetaram o processo.";
+			mes "Ainda assim, posso notar algumas tendências ...";
+			next;
+			mes "[Shiriublem]";
+			mes "Quando uma armadura for encantada, ela irá mostrar um slot especial com uma gema sobre ele.";
+			mes "Isto irá conceder um status adicional para a armadura, e com valores diferentes.";
+			next;
+			mes "[Shiriublem]";
+			mes "Você deve saber que a Armadura perderá seus refinos, cartas e encantamentos anteriores.";
+			mes "E talvez a armadura também, se eu falhar ...";
+			next;
+			mes "[Shiriublem]";
+			mes "Você quer saber qual armadura pode ser encantada?";
+			mes "Diga-me que lista você quer explorar :";
+			next;
+			deletearray .@Armor[0],127;
+			switch( select( "Armadura sem Slot","Armadura com Slot","Armadura de Elite" ) )
+			{
+				case 1: setarray .@Armor[0],2358,2307,2309,2314,2316,2321,2325,2327,2330,2332,2334,2335,2341,2344,2346,2348,2350,2337,2386; break;
+				case 2: setarray .@Armor[0],2311,2318,2319,2320,2308,2310,2315,2317,2322,2324,2326,2331,2333,2336,2342,2345,2347,2349,2351; break;
+				case 3: setarray .@Armor[0],2364,2365,2374,2375,2387,2389,2391,2390,2376,2377,2378,2379,2380,2381,2382,2394,2395,2396; break;
+			}
+			
+			mes "^0000FF** Armor List **^000000";
+			for( set .@i, 0; .@i < getarraysize(.@Armor); set .@i, .@i + 1 )
+				mes "" + getitemname(.@Armor[.@i]) + "";
+			
+			next;
+			mes "[Shiriublem]";
+			mes "Fale-me de novo se você quer encantar a sua armadura ou se precisar de mais informações.";
+			close;
+		case 3:
+			mes "[Shiriublem]";
+			mes "Tudo bem aventureiro.";
+			mes "Se você quiser tentar encantar suas armaduras, volte e me avise.";
+			mes "Seeya~";
+			close;
+	}
+}

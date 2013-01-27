@@ -1,0 +1,17 @@
+prontera,145,198,5	script	Info WoE	837,{
+	mes "[^FF0000 Info Woe ^000000]";
+	mes "Domingo - 19h ás 21h.";
+	mes "Castelos:";
+	mes "^008B00Viblainn^000000.";
+	mes "( sch_gld 97 196 )";
+	next;
+	mes "[^FF0000 Info Woe ^000000]";
+	mes "Sábado - 18h ás 20h.";
+	mes "Castelos:";
+	mes "^008B00Horn^000000.";
+	mes "( aru_gld 68 162 )";
+	close;
+	OnInit:
+	waitingroom "Infos WoE",0; 
+	end;
+}

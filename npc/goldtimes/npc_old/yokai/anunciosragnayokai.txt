@@ -1,0 +1,14 @@
+-	script	Anunciador	-1,{
+OnMinute22:
+setarray .@texto$[0],"Nenhum membro da staff pede sua senha, se acontecer denuncie!","Promoção de Natal: Sorteio de um GALAXY S3! Acesse: www.ragnayokai.com","Faça uma doação e ajude o servidor! www.ragnayokai.com";
+setarray .@texto2$[0],"Não compartilhe seus itens ou senha, a staff não se responsabiliza!","Ajude o servidor a crescer! Convide seus amigos para jogar!","Vote pelo painel de votos e ganhe vip/cash/itens! www.ragnayokai.com/vote","Lojas somente na Sala dos Mercadores! Outro lugar é proibido!";
+setarray .@texto3$[0],"Faça uma doação! Ajude o servidor a se manter online!","Bugs, reclamações e sugestões: www.forumyokai.com","Leia as regras do jogo, evite ser punido!","Faça parte de um clã e participe da Guerra do Emperium!","Obrigado por jogar no RagnaYokai!","Visite a Sala dos Mercadores! Vários itens para você comprar!";
+announce "[*** Informativo RagnaYokai ***]",0;
+sleep2 5000;
+announce .@texto$[rand(getarraysize(.@texto$))],0;
+sleep2 5000;
+announce .@texto2$[rand(getarraysize(.@texto2$))],0;
+sleep2 5000;
+announce .@texto3$[rand(getarraysize(.@texto3$))],0;
+end;
+}

@@ -1,0 +1,40 @@
+function	script	RefineHelmPG	{
+
+if(getequiprefinerycnt(EQI_HEAD_TOP) == 1 ){
+
+atcommand "@refine 256 4";
+	dispbottom "Seu [PG]item foi refinado com sucesso";
+	end;
+
+}
+
+if(getequiprefinerycnt(EQI_HEAD_TOP) == 2 ){
+
+atcommand "@refine 256 3";
+	dispbottom "Seu [PG]item foi refinado com sucesso";
+	end;
+
+}
+
+if(getequiprefinerycnt(EQI_HEAD_TOP) == 3 ){
+
+atcommand "@refine 256 2";
+	dispbottom "Seu [PG]item foi refinado com sucesso";
+	end;
+
+}
+
+if(getequiprefinerycnt(EQI_HEAD_TOP) == 4 ){
+
+atcommand "@refine 256 1";
+	dispbottom "Seu [PG]item foi refinado com sucesso";
+	end;
+
+}
+
+if(getequiprefinerycnt(EQI_HEAD_TOP) >= 5 ){end;}
+
+	atcommand "@refine 256 5";
+	dispbottom "Seu [PG]item foi refinado com sucesso";
+	end;
+}

@@ -1,0 +1,32 @@
+prontera,156,175,4	script	Assistente Yokai	743,{
+mes "[^FF3355"+strnpcinfo(1)+"^000000]";
+mes "Olá  ^00FF00"+strcharinfo(0)+"^000000, por favor modifique sua senha, assim evitaremos futuros transtornos causados por invasões em contas.";
+mes "^FF3355Sua senha deve ter entre 8 e 31 caracteres^000000";
+mes "O que seja fazer?";
+if(select("Trocar Senha:Sair") == 2) close;
+next;
+query_sql "SELECT `user_pass` FROM `login` WHERE `account_id` = "+getcharid(3)+"",@senha$;
+mes "[^FF3355"+strnpcinfo(1)+"^000000]";
+mes "Sua senha atual é: ^0000FF"+@senha$+"^000000";
+mes "^FF3355Sua senha deve ter entre 8 e 31 caracteres^000000";
+next;
+mes "[^FF3355"+strnpcinfo(1)+"^000000]";
+mes "Digite a Nova senha";
+mes "^FF3355Sua senha deve ter entre 8 e 31 caracteres^000000";
+input #sen$;
+next;
+mes "[^FF3355"+strnpcinfo(1)+"^000000]";
+mes "Sua Nova Senha:  ^00FF00"+#sen$+"^000000 Correto?";
+mes "^FF3355Sua senha deve ter entre 8 e 31 caracteres^000000";
+if(select(" Sim: Não ") == 2) close;
+query_sql "UPDATE `login` SET `user_pass` = '"+#sen$+"' WHERE `account_id` = "+getcharid(3)+"";
+next;
+mes "[^FF3355"+strnpcinfo(1)+"^000000]";
+mes "Sua senha foi Modificada para: ^0000FF"+#sen$+"^000000";
+mes "Não compartilhe sua senha com ninguém!";
+mes "Nenhum membro da STAFF pedirá sua senha, se isso acontecer denuncie!";
+close;
+OnInit:
+waitingroom "Troque sua Senha",0; 
+end;
+}

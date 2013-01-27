@@ -1,0 +1,9 @@
+-	script	aehauhe	-1,{
+OnPCLoadMapEvent:
+if(strcharinfo(3) == "prontera")
+{
+atcommand "@alive";
+end;
+}
+end;
+}

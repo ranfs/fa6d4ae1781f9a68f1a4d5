@@ -1,0 +1,52 @@
+/* ----------------- MOEDA BLAZRO --------------------- */
+function	script	goldcash	{
+
+set .gc, "1000";
+set #CASHPOINTS,#CASHPOINTS + .gc;
+
+dispbottom "Você acaba de receber "+.gc+" Cash Points, e agora você tem "+#CASHPOINTS+" Cash Points.";
+
+}
+
+/* ----------------- CARTÃO VIP --------------------- */
+function	script	cardvip2	{
+
+if (getgmlevel() > 1) {
+dispbottom "[Controle VIP]";
+dispbottom "Game Masters não podem utilizar este item!";
+end;
+}
+query_sql "UPDATE `login` SET `level`='1',`diasvip`=`diasvip`+30 WHERE `account_id`='"+ getcharid(3) +"'";
+query_sql "SELECT `diasvip` FROM `login` WHERE `account_id` = '"+ getcharid(3) +"'", .@diasvip;
+dispbottom "[Controle VIP]";
+dispbottom "Você acaba de receber 30 dias VIP, agora você tem "+.@diasvip+" dias VIP";
+
+}
+
+function	script	cardvip3	{
+
+if (getgmlevel() > 1) {
+dispbottom "[Controle VIP]";
+dispbottom "Game Masters não podem utilizar este item!";
+end;
+}
+query_sql "UPDATE `login` SET `level`='1',`diasvip`=`diasvip`+10 WHERE `account_id`='"+ getcharid(3) +"'";
+query_sql "SELECT `diasvip` FROM `login` WHERE `account_id` = '"+ getcharid(3) +"'", .@diasvip;
+dispbottom "[Controle VIP]";
+dispbottom "Você acaba de receber 10 dias VIP, agora você tem "+.@diasvip+" dias VIP";
+
+}
+
+function	script	cardvip4	{
+
+if (getgmlevel() > 1) {
+dispbottom "[Controle VIP]";
+dispbottom "Game Masters não podem utilizar este item!";
+end;
+}
+query_sql "UPDATE `login` SET `level`='1',`diasvip`=`diasvip`+1 WHERE `account_id`='"+ getcharid(3) +"'";
+query_sql "SELECT `diasvip` FROM `login` WHERE `account_id` = '"+ getcharid(3) +"'", .@diasvip;
+dispbottom "[Controle VIP]";
+dispbottom "Você acaba de receber 1 dia VIP, agora você tem "+.@diasvip+" dias VIP";
+
+}

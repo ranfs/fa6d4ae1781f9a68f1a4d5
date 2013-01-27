@@ -1,0 +1,95 @@
+// Map Flags :
+
+nguild_alde	mapflag	blocked
+nguild_gef	mapflag	blocked
+nguild_prt	mapflag	blocked
+nguild_pay	mapflag	blocked
+
+arug_cas01	mapflag	blocked
+arug_cas02	mapflag	blocked
+arug_cas03	mapflag	woe_set	2
+arug_cas04	mapflag	blocked
+arug_cas05	mapflag	blocked
+
+schg_cas01	mapflag	blocked
+schg_cas02	mapflag	blocked
+schg_cas03	mapflag	woe_set	1
+schg_cas04	mapflag	blocked
+schg_cas05	mapflag	blocked
+
+gefg_cas01	mapflag	blocked
+gefg_cas02	mapflag	blocked
+gefg_cas03	mapflag	blocked
+gefg_cas04	mapflag	blocked
+gefg_cas05	mapflag	blocked
+
+aldeg_cas01	mapflag	blocked
+aldeg_cas02	mapflag	blocked
+aldeg_cas03	mapflag	blocked
+aldeg_cas04	mapflag	blocked
+aldeg_cas05	mapflag	blocked
+
+prtg_cas01	mapflag	blocked
+prtg_cas02	mapflag	blocked
+prtg_cas03	mapflag	blocked
+prtg_cas04	mapflag	blocked
+prtg_cas05	mapflag	blocked
+
+payg_cas01	mapflag	blocked
+payg_cas02	mapflag	blocked
+payg_cas03	mapflag	blocked
+payg_cas04	mapflag	blocked
+payg_cas05	mapflag	blocked
+
+// Main Script
+
+-	script	Agit_Event	-1,{
+	end;
+
+OnAgitInit:
+OnClock1800:
+OnClock2000:
+OnClock1900:
+OnClock2100:
+		// Starting Time Checks
+        // ============================================================================
+        if( (gettime(4) == 1) && (gettime(3) >= 19 && gettime(3) < 21) )
+        {
+                if( !agitcheck() )
+                {
+                        AgitStart 1;
+                        announce "A Guerra do Emperium SE começou!",bc_all|bc_woe;
+                }
+                end;
+        }
+        if( (gettime(4) == 0) && (gettime(3) >= 18 && gettime(3) < 20) )
+        {
+                if( !agitcheck() )
+                {
+                        AgitStart 2;
+                        announce "A Guerra do Emperium SE começou!",bc_all|bc_woe;
+                }
+                end;
+		}
+        // End Time Checks
+        // ============================================================================
+        if( gettime(4) == 1 && gettime(3) == 21 )
+        {
+                if( agitcheck() )
+                {
+                        AgitEnd;
+                        announce "A Guerra do Emperium SE cacabou!",bc_all|bc_woe;
+                }
+                end;
+        }
+        if( gettime(4) == 0 && gettime(3) == 20 )
+        {
+                if( agitcheck() )
+                {
+                        AgitEnd;
+                        announce "A Guerra do Emperium SE cacabou!",bc_all|bc_woe;
+                }
+                end;
+        }
+		end;
+}

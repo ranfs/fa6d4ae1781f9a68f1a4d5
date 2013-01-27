@@ -1,0 +1,163 @@
+// =================================== [ Script ] =============================================
+// ========================= [ Mapa em que se econtra o NPC ] =================================
+lhz_in01,264,256,6	script	resposta	903,{
+// ================================= [ Váriaveis ] ============================================
+if(.GMlevelmin == 0) set .GMlevelmin,80; // Menor level para autorizar o evento
+set @npc$,"[^0000FF Perguntas e Respostas ^000000]";
+
+// ================================ [ Condições ] =============================================
+if(getgmlevel() < .GMlevelmin) { mes @npc$; mes "Desculpe, mas você não tem autorização para realizar esse evento!!"; close; }
+mes @npc$;
+if(.continua == 1) goto NOVAPERGUNTA;
+if(.continua == 2) goto PERAAEW;
+
+mes "Bem vindo ao perguntas e respostas!";
+mes "o que deseja?";
+menu "- Iniciar o evento",-,"- Mudar o nível de GM minimo",GMmin;
+
+mes "O prêmio será em itens ou Zenys?";
+menu "- Será em itens",-,"- Será em Zenys",EM_ZENY;
+next;
+ITEMPREMIO:
+set .premiotipo,1;
+mes @npc$;
+mes "Por favor, digite o ID do prêmio que o ganhador irá receber";
+PREMIO:
+input .idpremio;
+if(getitemname(.idpremio) == "null" ) { mes "^FF0000Este item não existe!"; next; goto ITEMPREMIO; } else {
+mes " - ";
+mes "Agora digite a quantidade de vezes que ele receberá este prêmio!";
+QUANTPREMIO:
+input .quantpremio;
+if(.quantpremio < 1) { mes "A quantidade não pode ser 0 ou ter valor negativo!"; goto QUANTPREMIO;}
+next;
+mes @npc$;
+mes "O prêmio do ganhador será ^0000FF" +getitemname(.idpremio)+ "^000000s^0000FF (x"+.quantpremio+") ^000000?";
+menu "- Confirmar",COMECANDO,"- Mudar item",PREMIO,"- Mudar para prêmio para Zenys",-,"- Sair",S_SAIR2;
+}
+EM_ZENY:
+next;
+set .premiotipo,2;
+mes @npc$;
+mes "Por favor, defina a quantidade de zenys que o ganhador irá receber";
+ZENYS2:
+input .zenyspremio;
+next;
+mes @npc$;
+mes "O ganhador receberá "+.zenyspremio+" zenys ?";
+menu "- Confirmar",-,"- Mudar quantidade de Zenys",ZENYS2,"- Alterar prêmio para item",ITEMPREMIO,"- Sair",S_SAIR2;
+
+COMECANDO:
+set .perguntanumero,0;
+next;
+mes @npc$;
+mes "^FF0000Por favor aguarde...^000000";
+announce "Será iniciado o jogo de Perguntas e Respostas!",0;
+sleep2 2500;
+announce "Para participar basta mandar a Resposta por PM para npc:resposta",0;
+sleep2 2500;
+announce "A qualquer momento jogador poderá enviar regras para npc:resposta e ficar sabendo das regras do jogo!",0;
+sleep2 2500;
+if(.premiotipo == 2) { announce "O prêmio será "+.zenyspremio+" Zenys !!!",0; } else { announce "O prêmio será "+.quantpremio+" "+getitemname(.idpremio)+"!!!",0;}
+NOVAPERGUNTA:
+next;
+mes @npc$;
+mes "Digite primeiro a pergunta e depois a resposta!";
+mes "Para interroper o evento digite no campo pergunta^FF0000 PARAR";
+next;
+input @pergunta$;
+if(@pergunta$ == "PARAR") goto PARAR;
+mes "^C1C1C1Pergunta: ^000000";
+mes "^0000FF" + @pergunta$;
+input .respostacorreta$;
+mes "^C1C1C1Resposta:^000000";
+mes "^0000FF" + .respostacorreta$;
+next;
+set .perguntanumero,.perguntanumero+1;
+announce .perguntanumero + "º) Pergunta: " + @pergunta$,0;
+set .perguntageral$,@pergunta$;
+set .continua,2;
+close;
+
+PARAR:
+set .perguntanumero,0;
+set .continua,0;
+announce "Fim do evento de Pergunta e Respostas!",0;
+close;
+
+GMmin:
+next;
+mes @npc$;
+mes "Qual será o level minimo para poder utilizar este NPC?";
+mes "^c0c0c0(Atualmente o level minimo é "+.GMlevelmin+")^000000";
+input @novolvmin;
+if(@novolvmin < 0) { mes "O nível de GM minimo não pode ser negativo!"; goto GMmin;}
+if(@novolvmin == 0) { mes "O nível de GM minimo não pode ser zero!"; goto GMmin;}
+if(@novolvmin > 99) {mes "O nível de GM minimo não pode ser maior que 99!"; goto GMmin;}
+set .GMlevelmin,@novolvmin;
+mes "Level minimo alterado para "+.GMlevelmin+ "!!";
+close;
+
+PERAAEW:
+mes "Até agora ninguem acertou...";
+mes "Resposta correta:^FF0000 " + .respostacorreta$;
+mes "^000000¨";
+mes "Do que você gostaria?";
+switch(select("- Esperar","- Dar uma dica","- Invalidar pergunta")){
+Case 1:
+close;
+Case 2:
+DICADEAJUDA:
+next;
+input @dicas$;
+if(@dicas$ == "") { mes @npc$; mes "O campo de dicas não pode ser vazio!"; goto DICADEAJUDA; }
+if(@dicas$ == .respostacorreta$) { mes @npc$; mes "^FF0000Desculpe, você forneceu a resposta!!"; mes "^c0c0c0(Dica não aceita!!)^000000"; goto DICADEAJUDA; }
+next;
+announce "Dica: " + @dicas$,8;
+close;
+Case 3:
+next;
+mes @npc$;
+mes "Tem certeza que deseja fazer isto?";
+menu "- Não",S_SAIR2,"- Sim",-;
+announce "Pena, ninguém acertou a perguta!",0;
+sleep2 3000;
+announce "A resposta era: "+.respostacorreta$,0;
+set .perguntageral$,.perguntageral$ +" || Resposta: "+ @whispervar0$;
+set .continua,1;
+set .perguntageral$,.perguntageral$ +" || Resposta: "+ @whispervar0$+" (Ninguém acertou)";
+close;
+}
+
+S_SAIR2:
+mes "Até mais!!";
+close;
+
+OnWhisperGlobal:
+if(.perguntanumero == 0) { dispbottom "O Evento de Perguntas e Respostas acabou!!"; end; }
+if(.perguntanumero == 0) { dispbottom "O Evento de Perguntas e Respostas acabou!!"; end; }
+
+if(@whispervar0$ == "prêmio") { if(.premiotipo == 1) { dispbottom "O ganhador receberar " + .quantpremio + " " + getitemname(.idpremio) + "!!"; } else { dispbottom "O prêmio é uma quantia de " + .zenyspremio + " Zenys !!";}} else
+if(@whispervar0$ == "regras") { dispbottom "A regra é bem simples, você precisa ser o primeiro a dizer a resposta correta para ganhar!";
+dispbottom "Lembrando que IsTo é diferente de isto.";
+dispbottom "Estão disponíveis os serguintes comandos: repete, regras e prêmio";
+dispbottom "Ao enviar prêmio para npc:resposta você receberá a informação do prêmio atual que o jogador receberá caso ele ganhe!";
+dispbottom "Ao enviar regras para npc:resposta você poderar ler as regras do jogo.";
+dispbottom "Ao enviar repete para npc:resposta a pergunta será repetida! ( Mas só para o jogador atual! )";
+
+
+
+} else
+if(@whispervar0$ == "repete") { dispbottom .perguntanumero+"º) Pergunta: " + .perguntageral$;} else {
+if(@whispervar0$ == .respostacorreta$) { dispbottom "Parabéns, você acertou!";
+if(.premiotipo == 1) { getitem(.idpremio,.quantpremio); } else { set Zeny,Zeny+.zenyspremio; }
+announce strcharinfo(0) + " acertou a pergunta!!",0;
+sleep2 3000;
+set .respostacorreta$,rand(10000); // Medida de prevênção Anti-Hacker
+announce "Resposta: "+@whispervar0$,0;
+set .continua,1;
+set .perguntageral$,.perguntageral$ +" || Resposta: "+ @whispervar0$+" || Respondida por: "+strcharinfo(0);
+}else{
+dispbottom "Desculpe, essa não é a resposta correta!";
+end;
+}}}

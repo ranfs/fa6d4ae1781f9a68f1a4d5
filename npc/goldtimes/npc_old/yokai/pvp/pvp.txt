@@ -1,0 +1,913 @@
+//=================================================================================================
+prontera,160,193,5	script	Rankings PvP#1	857,{
+//| ================================================================================ |
+
+goto Begin; // |
+
+//| |
+
+OnInit: // |
+//| |
+
+//| Configurações: |
+
+//|~> Mapas das Arenas. PvP 1 PvP2	GvG 1	GvG 2	Baby	|
+
+setarray $@arena$[0],"2009rwc_03","pvp_n_1-5","payg_cas01","schg_cas01","2008rwc_01","2009rwc_04";
+
+//| |
+
+//|~> Nome do npc.	|
+
+set $@pvpm_name$,"[^FF3355"+strnpcinfo(1)+"^000000]";	// |
+
+//| |
+
+//|~> Usar Sistema De Announce? [ 0 = Não ]	|
+
+set $@announceinfo,1;	// |
+
+//| |
+
+//|~> Até onde o Ranking irá mostrar.	[ Máximo 127 ]	|
+
+set $@limit,20;	// |
+
+//| |
+
+//|~> Modo PK. Está configurado para alterar automatico, mude se necessário.	// |
+
+set $@PK_Mode,getbattleflag("pk_mode");	// |
+
+//| |
+
+//|~> Deseja que ao player entrar no pvp perca os buff de Soul Linker? [ 1 = Sim] // |
+
+set $@EndSLBuff,0;	// |
+
+//| |
+
+//|~> Configuração do Som!	|
+
+//|---> Nota: Os sons devem ser colocados na pasta data/wav em formato .wav	// |
+
+//|---> Nota 2: Se desativar o som do UT, desativará o announce dele também.(2)	// |
+
+//|--> 0 : Desativar Todas Opções.	// |
+
+//|--> 1 : Ativar somente com announce normal. ($@announceinfo)	// |
+
+//|--> 2 : Ativar somente com announce Unreal Tournament. // |
+
+//|--> 3 : Ativar Ambos.	// |
+
+set $@sound,3;	// |
+
+//| |
+
+//|~> Lista com o nomes dos Sons Unreal Tournament.	|
+
+//|---> Nota: $@SoundList$[Pontos em que irá tocar o som],"NomeDoSom.wav";	|
+
+//|---> Nota 2: A partir do ultimo, será somado 10 e repetirá o som, o set	|
+
+//|---> com "end" indica que o ultimo som será repetido dali endiante.	|
+
+//|---> Nota 3: O nome do arquivo é o mesmo que será exibido no announce.	// |
+
+set $@SoundList$[1],"First Blood";	// |
+
+set $@SoundList$[2],"Double Kill";	// |
+
+set $@SoundList$[3],"Triple Kill";	// |
+
+set $@SoundList$[5],"Mega Kill";	// |
+
+set $@SoundList$[10],"Ultra Kill";	// |
+
+set $@SoundList$[15],"Killing Spree";	// |
+
+set $@SoundList$[20],"Ownage";	// |
+
+set $@SoundList$[25],"Holy Shit";	// |
+
+set $@SoundList$[30],"God Like";	// |
+
+set $@SoundList$[35],"Dominating";	// |
+
+set $@SoundList$[40],"Unstoppable";	// |
+
+set $@SoundList$[50],"Monster Kill";	// |
+
+set $@SoundList$[51],"end";	// |
+
+//| ================================================================================ |
+
+query_sql "select name from pvpm_data where leader=1 and type=0 limit 1",$@Player_Lider$;
+
+query_sql "select name from pvpm_data where leader=1 and type=2 limit 1",$@Guild_Lider$;
+
+end;
+
+
+
+Begin:
+mes $@pvpm_name$;
+
+mes "^008B8B-> PvP Lider: ^FFA500"+$@Player_Lider$+"^008B8B .";
+
+mes "^008B8B-> GvG Lider: ^FFA500"+$@Guild_Lider$+"^000000 .";
+
+
+
+
+
+switch(select("- Ranking","- Comandos Remotos","- Sair"))
+
+{
+
+
+
+case 1: 
+
+switch(select("- PvP","- PvP ( Mortes )","- GvG","- GvG ( Mortes )","- Minha Colocação"))
+
+{
+
+case 1: 
+
+callfunc "pvpm_func","Ranking1","kills",0,"PvP"; break;
+
+case 2: 
+
+callfunc "pvpm_func","Ranking1","dies",0,"PvP ( Mortes )"; break;
+
+case 3:
+
+callfunc "pvpm_func","Ranking1","kills",2,"GvG"; break;
+
+case 4:
+
+callfunc "pvpm_func","Ranking1","dies",2,"GvG ( Mortes )"; break;
+
+case 5:
+
+switch(select("- Minha Colocação Do PvP","- Minha Colocação Do PvP ( Mortes )","- Minha Colocação Do GvG","- Minha Colocação Do GvG ( Mortes )","- Inicio"))
+
+{
+
+case 1:
+
+callfunc "pvpm_func","Ranking2","kills",0; break;
+
+case 2:
+
+callfunc "pvpm_func","Ranking2","dies",0; break;
+
+case 3:
+
+callfunc "pvpm_func","Ranking2","kills",2; break;
+
+case 4:
+
+callfunc "pvpm_func","Ranking2","dies",2; break;
+
+case 5:
+
+}
+
+}
+
+close2;
+
+goto Begin;
+
+case 2:
+
+mes $@pvpm_name$;
+
+mes "Mande uma PM com qualquer mensagem para o nick: ^008B8Bnpc:cmd";
+
+close2;
+
+goto Begin;
+
+case 3:
+
+close;
+
+}
+
+}
+
+
+
+-	script	cmd	-1,{
+
+
+
+OnWhisperGlobal:
+
+
+
+if (compare(@whispervar0$,"lider")+compare(@whispervar0$,"pvp") == 2)
+
+{
+
+dispbottom "O Lider da arena é: "+$@Player_Lider$;
+
+end;
+
+} else
+
+
+
+if (compare(@whispervar0$,"lider")+compare(@whispervar0$,"gvg") == 2)
+
+{
+
+dispbottom "O Lider da arena é: "+$@Guild_Lider$;
+
+end;
+
+} else
+
+
+
+if (compare(@whispervar0$,"!pvp"))
+
+{
+
+getmapxy @map$,@x,@y,0;
+
+if ( @map$ == $@arena$[0] || @map$ == $@arena$[1] )
+
+{
+
+dispbottom "Alerta: Você não pode usar está função dentro da Arena.";
+
+end;
+
+} 
+
+if(@whispervar1$ == "1") { if($@EndSLBuff) sc_end 232; warp $@arena$[0],0,0; end; }
+
+if(@whispervar1$ == "2") { if($@EndSLBuff) sc_end 232; warp $@arena$[1],0,0; end; }
+
+} else
+
+
+
+if (compare(@whispervar0$,"!gvg"))
+
+{
+
+if (!getcharid(2))
+
+{
+
+dispbottom "Alerta: Desculpe, mas você precisa está em uma Guild para entrar nesta Arena.";
+
+end;
+
+} getmapxy @map$,@x,@y,0;
+
+if ( @map$ == $@arena$[2] || @map$ == $@arena$[3] )
+
+{
+
+dispbottom "Alerta: Você não pode usar está função dentro da Arena.";
+
+end;
+
+}
+
+if(@whispervar1$ == "1") { if($@EndSLBuff) sc_end 232; warp $@arena$[2],0,0; end; }
+
+if(@whispervar1$ == "2") { if($@EndSLBuff) sc_end 232; warp $@arena$[3],0,0; end; }
+
+dispbottom "Alerta: Você deve informar o número da Arena.";
+
+end;
+
+} else
+
+
+
+
+
+if (compare(@whispervar0$,"!baby"))
+
+{
+
+if(Upper==2) warp $@arena$[4],0,0; else dispbottom "Alerta: Somente Baby's podem entrar nessa arena.";
+
+end;
+
+} else
+
+
+
+if (compare(@whispervar0$,"!ranking")+compare(@whispervar0$,"2")+compare(@whispervar1$,"pvp")+compare(@whispervar2$,"die") == 3)
+
+{
+
+callfunc "pvpm_func","Ranking2","kills",0;
+
+end;
+
+} else
+
+
+
+
+
+if (compare(@whispervar0$,"!ranking")+compare(@whispervar0$,"2")+compare(@whispervar1$,"pvp")+compare(@whispervar2$,"die") == 4)
+
+{
+
+callfunc "pvpm_func","Ranking2","dies",0;
+
+end;
+
+} else
+
+
+
+
+
+if (compare(@whispervar0$,"!ranking")+compare(@whispervar0$,"2")+compare(@whispervar1$,"gvg")+compare(@whispervar2$,"die") == 3)
+
+{
+
+callfunc "pvpm_func","Ranking2","kills",2;
+
+end;
+
+} else
+
+
+
+if (compare(@whispervar0$,"!ranking")+compare(@whispervar0$,"2")+compare(@whispervar1$,"gvg")+compare(@whispervar2$,"die") == 4)
+
+{
+
+callfunc "pvpm_func","Ranking2","dies",2;
+
+end;
+
+} else
+
+
+
+
+
+if (compare(@whispervar0$,"!ranking")+compare(@whispervar1$,"pvp")+compare(@whispervar2$,"die") == 2)
+
+{
+
+callfunc "pvpm_func","Ranking1","kills",0,"PvP";
+
+end;
+
+} else
+
+
+
+if (compare(@whispervar0$,"!ranking")+compare(@whispervar1$,"pvp")+compare(@whispervar2$,"die") == 3)
+
+{
+
+callfunc "pvpm_func","Ranking1","kills",0,"PvP ( Mortes )";
+
+end;
+
+} else
+
+
+
+if (compare(@whispervar0$,"!ranking")+compare(@whispervar1$,"gvg")+compare(@whispervar2$,"die") == 2)
+
+{
+
+callfunc "pvpm_func","Ranking1","kills",2,"GvG";
+
+end;
+
+} else 
+
+
+
+if (compare(@whispervar0$,"!ranking")+compare(@whispervar1$,"gvg")+compare(@whispervar2$,"die") == 3)
+
+{
+
+callfunc "pvpm_func","Ranking1","kills",2,"GvG";
+
+end;
+
+} else 
+
+
+
+if ( compare(@whispervar0$,"!exit") )
+
+{
+
+getmapxy @map$,@x,@y,0;
+
+for(set @i,0;@i!=getarraysize($@arena$);set @i,@i+1)
+
+{
+
+if (@map$ != $@arena$[@i]) continue;
+
+sleep2 1000; dispbottom "Aviso: Aguarde 5 Segundos . . .";
+
+sleep2 1000; dispbottom "Aviso: Aguarde 4 Segundos . . .";
+
+sleep2 1000; dispbottom "Aviso: Aguarde 3 Segundos . . .";
+
+sleep2 1000; dispbottom "Aviso: Aguarde 2 Segundos . . .";
+
+sleep2 1000; dispbottom "Aviso: Aguarde 1 Segundo . . .";
+
+sleep2 1000; warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
+
+end;
+
+}
+
+dispbottom "Alerta: Está função só pode ser usada dentro da Arena.";
+
+end;
+
+}
+
+
+
+dispbottom "- Lista De Comandos -";
+
+dispbottom "!pvp#1/2 ---[ Te leva ao PvP ]";
+
+dispbottom "!gvg#1/2 ---[ Te leva ao GvG ]";
+
+dispbottom "!baby ---[ Te leva ao PvP Bay ]";
+
+dispbottom "!ranking#pvp(#die) ---[ Mostra o Ranking do PvP (#Ranking De Mortes) ]";
+
+dispbottom "!ranking#gvg(#die) ---[ Mostra o Ranking do GvG (#Ranking De Mortes) ]";
+
+dispbottom "!ranking2#pvp(#die) ---[ Mostra sua posição no Ranking PvP (#Ranking de Mortes) ]";
+
+dispbottom "!ranking2#gvg(#die) ---[ Mostra sua posição no Ranking GvG (#Ranking de Mortes) ]";
+
+dispbottom "!pvplider ---[ Mostra lider do PvP ]";
+
+dispbottom "!gvglider ---[ Mostra lider do GvG ]";
+
+dispbottom "!exit ---[ Saí da Arena ]";
+
+}
+
+-	script	event#pvpm	-1,{
+
+
+
+OnPCKillEvent:
+
+callfunc("pvpm_func","PCKillEvent");
+
+end;
+
+
+
+OnPCDieEvent:
+
+callfunc("pvpm_func","PCDieEvent");
+
+}
+
+
+
+function	script	pvpm_func	{
+
+
+
+if (getarg(0) == "Ranking1")
+
+{
+
+deletearray @name$[0],getarraysize(@name$);
+
+deletearray @points[0],getarraysize(@points);
+
+query_sql "select name,"+getarg(1)+" from pvpm_data where type="+getarg(2)+" order by "+getarg(1)+" desc limit 127",@name$,@points;
+
+dispbottom "======= Ranking - "+getarg(3)+" =======";
+
+for(set @ind,0;@ind != $@limit;set @ind,@ind+1)
+
+dispbottom (@ind+1)+"º | "+@name$[@ind]+" | Pontos: "+@points[@ind];
+
+return;
+
+}
+
+
+
+if (getarg(0) == "Ranking2")
+
+{
+
+deletearray @name$[0],getarraysize(@name$);
+
+deletearray @points[0],getarraysize(@points);
+
+query_sql "select id,"+getarg(1)+" from pvpm_data where type="+getarg(2)+" order by "+getarg(1)+" desc limit 125",@id,@points;
+
+for(set @i,0;@i <= 125;set @i,@i+1)
+
+{
+
+if (@id[@i] == getcharid(getarg(2)))
+
+{
+
+dispbottom "- "+strcharinfo(getarg(2))+" | "+@i+"º | Pontos: "+@points;
+
+return;
+
+}
+
+}
+
+dispbottom "Aviso: Você não está entre os 125 colocados do Ranking.";
+
+return;
+
+}
+
+
+
+if (getarg(0) == "Up")
+
+{
+
+set @name$,"";
+
+set @points,0;
+
+query_sql "select name,"+getarg(1)+" from pvpm_data where id="+getcharid(getarg(2))+" and type="+getarg(2)+" limit 1",@name$,@points;
+
+if ( @name$ == "" )
+
+{
+
+query_sql "INSERT INTO pvpm_data (id,"+getarg(1)+",name,annc,type) values ("+getcharid(getarg(2))+",1,'"+strcharinfo(getarg(2))+"',"+getarg(3)+","+getarg(2)+")";
+
+dispbottom "Score: 1";
+
+end;
+
+}
+
+query_sql "update pvpm_data set "+getarg(1)+"="+getarg(1)+"+1 where id="+getcharid(getarg(2));
+
+set @points,@points+1;
+
+return;
+
+}
+
+
+
+if (getarg(0) == "ChangeLeader")
+
+{
+
+set @L_name$,"";
+
+set @L_points,0;
+
+query_sql "select name,kills from pvpm_data where leader=1 and type="+getarg(1)+" limit 1",@L_name$,@L_points;
+
+if (@points > @L_points && @L_name$ != strcharinfo(getarg(1)))
+
+{
+
+query_sql "update pvpm_data set leader=0 where type="+getarg(1);
+
+query_sql "update pvpm_data set leader=1 where id="+getcharid(getarg(1))+" and type="+getarg(1);
+
+Announce strcharinfo(getarg(1))+" | É o Novo Lider !",bc_map,0xFF7F50;
+
+set $@Player_Lider$,"";
+
+set $@Guild_Lider$,"";
+
+query_sql "select name from pvpm_data where leader=1 and type=0 limit 1",$@Player_Lider$;
+
+query_sql "select name from pvpm_data where leader=1 and type=2 limit 1",$@Guild_Lider$;
+
+} return;
+
+}
+
+
+
+if (getarg(0) == "Annc")
+
+{
+
+set @points,0;
+
+set @annc,0;
+
+query_sql "select kills,annc from pvpm_data where id="+getcharid(getarg(1))+" and type="+getarg(1),@points,@annc;
+
+if(!@annc) query_sql "update pvpm_data set annc=annc+"+getarg(2)+" where id="+getcharid(getarg(1))+" and type="+getarg(1);
+
+if (@points == @annc)
+
+{
+
+Announce strcharinfo(getarg(1))+" | Fez "+@points+" Pontos No "+getarg(3)+" !",bc_all,0xFF7F50;
+
+query_sql "update pvpm_data set annc=annc+"+getarg(2)+" where id="+getcharid(getarg(1))+" and type="+getarg(1);
+
+if($@sound==1||$@sound==3) soundeffectall "Monster Kill.wav",0;
+
+} if(!$@sound||$@sound==1) return;
+
+if(getarg(3)=="PvP")
+
+{
+
+if(@noMoreSounds&&@withoutDying==@withoutDyingAnnc)
+
+{
+
+mapannounce @map$,strcharinfo(0)+" | "+$@SoundList$[@noMoreSounds]+" !! [ "+@withoutDying+" Pontos ]",bc_map,0xFF7F50;
+
+soundeffectall $@SoundList$[@noMoreSounds]+".wav",0,@map$;
+
+set @withoutDyingAnnc,@withoutDyingAnnc+5;
+
+return;
+
+}
+
+if($@SoundList$[@withoutDying]=="end")
+
+{
+
+set @withoutDyingAnnc,@withoutDyingAnnc+5;
+
+set @noMoreSounds,@withoutDying-1;
+
+}
+
+if($@SoundList$[@withoutDying]!=""&&!@noMoreSounds)
+
+{
+
+mapannounce @map$,strcharinfo(0)+" | "+$@SoundList$[@withoutDying]+" !! [ "+@withoutDying+" Pontos ]",bc_map,0xFF7F50;
+
+soundeffectall $@SoundList$[@withoutDying]+".wav",0,@map$;
+
+}
+
+} return;
+
+}
+
+
+
+if(getarg(0) == "PCKillEvent")
+
+{
+
+getmapxy @map$,@x,@y,0;
+
+if(@map$ == $@arena$[0] || @map$ == $@arena$[1] || @map$ == $@arena$[4] || $@PK_Mode)
+
+{
+
+set @withoutDying,@withoutDying+1;
+
+callfunc "pvpm_func","Up","kills",0,100;
+
+dispbottom "Score: "+@points;
+
+callfunc "pvpm_func","ChangeLeader",0;
+
+callfunc "pvpm_func","Annc",0,100,"PvP";
+
+}
+
+if(@map$ == $@arena$[2] || @map$ == $@arena$[3] && getcharid(2) || $@PK_Mode && getcharid(2))
+
+{
+
+callfunc "pvpm_func","Up","kills",2,1000;
+
+dispbottom "Guild Score: "+@points;
+
+callfunc "pvpm_func","ChangeLeader",2;
+
+callfunc "pvpm_func","Annc",2,1000,"GvG";
+
+}
+
+}
+
+
+
+if(getarg(0) == "PCDieEvent")
+
+{
+
+set @withoutDying,0;
+
+set @noMoreSounds,0;
+
+set @withoutDyingAnnc,0;
+
+getmapxy(@map$,@x,@y,0);
+
+if(@map$ == $@arena$[0] || @map$ == $@arena$[1] || @map$ == $@arena$[4] || $@PK_Mode) callfunc "pvpm_func","Up","dies",0,100;
+
+if(@map$ == $@arena$[2] || @map$ == $@arena$[3] && getcharid(2) || $@PK_Mode && getcharid(2)) callfunc "pvpm_func","Up","dies",2,1000;
+
+end;
+
+}
+
+}
+
+
+
+2009rwc_03	mapflag	nowarp
+
+2009rwc_03	mapflag	noteleport
+
+2009rwc_03	mapflag	nowarpto
+
+2009rwc_03	mapflag	nobranch
+
+2009rwc_03	mapflag	nosave	SavePoint
+
+2009rwc_03	mapflag	nomemo
+
+2009rwc_03	mapflag	nopenalty
+
+2009rwc_03	mapflag	pvp
+
+2009rwc_03	mapflag	noexp
+
+2009rwc_03	mapflag	noloot
+
+pvp_n_1-5	mapflag	nowarp
+
+pvp_n_1-5	mapflag	pvp
+
+pvp_n_1-5	mapflag	noteleport
+
+pvp_n_1-5	mapflag	nowarpto
+
+pvp_n_1-5	mapflag	nobranch
+
+pvp_n_1-5	mapflag	nosave	SavePoint
+
+pvp_n_1-5	mapflag	nomemo
+
+pvp_n_1-5	mapflag	nopenalty
+
+pvp_n_1-5	mapflag	noexp
+pvp_n_1-5	mapflag	noloot
+
+
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ 
+
+// Mapflags Pvp2 
+
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ 
+
+
+//============== MAP FLAG ===============
+
+
+
+prontera,158,193,5	script	Porteiro PvP	459,{ 
+//===== Nome do npc. ==========================================
+set @nome$,"[^FF3355"+strnpcinfo(1)+"^000000]";
+
+
+
+//===== Arenas =============================================
+
+set $pvp1$[0],"2009rwc_03";//Arena 1
+
+set $pvp2$[0],"pvp_n_1-5";//Arena Sem ygg
+
+set $pvp3$[0],"2009rwc_f01";//Arena Sem ygg
+
+set $pvp4$[0],"rwc03";//Arena 1
+
+set $pvpno$[0],"2009rwc_03";//Arena Sem ygg
+
+set $bg$[0],"bat_room";//bg
+set $2rd$[0],"2009rwc_02";//2rd
+set $pvpb$[0],"2008rwc_01";//baby
+
+
+
+mes @nome$;
+
+mes "^008B8BPvP > Arena 1: ^FFA500"+getmapusers($pvp1$[$pvp1])+"^008B8B Players";
+mes "^008B8BPvP > Arena 2: ^FFA500"+getmapusers($pvp2$[$pvp2])+"^008B8B Players ^FF0000Drop de item ao morrer^000000";
+mes "^008B8BBG > BattleGround (BG): ^FFA500"+getmapusers($bg$[$bg])+"^008B8B Players";
+
+next;
+
+mes @nome$;
+
+mes "Olá "+strcharinfo(0)+".";
+
+next;
+
+mes @nome$;
+
+mes "Escolha o seu destino, por favor.";
+
+next;
+
+Switch(SELECT("- Arena PvP 1 [RANK] ^0000FF["+getmapusers($pvp1$[$pvp1])+"]^000000","- Arena PvP 2 [RANK] ^0000FF["+getmapusers($pvp2$[$pvp2])+"]^000000 ^FF0000CAI ITEM AO MORRER^000000","- BattleGround (BG) ^0000FF["+getmapusers($bg$[$bg])+"]^000000","- Sair"))
+
+{
+
+
+
+case 1:
+
+warp $pvp1$,0,0;	end;
+
+
+
+case 2:
+
+warp $pvp2$,0,0;	end;
+
+case 3:
+
+warp $bg$,154,150;	end;
+
+case 4:
+
+mes @nome$;
+mes "Volte quando precisar dos meus serviços.";
+
+close;
+
+}
+OnInit:
+waitingroom "Player vs Player",0;
+end;
+}
+
+-	script	some_npc_name	-1,{
+OnPCKillEvent:
+if (getmapflag(strcharinfo(3),mf_gvg_castle)) {
+set .@killer$, strcharinfo(0);
+dispbottom "Você matou "+rid2name(killedrid)+".";
+if (attachrid(killedrid))
+dispbottom "Você foi morto por "+.@killer$+".";
+}
+end;
+}
+
+//Duplicatas
+morocc,162,97,5	duplicate(Porteiro PvP)	Porteiro PvP#2	459
+geffen,128,62,5	duplicate(Porteiro PvP)	Porteiro PvP#3	459
+payon,169,232,5	duplicate(Porteiro PvP)	Porteiro PvP#4	459
+alberta,185,145,5	duplicate(Porteiro PvP)	Porteiro PvP#5	459
+izlude,133,120,5	duplicate(Porteiro PvP)	Porteiro PvP#6	459
+aldebaran,143,121,5	duplicate(Porteiro PvP)	Porteiro PvP#7	459
+xmas,142,138,5	duplicate(Porteiro PvP)	Porteiro PvP#8	459
+comodo,207,154,5	duplicate(Porteiro PvP)	Porteiro PvP#9	459
+yuno,153,51,5	duplicate(Porteiro PvP)	Porteiro PvP#10	459
+amatsu,192,91,5	duplicate(Porteiro PvP)	Porteiro PvP#11	459
+gonryun,153,122,5	duplicate(Porteiro PvP)	Porteiro PvP#12	459
+umbala,95,163,5	duplicate(Porteiro PvP)	Porteiro PvP#13	459
+louyang,219,104,5	duplicate(Porteiro PvP)	Porteiro PvP#14	459
+new_1-1,59,114,5	duplicate(Porteiro PvP)	Porteiro PvP#15	459
+jawaii,238,150,5	duplicate(Porteiro PvP)	Porteiro PvP#16	459
+ayothaya,144,121,5	duplicate(Porteiro PvP)	Porteiro PvP#17	459
+einbroch,67,203,5	duplicate(Porteiro PvP)	Porteiro PvP#18	459
+lighthalzen,156,100,5	duplicate(Porteiro PvP)	Porteiro PvP#19	459
+einbech,74,98,5	duplicate(Porteiro PvP)	Porteiro PvP#20	459
+hugel,96,157,5	duplicate(Porteiro PvP)	Porteiro PvP#21	459
+rachel,135,117,5	duplicate(Porteiro PvP)	Porteiro PvP#22	459
+veins,225,127,5	duplicate(Porteiro PvP)	Porteiro PvP#23	459
+moscovia,229,191,5	duplicate(Porteiro PvP)	Porteiro PvP#24	459

@@ -1,0 +1,22 @@
+prontera,140,202,5	script	Aluguel Yokai	875,{
+	cutin "mal_homnya_s",2;
+	mes "[^FF3355"+strnpcinfo(1)+"^000000]";
+	mes "Olá, aqui você pode alugar um carrinho, pecopeco ou falcão depedendo de sua profissão.";
+	next;
+	mes "[^FF3355"+strnpcinfo(1)+"^000000]";
+	if ((BaseClass == 5 || Class == 23 || Class == 4045) && !checkcart() && getskilllv(39)) setcart;
+	else if (BaseClass == 1 && !checkriding() && getskilllv(63)) setriding;
+	else if (BaseClass == 3 && !checkfalcon() && getskilllv(127)) setfalcon;
+	else
+	{
+		mes "Desculpe, mas não posso ajudar você.";
+		mes "Verifique se você já possui a habilidade necessária ou se já está com algo alugado!";
+		close2;
+		cutin "", 255;
+		end;
+	}
+	mes "Aqui está, faça bom proveito!";
+	close2;
+	cutin "", 255;
+	end;
+}

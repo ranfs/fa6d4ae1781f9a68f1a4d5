@@ -1,0 +1,39 @@
+// 1001, 1006, 1009, 1014, 1012, 1013, 1004, 1003, 1002, 1007, 1008, 1017, 1018, 1019, 1010, 1011, 1015, 1016, 238, 1005.
+//
+//
+//
+payold,83,122,6	script	Habilidades de Platina	866,{
+
+	mes "[Habilidades de Platina]";
+	mes "Deseja receber as habilidades extras de sua classe?";
+	next;
+	if(select("Sim!:Não") == 2) close;
+	mes "[Habilidades de Platina]";
+	skill 142,1,0; // First Aid
+	if (BaseClass == Job_Novice) {
+		skill 143,1,0; // Play Dead
+	} else if (BaseClass == Job_Swordman) {
+		skill 144,1,0; // Moving HP-Recovery
+		skill 145,1,0; // Fatal Blow
+		skill 146,1,0; // Auto Berserk
+	} else if (BaseClass == Job_Mage) {
+		skill 157,1,0; // Energy Coat
+	} else if (BaseClass == Job_Archer) {
+		skill 147,1,0; // Arrow Crafting
+		skill 148,1,0; // Arrow Repel
+	} else if (BaseClass == Job_Merchant) {
+		skill 153,1,0; // Cart Revolution
+		skill 154,1,0; // Change Cart
+		skill 155,1,0; // Crazy Uproar
+	} else if (BaseClass == Job_Thief) {
+		skill 149,1,0; // Sand Attack
+		skill 150,1,0; // Back Slide
+		skill 151,1,0; // Find Stone
+		skill 152,1,0; // Stone Fling
+	} else if (BaseClass == Job_Acolyte) {
+		skill 156,1,0; // Holy Light
+	}
+	mes "[Habilidades de Platina]";
+	mes "Aqui está!";
+	close;
+}

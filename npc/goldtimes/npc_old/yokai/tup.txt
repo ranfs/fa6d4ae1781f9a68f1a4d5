@@ -1,0 +1,423 @@
+function	script	funcTicket99	{
+
+if ( BaseLevel > 1 || JobLevel > 1 ) { mes "Desculpe, só atendo a apredizes Nível 1/1."; getitem 10114,1; close; }
+
+mes "Olá "+strcharinfo(0)+", escolha sua classe final desejada.";
+next;
+L_inicio:
+switch(select("Transclasses","Outras Classes","Baby")){
+
+case 1:
+	next;
+	mes "Digite a ID da Transclasse desejada.";
+	mes "lista:";
+	mes "ID - Classe";
+	mes "4008 - Lorde";
+	mes "4009 - Sumo Sacerdote";
+	mes "4010 - Arquimago";
+	mes "4011 - Mestre-Ferreiro";
+	mes "4012 - Atirador de Elite";
+	mes "4013 - Algoz";
+	mes "4015 - Paladino";
+	mes "4016 - Mestre";
+	mes "4017 - Professor";
+	mes "4018 - Desordeiro";
+	mes "4019 - Criador";
+	mes "4020 - Menestrel";
+	mes "4021 - Cigana";
+	input @classe;
+	next;
+if (@classe == 4020) {if (sex == 0) {mes "Somente homens podem ser menestrel.";	next;	goto L_inicio;}}
+if (@classe == 4021) {if (sex == 1) {mes "Somente mulheres podem ser ciganas.";	next;	goto L_inicio;}}
+if (@classe < 4008) goto L_erro;
+if (@classe > 4021) goto L_erro;
+if (@classe == 4014) goto L_erro;
+	mes "Você escolheu "+@classe+",";
+	mes "Deseja voltar atrás em sua escolha?";
+if(select("Não:Sim")==2){ goto L_inicio; end; }
+
+// LORD
+if (@classe == 4008) { jobchange 4001; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4001) { jobchange 4002; set JobLevel,JobLevel+50; }
+if ( Class == 4002) { jobchange @classe; set JobLevel,JobLevel+70; }
+
+// Sumo Sacerdote
+if (@classe == 4009) { jobchange 4001; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4001) { jobchange 4005; set JobLevel,JobLevel+50; }
+if ( Class == 4005) { jobchange @classe; set JobLevel,JobLevel+70; }
+
+// Arquimago
+if (@classe == 4010) { jobchange 4001; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4001) { jobchange 4003; set JobLevel,JobLevel+50; }
+if ( Class == 4003) { jobchange @classe; set JobLevel,JobLevel+70; }
+
+// Mestre-Ferreiro
+if (@classe == 4011) { jobchange 4001; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4001) { jobchange 4006; set JobLevel,JobLevel+50; }
+if ( Class == 4006) { jobchange @classe; set JobLevel,JobLevel+70; }
+
+// Atirador de Elite
+if (@classe == 4012) { jobchange 4001; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4001) { jobchange 4004; set JobLevel,JobLevel+50; }
+if ( Class == 4004) { jobchange @classe; set JobLevel,JobLevel+70; }
+
+// Algoz
+if (@classe == 4013) { jobchange 4001; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4001) { jobchange 4007; set JobLevel,JobLevel+50; }
+if ( Class == 4007) { jobchange @classe; set JobLevel,JobLevel+70; }
+
+// Paladino
+if (@classe == 4015) { jobchange 4001; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4001) { jobchange 4002; set JobLevel,JobLevel+50; }
+if ( Class == 4002) { jobchange @classe; set JobLevel,JobLevel+70; }
+
+// Mestre
+if (@classe == 4016) { jobchange 4001; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4001) { jobchange 4005; set JobLevel,JobLevel+50; }
+if ( Class == 4005) { jobchange @classe; set JobLevel,JobLevel+70; }
+
+// Professor
+if (@classe == 4017) { jobchange 4001; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4001) { jobchange 4003; set JobLevel,JobLevel+50; }
+if ( Class == 4003) { jobchange @classe; set JobLevel,JobLevel+70; }
+
+// Desordeiro
+if (@classe == 4018) { jobchange 4001; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4001) { jobchange 4007; set JobLevel,JobLevel+50; }
+if ( Class == 4007) { jobchange @classe; set JobLevel,JobLevel+70; }
+
+// Criador
+if (@classe == 4019) { jobchange 4001; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4001) { jobchange 4006; set JobLevel,JobLevel+50; }
+if ( Class == 4006) { jobchange @classe; set JobLevel,JobLevel+70; }
+
+// Menestrel
+if (@classe == 4020) { jobchange 4001; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4001) { jobchange 4004; set JobLevel,JobLevel+50; }
+if ( Class == 4004) { jobchange @classe; set JobLevel,JobLevel+70; }
+
+// Cigana
+if (@classe == 4021) { jobchange 4001; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4001) { jobchange 4004; set JobLevel,JobLevel+50; }
+if ( Class == 4004) { jobchange @classe; set JobLevel,JobLevel+70; }
+	next;
+	mes "Bom jogo!";
+	end;
+	close;
+
+case 2:
+	next;
+	mes "Digite a ID da classe desejada.";
+	mes "lista:";
+	mes "ID - Classe";
+	mes "0 - Aprendiz";
+	mes "1 - Espadachim";
+	mes "2 - Mago";
+	mes "3 - Arqueiro";
+	mes "4 - Noviço";
+	mes "5 - Mercador";
+	mes "6 - Gatuno";
+	mes "7 - Cavaleiro";
+	mes "8 - Sacerdote";
+	mes "9 - Bruxo";
+	mes "10 - Ferreiro";
+	mes "11 - Caçador";
+	mes "12 - Mercenário";
+	mes "14 - Templário";
+	mes "15 - Monge";
+	mes "16 - Sábio";
+	mes "17 - Arruaceiro";
+	mes "18 - Alquimista";
+	mes "19 - Bardo";
+	mes "20 - Odalisca";
+	mes "23 - Super Aprendiz";
+	mes "24 - Justiceiro";
+	mes "25 - Ninja";
+	mes "4046 - Taekwon";
+	mes "4047 - Mestre Taekwon";
+	mes "4049 - Espiritualista";
+	input @classe;
+	next;
+if (@classe == 19) {if (sex == 0) {mes "Somente homens podem ser bardo.";	next;	goto L_inicio;}}
+if (@classe == 20) {if (sex == 1) {mes "Somente mulheres podem ser odalisca.";	next;	goto L_inicio;}}
+if (@classe == 4046) goto L_cont;
+if (@classe == 4047) goto L_cont;
+if (@classe == 4049) goto L_cont;
+if (@classe < 0) goto L_erro;
+if (@classe > 25) goto L_erro;
+if (@classe == 13) goto L_erro;
+if (@classe == 21) goto L_erro;
+if (@classe == 22) goto L_erro;
+
+L_cont:
+	mes "Você escolheu "+@classe+",";
+	mes "Deseja voltar atrás em sua escolha?";
+if(select("Não:Sim")==2){ goto L_inicio; end; }
+
+// Aprendiz
+if (@classe == 0 ) { set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+
+// Espadachim
+if (@classe == 1 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mago
+if (@classe == 2 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Arqueiro
+if (@classe == 3 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Noviço
+if (@classe == 4 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mercador
+if (@classe == 5 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0) { jobchange @classe; set JobLevel,JobLevel+50; }
+	mes "Bom jogo!";
+	
+// Gatuno
+if (@classe == 6 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Cavaleiro
+if (@classe == 7 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0 ) { jobchange 1; set JobLevel,JobLevel+50; }
+if ( Class == 1) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Sacerdote
+if (@classe == 8 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0 ) { jobchange 4; set JobLevel,JobLevel+50; }
+if ( Class == 4) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Bruxo
+if (@classe == 9 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0 ) { jobchange 2; set JobLevel,JobLevel+50; }
+if ( Class == 2) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Ferreiro
+if (@classe == 10 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0 ) { jobchange 5; set JobLevel,JobLevel+50; }
+if ( Class == 5) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Caçador
+if (@classe == 11 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0 ) { jobchange 3; set JobLevel,JobLevel+50; }
+if ( Class == 3) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mercenário
+if (@classe == 12 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0 ) { jobchange 6; set JobLevel,JobLevel+50; }
+if ( Class == 6) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Templário
+if (@classe == 14 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0 ) { jobchange 1; set JobLevel,JobLevel+50; }
+if ( Class == 1) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Monge
+if (@classe == 15 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0 ) { jobchange 4; set JobLevel,JobLevel+50; }
+if ( Class == 4) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Sábio
+if (@classe == 16 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Classe == 0 ) { jobchange 2; set JobLevel,JobLevel+50; }
+if ( Class == 2) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Arruaceiro
+if (@classe == 17 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0 ) { jobchange 6; set JobLevel,JobLevel+50; }
+if ( Class == 6) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Alquimista
+if (@classe == 18 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0 ) { jobchange 5; set JobLevel,JobLevel+50; }
+if ( Class == 5) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Bardo
+if (@classe == 19 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0 ) { jobchange 3; set JobLevel,JobLevel+50; }
+if ( Class == 3) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Odalisca
+if (@classe == 20 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0 ) { jobchange 3; set JobLevel,JobLevel+50; }
+if ( Class == 3) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Super Aprendiz
+if (@classe == 23 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0) { jobchange @classe; set JobLevel,JobLevel+99; }
+
+// Justiceiro
+if (@classe == 24 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0) { jobchange @classe; set JobLevel,JobLevel+99; }
+
+// Ninja
+if (@classe == 25 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0) { jobchange @classe; set JobLevel,JobLevel+99; }
+
+// Taekwon
+if (@classe == 4046 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0) { jobchange @classe; set JobLevel,JobLevel+99; }
+
+// Mestre Taekwon
+if (@classe == 4047 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0 ) { jobchange 4046; set JobLevel,JobLevel+50; }
+if ( Class == 4046) { jobchange @classe; set JobLevel,JobLevel+99; }
+
+// Espiritualista
+if (@classe == 4049 ) { jobchange 0; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 0 ) { jobchange 4046; set JobLevel,JobLevel+50; }
+if ( Class == 4046) { jobchange @classe; set JobLevel,JobLevel+99; }
+	mes "Bom jogo!";
+	end;
+	close;
+
+case 3:
+	next;
+	mes "Digite a ID da classe desejada.";
+	mes "lista:";
+	mes "ID - Classe";
+	mes "4023 - Mini Aprendiz";
+	mes "4024 - Mini Espadachim";
+	mes "4025 - Mini Mago";
+	mes "4026 - Mini Arqueiro";
+	mes "4027 - Mini Noviço";
+	mes "4028 - Mini Mercador";
+	mes "4029 - Mini Gatuno";
+	mes "4030 - Mini Cavaleiro";
+	mes "4031 - Mini Sacerdote";
+	mes "4032 - Mini Bruxo";
+	mes "4033 - Mini Ferreiro";
+	mes "4034 - Mini Caçador";
+	mes "4035 - Mini Mercenário";
+	mes "4037 - Mini Templário";
+	mes "4038 - Mini Monge";
+	mes "4039 - Mini Sábio";
+	mes "4040 - Mini Arruaceiro";
+	mes "4041 - Mini Alquimísta";
+	mes "4042 - Mini Bardo";
+	mes "4043 - Mini Odalisca";
+	mes "4045 - Mini Super Aprendiz";
+	input @classe;
+	next;
+if (@classe == 4042) {if (sex == 0) {mes "Somente homens podem ser mini bardo.";	next;	goto L_inicio;}}
+if (@classe == 4043) {if (sex == 1) {mes "Somente mulheres podem ser mini odalisca.";	next;	goto L_inicio;}}
+if (@classe < 4022) goto L_erro;
+if (@classe > 4045) goto L_erro;
+if (@classe == 4044) goto L_erro;
+if (@classe == 4036) goto L_erro;
+
+	mes "Você escolheu "+@classe+",";
+	mes "Deseja voltar atrás em sua escolha?";
+if(select("Não:Sim")==2){ goto L_inicio; end; }
+
+// Mini Aprendiz
+if (@classe == 4023 ) { set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+
+// Espadachim
+if (@classe == 4024 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Mago
+if (@classe == 4025 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Arqueiro
+if (@classe == 4026 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Noviço
+if (@classe == 4027 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Mercador
+if (@classe == 4028 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023) { jobchange @classe; set JobLevel,JobLevel+50; }
+	mes "Bom jogo!";
+	
+// Mini Gatuno
+if (@classe == 4029 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Cavaleiro
+if (@classe == 4030 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023 ) { jobchange 1; set JobLevel,JobLevel+50; }
+if ( Class == 1) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Sacerdote
+if (@classe == 4031 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023 ) { jobchange 4; set JobLevel,JobLevel+50; }
+if ( Class == 4) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Bruxo
+if (@classe == 4032 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023 ) { jobchange 2; set JobLevel,JobLevel+50; }
+if ( Class == 2) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Ferreiro
+if (@classe == 4033 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023 ) { jobchange 5; set JobLevel,JobLevel+50; }
+if ( Class == 5) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Caçador
+if (@classe == 4034 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023 ) { jobchange 3; set JobLevel,JobLevel+50; }
+if ( Class == 3) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Mercenário
+if (@classe == 4035 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023 ) { jobchange 6; set JobLevel,JobLevel+50; }
+if ( Class == 6) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Templário
+if (@classe == 4037 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023 ) { jobchange 1; set JobLevel,JobLevel+50; }
+if ( Class == 1) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Monge
+if (@classe == 4038 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023 ) { jobchange 4; set JobLevel,JobLevel+50; }
+if ( Class == 4) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Sábio
+if (@classe == 4039 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Classe == 4023 ) { jobchange 2; set JobLevel,JobLevel+50; }
+if ( Class == 2) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Arruaceiro
+if (@classe == 4040 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023 ) { jobchange 6; set JobLevel,JobLevel+50; }
+if ( Class == 6) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Alquimista
+if (@classe == 4041 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023 ) { jobchange 5; set JobLevel,JobLevel+50; }
+if ( Class == 5) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Bardo
+if (@classe == 4042 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023 ) { jobchange 3; set JobLevel,JobLevel+50; }
+if ( Class == 3) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Odalisca
+if (@classe == 4043 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023 ) { jobchange 3; set JobLevel,JobLevel+50; }
+if ( Class == 3) { jobchange @classe; set JobLevel,JobLevel+50; }
+
+// Mini Super Aprendiz
+if (@classe == 4045 ) { jobchange 4023; set BaseLevel,BaseLevel+99; set JobLevel,JobLevel+10; }
+if ( Class == 4023) { jobchange @classe; set JobLevel,JobLevel+99; }
+	mes "Bom jogo!";
+	close;
+
+L_erro:
+	mes "Não foi encontrado a ID da classe digitada, por favor confira na lista a ID correta da classe.";
+	next;
+	goto L_inicio; 
+	end;
+}
+}

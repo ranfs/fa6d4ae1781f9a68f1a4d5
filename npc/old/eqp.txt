@@ -1,0 +1,593 @@
+//mora,192,161,3	shop	Gemas	775,715:-1,716:-1,717:-1
+
+mora,181,174,3	shop	Acessórios	778,2621:-1,2601:-1,2622:-1,2602:-1,2625:-1,2605:-1,2627:-1,2603:-1,2623:-1,2624:-1,2604:-1,2607:-1,2626:-1,2608:-1,2616:-1,2615:-1,2618:-1,2619:-1,2617:-1 
+
+mora,191,151,1	shop	Adaga	725,1202:-1,1205:-1,1208:-1,1214:-1,1217:-1,1220:-1,1226:-1,1223:-1,1232:-1,1239:-1,1236:-1,1234:-1 
+
+mora,189,151,1	shop	Arco	732,1702:-1,1705:-1,1708:-1,1711:-1,1715:-1,1716:-1
+
+mora,185,172,3	shop	Hat Topo	733,2285:-1,2233:-1,2289:-1,2227:-1,2231:-1,2221:-1,2234:-1,2229:-1,2209:-1,2225:-1,2217:-1,5011:-1,2298:-1,2283:-1,2254:-1,2255:-1,2282:-1,2287:-1,2211:-1,2226:-1,2299:-1,5009:-1,5012:-1,5045:-1,5037:-1,5015:-1,2245:-1,2252:-1,5046:-1,5003:-1,5019:-1,2277:-1,5027:-1,2251:-1,2264:-1,5030:-1,5035:-1,2248:-1,2215:-1,2247:-1,2220:-1,2257:-1,2256:-1,2258:-1,5002:-1,5007:-1,2249:-1,2235:-1,2234:-1,5017:-1,2274:-1,2275:-1,2236:-1,5008:-1,2259:-1,2244:-1,2250:-1,2213:-1,2279:-1,2246:-1,5010:-1,2272:-1,2294:-1,2206:-1,5025:-1,2223:-1
+
+mora,183,172,3	shop	Hat Centro	751,2296:-1,5014:-1,2291:-1,2288:-1,2263:-1,5005:-1,2297:-1,2278:-1,2286:-1,2276:-1,2205:-1,2295:-1,2292:-1,5040:-1,5006:-1,5315:-1
+
+mora,181,172,3	shop	Hat Baixo	745,2266:-1,2241:-1,2268:-1,2267:-1,2269:-1,2270:-1,2265:-1,2262:-1,5113:-1,5206:-1
+
+mora,187,151,1	shop	Cajado	735,1602:-1,1608:-1,1605:-1,1611:-1,1615:-1,1614:-1,1472:-1,1613:-1
+
+mora,173,172,3	shop	Calçado	779,2402:-1,2404:-1,2406:-1,2407:-1,2409:-1 
+
+mora,175,172,3	shop	Capa	747,2502:-1,2504:-1,2506:-1,2508:-1,2507:-1 
+
+mora,177,172,3	shop	Escudo	755,2102:-1,2104:-1,2106:-1,2108:-1,2109:-1 
+
+mora,185,151,1	shop	Espada	728,1164:-1,1105:-1,1114:-1,1155:-1,1158:-1,1102:-1,1111:-1,1128:-1,1117:-1,1125:-1,1127:-1,1120:-1,1131:-1,1163:-1,1135:-1,1142:-1,1124:-1,1136:-1,1170:-1,1133:-1,1165:-1,1168:-1 
+
+mora,192,167,3	shop	Flechas/Trap	727,1065:1,727:1,763:1,1750:1,1751:1,1752:1,1753:1,1754:1,1755:1,1756:1,1757:1,1758:1,1756:1,1760:1,1761:1,1762:1,1763:1,1764:1,1765:1,1766:1,1767:1,1768:1,1769:1,1770:1
+
+mora,183,151,1	shop	Instrumento	741,1906:-1,1904:-1,1908:-1,1902:-1
+
+mora,181,151,1	shop	Chicote	724,1953:-1,1961:-1,1951:-1
+
+mora,179,151,1	shop	Katar	730,1255:-1,1251:-1,1253:-1,1261:-1,1258:-1,1257:-1,1259:-1,1256:-1,1260:-1
+
+mora,177,151,1	shop	Lança	733,1405:-1,1408:-1,1455:-1,1464:-1,1417:-1,1402:-1
+
+mora,175,151,1	shop	Livro	60,1550:-1,1551:-1,1558:-1,1552:-1
+
+mora,173,151,1	shop	Maça	753,1502:-1,1505:-1,1520:-1,1514:-1,1517:-1,1524:-1,1525:-1,1529:-1
+
+mora,169,154,6	shop	Punhos	753,1802:-1,1805:-1
+
+mora,171,151,1	shop	Machado	731,1302:-1,1352:-1,1361:-1,1306:-1,1363:-1 
+
+mora,179,172,3	shop	Armadura	774,2313:-1,2329:-1,2317:-1,2302:-1,2308:-1,2311:-1,2310:-1,2315:-1,2324:-1,2304:-1,2331:-1,2322:-1,2333:-1,2326:-1,2320:-1,2336:-1,2306:-1,2318:-1,2327:-1,2337:-1,2339:-1,2338:-1,2334:-1
+
+mora,192,161,3	shop	Minérios	726,1010:-1,1011:-1,1002:-1,998:-1,999:-1,756:-1
+
+//Stuffs vip
+poring_w02,107,198,6	shop	Stuffs VIP	830,20030:-1,20031:-1,715:-1,716:-1,7136:-1,7139:-1,7135:-1,547:-1,533:-1,504:-1,645:-1,656:-1,657:-1,506:-1,525:-1,717:-1,1065:-1,523:-1,601:-1,602:-1
+
+mora,180,160,6	shop	Stuffs	830,547:-1,533:-1,504:-1,645:-1,656:-1,657:-1,506:-1,525:-1,717:-1,523:-1,601:-1,602:-1,1065:1
+
+payold,96,118,3	duplicate(Stuffs)	Stuffs#1	830
+
+//Warp sala vip
+poring_w02,94,194,0	warp	warp_payold	1,1,payold,90,125
+
+//Teleporte WoE - GuildPoint
+payold,96,124,3	script	Teleporte WoE	766,{
+ mes "[Ancião da WoE ]";
+ mes "Olá "+strcharinfo(0)+",    !";
+ mes "Para onde você gostaria de ir?";
+ next;  
+   mes "[Ancião da WoE ]";
+   mes "Selecione o Feudo:";
+   next;
+   switch (select ("Feudo de Luina (Aldebaran)","Feudo do Bosque Celestial (Payon)","Feudo das Valquírias (Prontera)"))
+   {
+    case 1: 
+		callsub F_DoWarp, "alde_gld", 0, 0;
+    case 2: 
+		callsub F_DoWarp, "pay_gld", 0, 0;
+     case 3: 
+		callsub F_DoWarp, "prt_gld", 0, 0;
+    
+    }
+     
+ F_DoWarp:
+  if (@lwarp)
+  {
+   set lwarp$, getarg(o);
+   set lwarpx, getarg(1);
+   set lwarpy, getarg(2);
+  }
+  warp getarg(o), getarg(1), getarg(2);
+  end;
+ return;
+ }
+
+//GuildPoints - Duplicates - Stuff/Curandeira/Teleporte WoE/Kafras
+payold,134,77,3	duplicate(Stuffs)	Stuffs#2	830
+
+payold,138,77,6	script	Curandeira#2	936,{
+	callfunc "curandyokai",0;
+	end;
+OnInit:
+waitingroom "Curandeira",0;
+end;
+}
+
+payold,140,77,3	duplicate(Teleporte WoE)	Teleporte WoE#2	766
+payold,136,77,3	script	Funcionária Kafra#pay4	859,{
+ cutin "kafra_03",2;
+ callfunc "F_Kafra",0,0,1;
+
+ M_Save:
+  savepoint "payold",132,74;
+  callfunc "F_KafEnd",0,1;
+}
+
+payold,179,182,3	duplicate(Stuffs)	Stuffs#3	830
+payold,179,180,6	script	Curandeira#3	936,{
+	callfunc "curandyokai",0;
+	end;
+OnInit:
+waitingroom "Curandeira",0;
+end;
+}
+
+payold,179,178,3	duplicate(Teleporte WoE)	Teleporte WoE#3	766
+payold,179,176,3	script	Funcionária Kafra#pay5	859,{
+ cutin "kafra_03",2;
+ callfunc "F_Kafra",0,0,1;
+
+ M_Save:
+  savepoint "payold",174,179;
+  callfunc "F_KafEnd",0,1;
+}
+
+payold,156,62,3	duplicate(Stuffs)	Stuffs#4	830
+payold,158,62,6	script	Curandeira#4	936,{
+	callfunc "curandyokai",0;
+	end;
+OnInit:
+waitingroom "Curandeira",0;
+end;
+}
+
+payold,160,62,3	duplicate(Teleporte WoE)	Teleporte WoE#4	766
+payold,162,62,3	script	Funcionária Kafra#pay6	859,{
+ cutin "kafra_03",2;
+ callfunc "F_Kafra",0,0,1;
+
+ M_Save:
+  savepoint "payold",159,68;
+  callfunc "F_KafEnd",0,1;
+}
+
+payold,116,165,3	duplicate(Stuffs)	Stuffs#5	830
+payold,118,165,6	script	Curandeira#5	936,{
+	callfunc "curandyokai",0;
+	end;
+OnInit:
+waitingroom "Curandeira",0;
+end;
+}
+
+payold,120,165,3	duplicate(Teleporte WoE)	Teleporte WoE#5	766
+payold,122,165,3	script	Funcionária Kafra#pay7	859,{
+ cutin "kafra_03",2;
+ callfunc "F_Kafra",0,0,1;
+
+ M_Save:
+  savepoint "payold",115,161;
+  callfunc "F_KafEnd",0,1;
+}
+
+payold,56,165,3	duplicate(Stuffs)	Stuffs#6	830
+payold,58,165,6	script	Curandeira#6	936,{
+	callfunc "curandyokai",0;
+	end;
+OnInit:
+waitingroom "Curandeira",0;
+end;
+}
+
+payold,60,165,3	duplicate(Teleporte WoE)	Teleporte WoE#6	766
+payold,62,165,3	script	Funcionária Kafra#pay8	859,{
+ cutin "kafra_03",2;
+ callfunc "F_Kafra",0,0,1;
+
+ M_Save:
+  savepoint "payold",64,160;
+  callfunc "F_KafEnd",0,1;
+}
+
+payold,26,172,3	duplicate(Stuffs)	Stuffs#7	830
+payold,28,172,6	script	Curandeira#7	936,{
+	callfunc "curandyokai",0;
+	end;
+OnInit:
+waitingroom "Curandeira",0;
+end;
+}
+
+payold,30,172,3	duplicate(Teleporte WoE)	Teleporte WoE#7	766
+payold,32,172,3	script	Funcionária Kafra#pay9	859,{
+ cutin "kafra_03",2;
+ callfunc "F_Kafra",0,0,1;
+
+ M_Save:
+  savepoint "payold",29,166;
+  callfunc "F_KafEnd",0,1;
+}
+
+payold,88,28,3	duplicate(Stuffs)	Stuffs#8	830
+payold,90,28,6	script	Curandeira#8	936,{
+	callfunc "curandyokai",0;
+	end;
+OnInit:
+waitingroom "Curandeira",0;
+end;
+}
+
+payold,92,28,3	duplicate(Teleporte WoE)	Teleporte WoE#8	766
+payold,94,28,3	script	Funcionária Kafra#pay10	859,{
+ cutin "kafra_03",2;
+ callfunc "F_Kafra",0,0,1;
+
+ M_Save:
+  savepoint "payold",89,34;
+  callfunc "F_KafEnd",0,1;
+}
+
+
+mora,192,164,3	shop	Alchemist Stuffs	749,7137:-1,7138:-1,7134:-1,1093:-1,1092:-1,911:-1,7144:-1,7133:-1
+
+mora,188,163,3	script	Saida#shop	57,{
+
+mes "[ Saida ]";
+mes "Olá "+strcharinfo(0)+".";
+mes "Gostaria de sair do Shopping?";
+if(select("- Sim, Por favor:- Não, Obrigado")==2) close;
+	next;
+	mes "[ Saida ]";
+	mes "Te levarei até a saida!";
+	next;
+	mes "[ Saida ]";
+	mes "Até mais!";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+	
+}
+
+//Acessório: 
+mora,169,156,6	shop	Cartas Acessorio	716,4091:-1, 4139:-1, 4040:-1, 4084:-1, 4048:-1, 4022:-1, 4077:-1, 4044:-1, 4103:-1, 4027:-1, 4079:-1, 4036:-1, 4093:-1, 4033:-1, 4034:-1, 4028:-1, 4053:-1, 4051:-1, 4064:-1
+
+//Hats: 
+mora,169,158,6	shop	Cartas Hat	716,4110:-1, 4122:-1, 4087:-1, 4041:-1, 4112:-1, 4046:-1, 4039:-1, 4127:-1, 4052:-1, 4010:-1
+
+//Calçado: 
+mora,169,160,6	shop	Cartas Calcado	716,4010:-1, 4009:-1, 4070:-1, 4097:-1, 4100:-1, 4107:-1, 4038:-1
+
+//Capa: 
+mora,169,162,6	shop	Cartas Capa	716,4129:-1,4015:-1, 4081:-1, 4116:-1, 4109:-1, 4113:-1, 4095:-1, 4108:-1, 4071:-1, 4056:-1, 4133:-1, 4102:-1
+
+//Escudo: 
+mora,169,164,6	shop	Cartas Escudo	716,4032:-1, 4075:-1, 4045:-1, 4066:-1, 4136:-1, 4067:-1, 4090:-1, 4013:-1, 4012:-1, 4120:-1, 4074:-1, 4058:-1
+
+//Armadura: 
+mora,169,166,6	shop	Cartas Armadura	716,4101:-1, 4114:-1, 4119:-1, 4016:-1, 4105:-1, 4042:-1, 4061:-1, 4098:-1, 4141:-1, 4099:-1, 4031:-1, 4089:-1, 4011:-1, 4008:-1, 4001:-1, 4003:-1, 4021:-1, 4014:-1, 4078:-1
+
+//Arma: 
+mora,169,168,6	shop	Cartas Arma	716,4062:-1, 4043:-1, 4017:-1, 4026:-1, 4063:-1, 4140:-1, 4125:-1, 4069:-1, 4004:-1, 4068:-1, 4092:-1, 4086:-1, 4094:-1, 4002:-1, 4020:-1, 4080:-1, 4060:-1, 4072:-1, 4035:-1, 4037:-1, 4082:-1, 4029:-1, 4029:-1, 4076:-1, 4030:-1, 4055:-1, 4057:-1, 4126:-1, 4115:-1, 4106:-1, 4085:-1, 4007:-1, 4118:-1, 4024:-1, 4005:-1, 4117:-1, 4049:-1, 4019:-1, 4096:-1
+
+
+//NPC CAIXA DE STUFF
+mora,192,158,4	script	Trocar Caixas de Stuff	830,{
+
+	mes "[Trocar Caixas de Stuff]";
+	mes "Olá "+StrCharInfo(0)+"!";
+	mes "ESCOLHA, SEU VERME";
+	next;
+		switch(select("10 unidades:20 unidades:40 unidades:100 unidades")) {
+			case 1:
+				if(countitem(20001) >= 1){
+					switch(select("Mastela:Geléia Real:Gema Amarela:Gema Vermelha:Ácido:Revestimento:Fogo Grego")) {
+						case 1:
+						delitem 20001,1;
+						getitem 522,5;
+						break;
+						case 2:
+						delitem 20001,1;
+						getitem 526,5;
+						break;
+						case 3:
+						delitem 20001,1;
+						getitem 715,5;
+						break;
+						case 4:
+						delitem 20001,1;
+						getitem 716,5;
+						break;
+						case 5:
+						delitem 20001,1;
+						getitem 7136,5;
+						break;
+						case 6:
+						delitem 20001,1;
+						getitem 7139,5;
+						break;
+						case 7:
+						delitem 20001,1;
+						getitem 7135,5;
+						break;
+					}
+				}
+			break;
+			case 2:
+				if(countitem(20002) >= 1){
+					switch(select("Mastela:Geléia Real:Gema Amarela:Gema Vermelha:Ácido:Revestimento:Fogo Grego")) {
+						case 1:
+						delitem 20002,1;
+						getitem 522,10;
+						break;
+						case 2:
+						delitem 20002,1;
+						getitem 526,10;
+						break;
+						case 3:
+						delitem 20002,1;
+						getitem 715,10;
+						break;
+						case 4:
+						delitem 20002,1;
+						getitem 716,10;
+						break;
+						case 5:
+						delitem 20002,1;
+						getitem 7136,10;
+						break;
+						case 6:
+						delitem 20002,1;
+						getitem 7139,10;
+						break;
+						case 7:
+						delitem 20002,1;
+						getitem 7135,10;
+						break;
+					}
+				}
+			break;
+			case 3:
+				if(countitem(20003) >= 1){
+					switch(select("Mastela:Geléia Real:Gema Amarela:Gema Vermelha:Ácido:Revestimento:Fogo Grego")) {
+						case 1:
+						delitem 20003,1;
+						getitem 522,20;
+						break;
+						case 2:
+						delitem 20003,1;
+						getitem 526,20;
+						break;
+						case 3:
+						delitem 20003,1;
+						getitem 715,20;
+						break;
+						case 4:
+						delitem 20003,1;
+						getitem 716,20;
+						break;
+						case 5:
+						delitem 20003,1;
+						getitem 7136,20;
+						break;
+						case 6:
+						delitem 20003,1;
+						getitem 7139,20;
+						break;
+						case 7:
+						delitem 20003,1;
+						getitem 7135,20;
+						break;
+					}
+				}
+			break;
+			case 4:
+				if(countitem(20004) >= 1){
+					switch(select("Mastela:Geléia Real:Gema Amarela:Gema Vermelha:Ácido:Revestimento:Fogo Grego")) {
+						case 1:
+						delitem 20004,1;
+						getitem 522,50;
+						break;
+						case 2:
+						delitem 20004,1;
+						getitem 526,50;
+						break;
+						case 3:
+						delitem 20004,1;
+						getitem 715,50;
+						break;
+						case 4:
+						delitem 20004,1;
+						getitem 716,50;
+						break;
+						case 5:
+						delitem 20004,1;
+						getitem 7136,50;
+						break;
+						case 6:
+						delitem 20004,1;
+						getitem 7139,50;
+						break;
+						case 7:
+						delitem 20004,1;
+						getitem 7135,50;
+						break;
+					}
+				}
+			break;
+		}
+	mes "[Trocar Caixas de Stuff]";
+	mes "PORRA FILHO DA PUTA, VOCÊ NÃO TEM CAIXA!";
+	mes "Só me procure se tiver alguma caixa!";
+	close;
+}
+
+//NPC EMBLEMAS DE BG
+payold,80,126,4	script	Trocar Emblemas BG	924,{
+
+	mes "[Trocar Emblemas BG]";
+	mes "Olá "+StrCharInfo(0)+"!";
+	mes "Escolha a troca";
+	mes "X Emblemas - Y Caixas[40 ou 100]";
+	next;
+
+	if(countitem(7773) >= 1){
+		switch(select("4 Emblemas - 1 Caixa[40]:6 Emblemas - 2 Caixas[40]:8 Emblemas - 1 Caixa[100]:19 Emblemas - 3 Caixas[100]:35 Emblemas - 6 Caixas[100]:65 Emblemas - 12 Caixas[100]:100 Emblemas - 12 Caixas[100]:150 Emblemas - 20 Caixas[100]:150 Emblemas - 20 Caixas[100]:200 Emblemas - 35 Caixas[100]:250 Emblemas - 60 Caixas[100]:300 Emblemas - 120 Caixas[100]")) {
+			case 1:
+			if(countitem(7773) >= 4){
+				delitem 7773,4;
+				getitem 20003,1;
+			}
+			break;
+			case 2:
+			if(countitem(7773) >= 6){
+				delitem 7773,6;
+				getitem 20003,2;
+			}
+			break;
+			case 3:
+			if(countitem(7773) >= 8){
+				delitem 7773,8;
+				getitem 20004,1;
+			}
+			break;
+			case 4:
+			if(countitem(7773) >= 19){
+				delitem 7773,19;
+				getitem 20004,3;
+			}
+			break;
+			case 5:
+			if(countitem(7773) >= 35){
+				delitem 7773,35;
+				getitem 20004,6;
+			}
+			break;
+			case 6:
+			if(countitem(7773) >= 65){
+				delitem 7773,65;
+				getitem 20004,12;
+			}
+			break;
+			case 7:
+			if(countitem(7773) >= 100){
+				delitem 7773,100;
+				getitem 20004,16;
+			}
+			break;
+			case 8:
+			if(countitem(7773) >= 150){
+				delitem 7773,150;
+				getitem 20004,20;
+			}
+			break;
+			case 9:
+			if(countitem(20004) >= 200){
+				delitem 7773,200;
+				getitem 20004,35;
+			}
+			break;
+			case 10:
+			if(countitem(7773) >= 250){
+				delitem 7773,250;
+				getitem 20004,60;
+			}
+			break;
+			case 11:
+			if(countitem(7773) >= 300){
+				delitem 7773,300;
+				getitem 20004,100;
+			}
+			break;
+		}
+	}
+	Else {
+		mes "[Trocar Emblemas BG]";
+		mes "Vaza, você não tem o que precisa para trocar";
+		next;
+	}
+	mes "[Trocar Emblemas BG]";
+	mes "Vlw jovem!";
+	next;
+}
+
+
+
+////////////////////////
+// Função para Stuffs //
+////////////////////////
+//NPC STUFFS VIP
+poring_w02,94,200,5	script	Stuffs Vip	924,{
+	mes "[Stuffs Vip]";
+	mes "Olá "+StrCharInfo(0)+"!";
+	mes "Escolha o Item:";
+	next;
+	set .time,10800;
+	switch(select("50 Gemas Amarelas:50 Gemas Vermelhas:50 Frascos de Ácido:50 Frascos de Revestimento:50 Frascos de Fogo Grego:")) {
+	Case 1:
+		set .id,715;
+		Break;
+	Case 2:
+		set .id,716;
+		Break;
+	Case 3:
+		set .id,7136;
+		Break;
+	Case 4:
+		set .id,7139;
+		Break;
+	Case 5:
+		set .id,7135;
+		Break;
+	
+} 
+	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+   	rentitem .id,.time;
+	close2;
+	end;
+}
+
+aldeg_cas02	mapflag	nocmd	storage
+aldeg_cas03	mapflag	nocmd	storage

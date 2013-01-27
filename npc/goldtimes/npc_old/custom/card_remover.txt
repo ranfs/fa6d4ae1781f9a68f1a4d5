@@ -1,0 +1,191 @@
+prt_in,28,73,4	script	Removedor de Cartas	63,{
+if(getgmlevel()>=1)	{ 
+	mes "[Removedor de Cartas]";
+	mes "Bom dia,eu posso remover cartas que já foram usadas nos seus equipamentos.";
+	next; 
+	mes "[Removedor de Cartas]";
+	mes "Já que você é VIP, não pagará nada para remover suas cartas.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Gostaria de remover suas cartas ?";
+	next;
+	goto Remov1;
+}
+	mes "[Removedor de Cartas]";
+	mes "Bom dia, eu posso remover cartas que já foram usadas nos seus equipamentos.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Se você for VIP não precisa pagar nada para remover suas cartas.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Já que você não é VIP, custa 500.000 zeny para cada carta removida de seus ítens.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Gostaria de remover suas cartas ?";
+	next;
+Remov1:
+	menu "Sim!",REMOVEMENU,
+	     "Não obrigado.",CLOSEOUT;
+
+REMOVEPRICE:
+	mes "[Removedor de Cartas]";
+	next;
+	menu "Tudo bem, vamos começar.",REMOVEMENU,
+	     "Não obrigado.",CLOSEOUT;
+
+REMOVEMENU:
+	mes "[Removedor de Cartas]";
+	mes "Tudo bem. Qual ítem quer que eu examine para você?";
+	next;
+	menu getequipname(1),SLOT1,
+	     getequipname(2),SLOT2,
+	     getequipname(3),SLOT3,
+	     getequipname(4),SLOT4,
+	     getequipname(5),SLOT5,
+	     getequipname(6),SLOT6,
+	     getequipname(7),SLOT7,
+	     getequipname(8),SLOT8,
+	     getequipname(9),SLOT9,
+	     getequipname(10),SLOT10,
+	     "- Cancelar",CLOSEOUT;
+
+SLOT1:
+	set @part,1;
+	goto CARDNUMCHECK;
+
+SLOT2:
+	set @part,2;
+	goto CARDNUMCHECK;
+
+SLOT3:
+	set @part,3;
+	goto CARDNUMCHECK;
+
+SLOT4:
+	set @part,4;
+	goto CARDNUMCHECK;
+
+SLOT5:
+	set @part,5;
+	goto CARDNUMCHECK;
+
+SLOT6:
+	set @part,6;
+	goto CARDNUMCHECK;
+
+SLOT7:
+	set @part,7;
+	goto CARDNUMCHECK;
+
+SLOT8:
+	set @part,8;
+	goto CARDNUMCHECK;
+
+SLOT9:
+	set @part,9;
+	goto CARDNUMCHECK;
+
+SLOT10:
+	set @part,10;
+	goto CARDNUMCHECK;
+CARDNUMCHECK:
+if(getgmlevel()>=1)	{
+	if(getequipcardcnt(@part) == 0) goto DENYCARDCOUNT;
+	set @cardcount,getequipcardcnt(@part);
+	if(@cardcount > 1) goto CARDNUMMULTIMSG;
+	mes "[Removedor de Cartas]";
+	mes "Esse ítem tem 1 carta equipado em sí. você não precisa pagar nada para remover a carta deste item.";
+	goto CARDNUMPOSTMSG;
+}
+	if(getequipcardcnt(@part) == 0) goto DENYCARDCOUNT;
+	set @cardcount,getequipcardcnt(@part);
+	if(@cardcount > 1) goto CARDNUMMULTIMSG;
+	mes "[Removedor de Cartas]";
+	mes "Esse ítem tem 1 carta equipado em sí. É necessário 500.000 zeny.";
+	goto CARDNUMPOSTMSG;
+CARDNUMMULTIMSG:
+if(getgmlevel()>=1)	{ 
+	mes "[Removedor de Cartas]";
+	mes "Você é VIP e não precisará pagar nada por este serviço.";
+	goto CARDNUMPOSTMSG;
+}
+	mes "[Removedor de Cartas]";
+	mes "Esse ítem tem " + @cardcount + " cartas equipado em sí. É necessário " + (0+(@cardcount * 500000)) + " zeny";
+
+CARDNUMPOSTMSG:
+	next;
+	menu "Ok, estou pronto.",REMOVECARD,
+	     "Não, não faça isso.",CLOSEOUT;
+REMOVECARD:
+	if (getgmlevel() >= 1) goto VIP2;
+	mes "[Removedor de Cartas]";
+	mes "Muito bem. Vamos nessa!";
+	if((zeny < (@cardcount * 500000))) goto DENYMATERIAL;
+	set zeny,zeny - (@cardcount * 500000);
+VIP2:	
+	successremovecards @part;
+	next;
+if(getgmlevel()>=1)	{ 
+	mes "[Removedor de Cartas]";
+	mes "O processo foi um grande sucesso.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Tome suas cartas e seus ítens.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Obrigado por ajudar o servidor, sempre que precisar estarei aqui para remover as cartas de seus itens de graça!";
+	close;
+}
+
+	mes "[Removedor de Cartas]";
+	mes "O processo foi um grande sucesso. Tome suas cartas e seus ítens.";
+	close;
+
+DENYCARDCOUNT:
+	mes "[Removedor de Cartas]";
+	mes "Meu jovem não há cartas equipadas neste ítem. Não posso trabalhar assim.";
+	close;
+
+DENYMATERIAL:
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Você não tem zenys bastante, volte quando tiver.";
+	close;
+
+//================================ VIP
+VIP:
+	mes "[Removedor de Cartas]";
+	menu "Ok, estou pronto.",REMOVECARD2,
+	     "Não, não faça isso.",CLOSEOUT;
+REMOVECARD2:
+	mes "[Removedor de Cartas]";
+	mes "Muito bem. Vamos nessa!";
+	successremovecards @part;
+	next;
+if(getgmlevel()>=1)	{ 
+	mes "[Removedor de Cartas]";
+	mes "O processo foi um grande sucesso.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Tome suas cartas e seus ítens.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Obrigado por ajudar o servidor, sempre que precisar estarei aqui para remover as cartas de seus itens de graça!";
+	close;
+}
+	mes "[Removedor de Cartas]";
+	mes "O processo foi um grande sucesso.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Tome suas cartas e seus ítens.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Sempre que precisar estarei aqui para remover as cartas de seus itens!";
+	close;
+
+CLOSEOUT:
+	mes "[Removedor de Cartas]";
+	mes "Tudo bem. Volte quando precisar dos meus serviços.";
+	close;
+
+}

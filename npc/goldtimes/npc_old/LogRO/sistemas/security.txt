@@ -1,0 +1,134 @@
+// *****************************************************
+//                 Item Security System
+// *****************************************************
+
+-	script	SecuritySystem	-1,{
+	end;
+
+OnSettings:
+	while( 1 )
+	{
+		mes "[^FFA500Security System^000000]";
+		mes "Estado atual";
+
+		mes "- Código de Segurança:";
+		if( #SECURITYCODE )
+		{
+			mes "^FFFFFF__________^2E8B57Ativado^000000.";
+
+			mes "- Transferências de Item:";
+			if( getsecurity() )
+			{
+				mes "^FFFFFF__________^2E8B57Bloqueada^000000.";
+				set .@Menu2$, "Permitir transferências de itens";
+			}
+			else
+			{
+				mes "^FFFFFF__________^FF0000Permitida^000000.";
+				set .@Menu2$, "Bloquear transferência de itens";
+			}
+
+			next;
+			set .@Option, select("Alterar Senha",.@Menu2$,"Remover Senha","Sair");
+		}
+		else
+		{
+			mes "^FFFFFF__________^FF0000Desativado^000000.";
+			next;
+			set .@Option, select("Definir Senha","Sair") + 4;
+		}
+		
+		switch( .@Option )
+		{
+			case 1: // Cambiar Clave
+				mes "[^FFA500Security System^000000]";
+				mes "A senha tem que ser números entre 1000 e 9999.";
+				mes "Digite sua senha atual...";
+				next;
+
+				input .@Pass;
+				if( .@Pass != #SECURITYCODE )
+				{
+					mes "[^FFA500Security System^000000]";
+					mes "Senha errada!!.";
+					close;
+				}
+			
+			case 5:
+				mes "[^FFA500Security System^000000]";
+				mes "Digite sua nova senha...";
+				mes "A senha tem que ser números entre 1000 e 9999.";
+				next;
+				
+				input .@Pass;
+				if( .@Pass < 1000 || .@Pass > 9999 )
+				{
+					mes "[^FFA500Security System^000000]";
+					mes "Valor inválido!!.";
+					close;
+				}
+				
+				mes "[^FFA500Security System^000000]";
+				mes "Confirme sua nova senha.";
+				next;
+
+				input .@CPass;
+				if( .@CPass != .@Pass )
+				{
+					mes "[^FFA500Security System^000000]";
+					mes "As senhas são diferentes.";
+					mes "Operação cancelada.";
+					close;
+				}
+				
+				set #SECURITYCODE, .@Pass;
+				break;
+			case 2: // Permitir Salidas - Bloquear Salidas
+				if( getsecurity() )
+				{
+					mes "[^FFA500Security System^000000]";
+					mes "Por favor digite sua senha para permitir transferências de itens.";
+					next;
+					
+					input .@Pass;
+					if( #SECURITYCODE != .@Pass )
+					{
+						mes "[^FFA500Security System^000000]";
+						mes "Senha errada!!.";
+						close;
+					}
+					
+					setsecurity 0;
+				}
+				else if( #SECURITYCODE > 0 )
+					setsecurity 1;
+				else
+					setsecurity 0;
+				break;
+			case 3: // Quitar Clave
+				mes "[^FFA500Security System^000000]";
+				mes "Digite sua senha atual.";
+				next;
+				
+				input .@Pass;
+				if( #SECURITYCODE != .@Pass )
+				{
+					mes "[^FFA500Security System^000000]";
+					mes "Senha errada!!.";
+					close;
+				}
+				
+				set #SECURITYCODE, 0;
+				setsecurity 0;
+				break;
+			case 4:
+			case 6:
+				mes "[^FFA500Security System^000000]";
+				mes "Use o @security se você precisar configurar seus serviços novamente.";
+				mes "Bom Dia...";
+				close;
+		}
+	}
+	
+	end;
+}

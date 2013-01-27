@@ -1,0 +1,464 @@
+prontera,171,182,3	script	Quests RagnaYokai#1	125,{
+	mes "[Quests RagnaYokai]";
+	mes "Olá "+StrCharInfo(0)+"!";
+	mes "Que tal fazer algumas quests e consegui itens em troca?";
+	next;
+	if( select("Diga-me o que posso ganhar:Talvez depois") == 2 )
+	{
+		mes "[Quests RagnaYokai]";
+		mes "Tudo bem, estarei aqui se você mudar de idéia.";
+		mes "Caso não queria fazer as quest, acesse: ^0000FF www.ragnayokai.com^000000 e saiba como conseguir RoPs.";
+		close;
+	}
+	mes "[Quests RagnaYokai]";
+	mes "Estes são os itens que você poderá ganhar:";
+	mes "Quer tentar ganhar algum?";
+	next;
+	switch(select("Óculos Preto:Orelhas de Anjo:Asas de Maligna:Binóculos:Boina Alada:Capacete de Orc Herói:Chapéu de Cowboy:Torrada Crocante:Candura:Chifre de Alce:Gorro:Chapéu de Deviling:Quepe Oficial:Boné de Carteiro[1]:Nenhum"))
+	{
+	case 1:
+		mes "[Óculos Preto]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5401);
+		mes " ";
+		mes "Requerimento:";
+		mes "5x "+getitemname(2276);
+		mes "10x "+getitemname(983);
+		mes "100000 Zenys";
+		next;
+		mes "[Quests RagnaYokai]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests RagnaYokai]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(2276) >= 5 && countitem(983) >= 10 && Zeny >= 100000)
+		{
+			delitem 2276,5;
+			delitem 983,10;
+			set Zeny,Zeny-100000;
+			getitem 5401,1;
+			mes "[Quests RagnaYokai]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 2:
+		mes "[Orelhas de Anjo]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5074);
+		mes " ";
+		mes "Requerimento:";
+		mes "1x "+getitemname(2254);
+		mes "1x "+getitemname(2286);
+		mes "20000 Zenys";
+		next;
+		mes "[Quests RagnaYokai]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests RagnaYokai]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(2254) >= 1 && countitem(2286) >= 1 && Zeny >= 20000)
+		{
+			delitem 2254,1;
+			delitem 2286,1;
+			set Zeny,Zeny-20000;
+			getitem 5074,1;
+			mes "[Quests RagnaYokai]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 3:
+		mes "[Asas de Maligna]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5068);
+		mes " ";
+		mes "Requerimento:";
+		mes "1x "+getitemname(2255);
+		mes "1x "+getitemname(2286);
+		mes "20000 Zenys";
+		next;
+		mes "[Quests RagnaYokai]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests RagnaYokai]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(2255) >= 1 && countitem(2286) >= 1 && Zeny >= 20000)
+		{
+			delitem 2255,1;
+			delitem 2286,1;
+			set Zeny,Zeny-20000;
+			getitem 5068,1;
+			mes "[Quests RagnaYokai]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 4:
+		mes "[Binóculos]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(2296);
+		mes " ";
+		mes "Requerimento:";
+		mes "1x "+getitemname(2243);
+		mes "100x "+getitemname(999);
+		mes "50000 Zenys";
+		next;
+		mes "[Quests RagnaYokai]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests RagnaYokai]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(2243) >= 1 && countitem(999) >= 100 && Zeny >= 50000)
+		{
+			delitem 2243,1;
+			delitem 999,100;
+			set Zeny,Zeny-50000;
+			getitem 2296,1;
+			mes "[Quests RagnaYokai]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 5:
+		mes "[Boina Alada]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5170);
+		mes " ";
+		mes "Requerimento:";
+		mes "100x "+getitemname(7063);
+		mes "1x "+getitemname(982);
+		mes "1x "+getitemname(5072);
+		next;
+		mes "[Quests RagnaYokai]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests RagnaYokai]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(7063) >= 100 && countitem(982) >= 1 && countitem(5072) >= 1)
+		{
+			delitem 7063,100;
+			delitem 982,1;
+			delitem 5072,1;
+			getitem 5170,1;
+			mes "[Quests RagnaYokai]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 6:
+		mes "[Capacete de Orc Herói]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5375);
+		mes " ";
+		mes "Requerimento:";
+		mes "10000x "+getitemname(909);
+		mes "10000x "+getitemname(609);
+		mes "100x "+getitemname(968);
+		next;
+		mes "[Quests RagnaYokai]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests RagnaYokai]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(909) >= 10000 && countitem(609) >= 10000 && countitem(968) >= 100)
+		{
+			delitem 909,10000;
+			delitem 609,10000;
+			delitem 968,100;
+			getitem 5375,1;
+			mes "[Quests RagnaYokai]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 7:
+		mes "[Chapéu de Cowboy]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5075);
+		mes " ";
+		mes "Requerimento:";
+		mes "1x "+getitemname(2248);
+		mes "108x "+getitemname(7030);
+		mes "4x "+getitemname(7120);
+		next;
+		mes "[Quests RagnaYokai]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests RagnaYokai]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(2248) >= 1 && countitem(7030) >= 108 && countitem(7120) >= 4)
+		{
+			delitem 2248,1;
+			delitem 7030,108;
+			delitem 7120,4;
+			getitem 5075,1;
+			mes "[Quests RagnaYokai]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 8:
+		mes "[Torrada Crocante]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5107);
+		mes " ";
+		mes "Requerimento:";
+		mes "50x "+getitemname(539);
+		mes "50x "+getitemname(7031);
+		mes "50x "+getitemname(548);
+		mes "50x "+getitemname(519);
+		next;
+		mes "[Quests RagnaYokai]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests RagnaYokai]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(539) >= 50 && countitem(7031) >= 50 && countitem(548) >= 50 && countitem(519) >= 50)
+		{
+			delitem 539,50;
+			delitem 7031,50;
+			delitem 548,50;
+			delitem 519,50;
+			getitem 5107,1;
+			mes "[Quests RagnaYokai]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 9:
+		mes "[Candura]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5040);
+		mes " ";
+		mes "Requerimento:";
+		mes "100x "+getitemname(7047);
+		next;
+		mes "[Quests RagnaYokai]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests RagnaYokai]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(7047) >= 100)
+		{
+			delitem 7047,100;
+			getitem 5040,1;
+			mes "[Quests RagnaYokai]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 10:
+		mes "[Chifre de Alce]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(2284);
+		mes " ";
+		mes "Requerimento:";
+		mes "20x "+getitemname(923);
+		mes "20000 Zenys";
+		next;
+		mes "[Quests RagnaYokai]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests RagnaYokai]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(923) >= 20 && Zeny >= 20000)
+		{
+			delitem 923,20;
+			set Zeny,Zeny-20000;
+			getitem 2284,1;
+			mes "[Quests RagnaYokai]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 11:
+		mes "[Gorro]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5076);
+		mes " ";
+		mes "Requerimento:";
+		mes "1x "+getitemname(2226);
+		mes "500x "+getitemname(7038);
+		next;
+		mes "[Quests RagnaYokai]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests RagnaYokai]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(2226) >= 1 && countitem(7038) >= 500)
+		{
+			delitem 2226,1;
+			delitem 7038,500;
+			getitem 5076,1;
+			mes "[Quests RagnaYokai]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 12:
+		mes "[Chapéu de Deviling]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5254);
+		mes " ";
+		mes "Requerimento:";
+		mes "3x "+getitemname(989);
+		mes "5x "+getitemname(982);
+		mes "150x "+getitemname(7079);
+		mes "1x "+getitemname(2254);
+		mes "1x "+getitemname(5035);
+		mes "30x "+getitemname(741);
+		mes "1x "+getitemname(2289);
+		mes "500000 Zenys";
+		next;
+		mes "[Quests RagnaYokai]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests RagnaYokai]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(989) >= 3 && countitem(982) >= 5 && countitem(7079) >= 150 && countitem(2254) >= 1 && countitem(5035) >= 1 && countitem(741) >= 30 && countitem(2289) >= 1 && Zeny >= 500000)
+		{
+			delitem 989,3;
+			delitem 982,5;
+			delitem 7079,150;
+			delitem 2254,1;
+			delitem 5035,1;
+			delitem 741,30;
+			delitem 2289,1;
+			set Zeny,Zeny-500000;
+			getitem 5254,1;
+			mes "[Quests RagnaYokai]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 13:
+		mes "[Quepe Oficial]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5184);
+		mes " ";
+		mes "Requerimento:";
+		mes "3x "+getitemname(983);
+		mes "3x "+getitemname(978);
+		mes "50x "+getitemname(984);
+		mes "10x "+getitemname(7340);
+		mes "100x "+getitemname(641);
+		mes "250x "+getitemname(1045);
+		mes "30x "+getitemname(724);
+		mes "500000 Zenys";
+		next;
+		mes "[Quests RagnaYokai]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests RagnaYokai]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(983) >= 3 && countitem(978) >= 3 && countitem(984) >= 50 && countitem(7340) >= 10 && countitem(641) >= 100 && countitem(1045) >= 250 && countitem(724) >= 30 && Zeny >= 500000)
+		{
+			delitem 983,3;
+			delitem 978,3;
+			delitem 984,50;
+			delitem 7340,10;
+			delitem 641,100;
+			delitem 1045,250;
+			delitem 724,30;
+			set Zeny,Zeny-500000;
+			getitem 5184,1;
+			mes "[Quests RagnaYokai]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 14:
+		mes "[Boné de Carteiro[1]]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5466);
+		mes " ";
+		mes "Requerimento:";
+		mes "1x "+getitemname(5016);
+		mes "250x "+getitemname(919);
+		mes "250x "+getitemname(662);
+		mes "100000 Zenys";
+		next;
+		mes "[Quests RagnaYokai]";
+		mes "Deseja fazer esta quest?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Quests RagnaYokai]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(5016) >= 1 && countitem(919) >= 250 && countitem(662) >= 250 && Zeny >= 100000)
+		{
+			delitem 5016,1;
+			delitem 919,250;
+			delitem 662,250;
+			set Zeny,Zeny-100000;
+			getitem 5466,1;
+			mes "[Quests RagnaYokai]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 15:
+		mes "[Quests RagnaYokai]";
+		mes "Tudo bem, estarei aqui se você mudar de idéia.";
+		close;
+	}
+	mes "[Quests RagnaYokai]";
+	mes "Me desculpe, mas você não tem todos os itens necessários para esta quest.";
+	mes "Volte quando você tiver todos os itens!";
+	close;
+}

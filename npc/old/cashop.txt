@@ -1,0 +1,14 @@
+payold,92,127,3	script	Dark Moon's Trader	790,{
+mes "[ Dark Moon's Trader ]";
+mes "Olá "+strcharinfo(0)+"";
+mes "O que deseja?";
+if(select("- Comprar Itens ROP:- Nada, Obrigado") == 2)close;
+		close2;
+		callshop "v1cash",1;
+		end;
+OnInit:
+waitingroom "[ROP's]Dark Moon's Trader",0; 
+end;		
+}
+
+-	cashshop(#CASHPOINTS)	v1cash	-1,8000:1000,4000:5000,10140:5000,10141:5000,10142:5000,10143:5000,10144:5000,10145:5000,10146:5000,10147:5000,10148:5000,10149:5000,10150:5000,10151:5000

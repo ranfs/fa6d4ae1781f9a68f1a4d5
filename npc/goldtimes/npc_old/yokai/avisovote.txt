@@ -1,0 +1,11 @@
+prontera,150,184,3	script	Vote no Servidor!	837,{
+	mes "[^FF0000 Vote no Servidor^000000]";
+	mes "Acesse: ^FF0000www.ragnayokai.com/vote^000000 escolha o servidor em que você joga; faça login usando sua conta do jogo; cada voto vale 1 ponto e depois você escolhe pelo que deseja trocar.";
+	next;
+	mes "[^FF0000 Vote no Servidor^000000]";
+	mes "É simples e rápido! Você ajuda o servidor e ainda ganha vários itens exclusivos! Acesse: ^FF0000www.ragnayokai.com/vote^000000";
+	close;
+	OnInit:
+	waitingroom "Vote no Servidor!",0; 
+	end;
+}

@@ -1,0 +1,157 @@
+prontera,162,190,3	script	Secretária	831,{
+	mes	"[^473C8BSecretária^000000]";
+	mes	"Olá ^871F78"+ strcharinfo(0) +"^000000!Por favor, escolha o serviço em que deseja atendimento";
+	next;
+	switch(select("^473C8BMandar Mensagem Global^000000","^104E8BHabilidades de Platina^000000","^836FFFAlugar Carrinho,Montaria ou Falcão^000000","^4876FFResetadora^000000"))
+	{
+		Case 1:
+			callfunc("torpedo","[^99CC00Mensageira^000000]",1000000);
+		Case 2:
+			callfunc("habilidades_platina","[^99CC00Habilidade de Platina^000000]");
+		Case 3:
+			callfunc("garota_negociante","[^99CC00Garota Negociante^000000]");
+		Case 4:
+			callfunc("resetadora","^99CC00[Resetadora]^000000");			
+	}
+}
+function	script	resetadora	{
+	mes GetArg(0);
+	mes "Olá! O que posso fazer por você?";
+	next;
+	setarray .opc$,"^473C8BResetar Habilidades^000000","^104E8BResetar Atributos^000000","^836FFFResetar Ambos^000000";
+	setarray .novip$," - 500.000"," - 500.000"," - 800.000";
+	set .@menu$,"";
+	for ( set .@i,0; .@i <= getarraysize(.novip$);set .@i,.@i + 1){
+		set .@menu$, .@menu$ + .opc$[.@i] ;
+		if (!getgmlevel()) set .@menu$, .@menu$ + .novip$[.@i];
+		if (.@i < getarraysize(.novip$)) set .@menu$, .@menu$ + ":";
+	}
+	switch(select(.@menu$))
+	{
+		Case 1:
+			if (getgmlevel() < 1) callfunc("subzeny","^99CC00[Resetadora]^000000",500000);
+			resetskill;
+			mes GetArg(0);
+			mes"Suas habilidades foram resetadas.";
+			mes"Use-as com sabedoria.";
+			close;
+		
+		Case 2:
+			if (getgmlevel() < 1)callfunc("subzeny","^99CC00[Resetadora]^000000",500000);
+			resetstatus;
+			mes GetArg(0);
+			mes"Seus atributos foram resetados.";
+			mes"Use-as com sabedoria.";
+			close;
+		Case 3:
+			if (getgmlevel() < 1)callfunc("subzeny","^99CC00[Resetadora]^000000",800000);
+			resetskill;
+			resetstatus;
+			mes GetArg(0);
+			mes"Seus atributos e habilidades foram resetados.";
+			mes"Use-as com sabedoria.";
+			close;
+	}
+}
+function	script	garota_negociante	{
+	mes GetArg(0);
+	mes "Olá, aqui você pode alugar um carrinho, pecopeco ou falcão depedendo de sua profissão.";
+	next;
+	mes GetArg(0);
+	if ((BaseClass == 5 || Class == 23) && !checkcart() && getskilllv(39)) setcart;
+	else if (BaseClass == 1 && !checkriding() && getskilllv(63)) setriding;
+	else if (BaseClass == 3 && !checkfalcon() && getskilllv(127)) setfalcon;
+	else
+	{
+		mes "Desculpe, mas não posso ajudar você.";
+		mes "Verifique se você já possui a habilidade necessária ou se já está com algo alugado!";
+		close;
+	}
+	mes "Aqui está, faça bom proveito!";
+	close;
+}
+function	script	habilidades_platina	{
+	mes ;
+	mes GetArg(0);
+	mes "Olá, você deseja receber suas habilidades extras?";
+	next;
+	if(select("Sim","Não") == 2) close;
+	mes GetArg(0);
+	switch(BaseJob) {		
+		case Job_Novice: callfunc("skill:add",0,2,142,143);			
+		case Job_Swordman: callfunc("skill:add",0,3,144,145,146);
+		case Job_Mage: callfunc("skill:add",0,1,157);
+		case Job_Archer: callfunc("skill:add",0,2,147,148);
+		case Job_Acolyte: callfunc("skill:add",0,1,156);
+		case Job_Merchant: callfunc("skill:add",0,3,153,154,155);
+		case Job_Thief: callfunc("skill:add",0,4,149,150,151,152);
+		case Job_Knight: callfunc("skill:add",0,4,144,145,146,1001);
+		case Job_Priest: callfunc("skill:add",0,2,156,1014);
+		case Job_Wizard: callfunc("skill:add",0,2,157,1006);
+		case Job_Blacksmith: callfunc("skill:add",0,5,153,154,155,1012,1013);
+		case Job_Hunter: callfunc("skill:add",0,3,147,148,1009);
+		case Job_Assassin: callfunc("skill:add",0,6,149,150,151,152,1003,1004);
+		case Job_Crusader: callfunc("skill:add",0,4,144,145,146,1002);
+		case Job_Monk: callfunc("skill:add",0,3,156,1015,1016);
+		case Job_Sage: callfunc("skill:add",0,2,157,1007);
+		case Job_Rogue: callfunc("skill:add",0,5,149,150,151,152,1005);
+		case Job_Alchem: callfunc("skill:add",0,4,153,154,155,238);
+		case Job_Bard: callfunc("skill:add",0,3,147,148,1010);
+		case Job_Dancer: callfunc("skill:add",0,3,147,148,1011);
+		default: callfunc("skill:add",0,1,142);
+		}
+}
+function	script	torpedo	{
+	mes GetArg(0);
+	if (getgmlevel() < 1)
+	{
+		mes "Você não é VIP, correto?";
+		mes "A taxa para envio é de 1.000.000zeny";
+		mes "Ainda deseja enviar a mensagem global?";
+	}
+	else
+	{
+		mes "Olá, deseja enviar um torpedo para todo o servidor?"; 
+	}
+	next;
+	if(select("Sim, eu tenho certeza.","Não, eu mudei de idéia")==1)
+	{
+		mes GetArg(0);
+		mes "Por favor, digite a mensagem que deseja enviar.";
+		digit @mensagem$;
+		mes "^FF0000~ Messagem Digitada ~^000000";
+		mes "@mensagem$";
+		if(Select("Está CERTO! Envie, por favor.","Está ERRADO! Pare por aqui.")==2) close;
+		next;
+		callfunc("subzeny",GetArg(0),GetArg(1));
+		announce ""+strcharinfo(0)+": "+@mensagem$+" ",bc,0xBAB9B9;
+		mes GetArg(0);
+		mes "Sua mensagem foi enviada";
+		close;
+	}
+	else
+	{
+		mes GetArg(0);
+		mes "Ok! Volte quando precisar.";
+		close;
+	}
+}
+function	script	subzeny	{
+	if (zeny < GetArg(1)){
+		mes GetArg(0);
+		mes "Me desculpe, creio que você não tem dinheiro suficiente para isto.";
+		close;
+	}
+	set zeny, zeny - GetArg(1);
+	return;
+}
+
+
+
+
+
+
+
+
+
+

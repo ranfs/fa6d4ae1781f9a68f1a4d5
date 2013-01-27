@@ -1,0 +1,5 @@
+prontera,173,202,5	duplicate(Suhnbi#cash)	Suhnbi#1	63
+prontera,175,202,5	duplicate(Aprendiz de Artesão)	Aprendiz de Artesão#1	73
+
+//Misterpeso
+prontera,179,202,5	duplicate(Mister Peso#GymPass)	Mister Peso#1p	899

@@ -1,0 +1,36 @@
+///	
+///		 /     /  )_/    '  (  _ _ ' _/ _ 
+///		(__.  (__/ /()/)/  __)( / //)/_)  
+///		                          /       
+/// //		
+///			  
+/// Descrição:
+/// Deleção de itens nas tabelas: "inventory","storage","guild_storage","cart_inventory","mail"
+///
+/// Versão Atual: 1.0.0
+/// Autor: Leandro Otoni - L.Otoni
+/// Compatível com: Cronus SVN
+///
+/// Changelog:
+/// v1.0.0 : Desenvolvido o script.	[L.Otoni]
+///
+lhz_in01,276,260,5	script	delete	113,{
+	setarray .tabelas$[1],"inventory","storage","guild_storage","cart_inventory","mail";
+	
+	mes "Olá tudo bem?";
+	if(getgmlevel() != 99) close;
+	
+	// ADM
+	mes "Deseja deletar algum item?";
+	if(select("Sim:Não")==2) close;
+	mes "Digite o id do Item que deseja deletar.";
+	input .id;
+	mes "Você tem certeza que deseja deletar o item:^ff0000" + .id + " - " + getitemname(.id) +"^000000 ?";
+	if(select("Sim:Não")==1)
+		for( set .@i, 1; .@i <= getarraysize(.tabelas$) - 1; set .@i, .@i + 1)
+				query_sql("DELETE FROM " + .tabelas$[.@i] + " WHERE nameid ="+ .id );
+	else close;
+	
+	mes "O item foi deletado de todas as tabelas.";
+	close;
+}

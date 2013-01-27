@@ -1,0 +1,106 @@
+
+bat_room,163,144,3	script	Empacotador de Emblemas	54,{
+	mes "[Empacotador de Emblemas]";
+	mes "Olá "+StrCharInfo(0)+"!";
+	mes "Eu posso empacotar os seus emblemas em pacotes de 1.000 unidades, deseja dar uma olhada?";
+	next;
+	if( select("Claro!:Talvez mais tarde...") == 2 )
+	{
+		mes "[Empacotador de Emblemas]";
+		mes "Tudo bem, estarei aqui se você mudar de idéia.";
+		close;
+	}
+	mes "[Empacotador de Emblemas]";
+	mes "Bem, Estes são os emblemas que eu posso empacotar...";
+	mes "Sobre qual deles vai querer saber mais?";
+	next;
+	switch(select("1000 Emblemas de Valor:1000 Emblemas de Guerra:1000 Emblemas de Bravura:Nenhum"))
+	{
+	case 1:
+		mes "[1000 Emblemas de Valor]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(10225);
+		mes " ";
+		mes "Requerimento:";
+		mes "1000x "+getitemname(7829);
+		next;
+		mes "[Empacotador de Emblemas]";
+		mes "Deseja fazer um pacote?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Empacotador de Emblemas]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(7829) >= 1000)
+		{
+			delitem 7829,1000;
+			getitem 10225,1;
+			mes "[Empacotador de Emblemas]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 2:
+		mes "[1000 Emblemas de Guerra]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(10226);
+		mes " ";
+		mes "Requerimento:";
+		mes "1000x "+getitemname(7773);
+		next;
+		mes "[Empacotador de Emblemas]";
+		mes "Deseja fazer um pacote?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Empacotador de Emblemas]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(7773) >= 1000)
+		{
+			delitem 7773,1000;
+			getitem 10226,1;
+			mes "[Empacotador de Emblemas]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 3:
+		mes "[1000 Emblemas de Bravura]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(10227);
+		mes " ";
+		mes "Requerimento:";
+		mes "1000x "+getitemname(7828);
+		next;
+		mes "[Empacotador de Emblemas]";
+		mes "Deseja fazer um pacote?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Empacotador de Emblemas]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(7828) >= 1000)
+		{
+			delitem 7828,1000;
+			getitem 10227,1;
+			mes "[Empacotador de Emblemas]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 4:
+		mes "[Empacotador de Emblemas]";
+		mes "Tudo bem, estarei aqui se você mudar de idéia.";
+		close;
+	}
+	mes "[Empacotador de Emblemas]";
+	mes "Me desculpe, mas você não tem todos os itens necessários para empacotar.";
+	mes "Volte quando você tiver todos os itens!";
+	close;
+}

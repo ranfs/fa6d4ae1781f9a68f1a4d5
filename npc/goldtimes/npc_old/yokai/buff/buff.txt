@@ -1,0 +1,145 @@
+prontera,153,193,6	script	Curandeira#hG1-1::HealerG	936,{
+if(BaseLevel <= 98) { // Buff de UP ate 99
+	sc_start 46, 360000,5;
+	sc_start SC_STRFood, 360000, 10;
+	sc_start SC_AGIFood, 360000, 10;
+	sc_start SC_LUKFood, 360000, 10;
+	sc_start SC_INTFood, 360000, 10;
+	sc_start SC_DEXFood, 360000, 10;
+	sc_start SC_VITFood, 360000, 10;
+ 	sc_start SC_MAGNIFICAT,360000,5;
+ 	sc_start SC_GLORIA,360000,5;
+ 	sc_start SC_IMPOSITIO,360000,5;
+	sc_start SC_ENDURE,360000,10;
+	sc_start SC_ANGELUS,360000,10;
+ 	sc_start SC_BLESSING,360000,10;
+	sc_start SC_INCREASEAGI,360000,10;
+	if(getbrokenid(1)==NULL) {
+   		dispbottom "[Curandeira]: Você não tem itens para consertar!";
+  	} else {
+  		repairall;
+   	}
+	percentheal 100,100;
+	emotion 51;
+	dispbottom "[Curandeira]: Continue se esforçando até chegar ao level 99! Bom jogo!";
+	end;
+}
+if(BaseLevel == 99 && getgmlevel() >= 1) { // VIP
+	sc_start 46, 360000,5;
+ 	sc_start SC_MAGNIFICAT,360000,5;
+ 	sc_start SC_GLORIA,360000,5;
+ 	sc_start SC_IMPOSITIO,360000,5;
+	sc_start SC_ENDURE,360000,10;
+	sc_start SC_ANGELUS,360000,10;
+ 	sc_start SC_BLESSING,360000,10;
+	sc_start SC_INCREASEAGI,360000,10;
+	if(getbrokenid(1)==NULL) {
+   		dispbottom "[Curandeira]: Você não tem itens para consertar!";
+  	} else {
+  		repairall;
+   	}
+	percentheal 100,100;
+	emotion 51;
+	dispbottom "[Curandeira]: Obrigado por ajudar o servidor e ser jogador ViP! Bom jogo!"; 
+	end;
+}
+if(getgmlevel() == 0) { // Não VIP
+	sc_start SC_BLESSING,180000,10;
+	sc_start SC_INCREASEAGI,180000,10;
+	if(getbrokenid(1)==NULL) {
+   		dispbottom "[Curandeira]: Você não tem itens para consertar!";
+  	} else {
+  		repairall;
+   	}
+	percentheal 100,100;
+	emotion 51;
+	dispbottom "[Curandeira]: Quer mais buffs? Seja jogador ViP! Mais informações: www.ragnayokai.com";
+	end;
+}
+end;
+OnInit:
+waitingroom "Curandeira",0;
+end;
+}
+// Curar em Aréa
+prontera,156,190,0	script	Curandpenis#4	139,2,2,{
+OnTouch:
+callfunc "curand";
+}
+bat_room,155,150,0	script	Curandpenis#5	139,2,2,{
+OnTouch:
+callfunc "curand";
+}
+function	script	curand	{
+if(BaseLevel <= 98) { // Buff de UP ate 99
+	sc_start 46, 360000,5;
+	sc_start SC_STRFood, 360000, 10;
+	sc_start SC_AGIFood, 360000, 10;
+	sc_start SC_LUKFood, 360000, 10;
+	sc_start SC_INTFood, 360000, 10;
+	sc_start SC_DEXFood, 360000, 10;
+	sc_start SC_VITFood, 360000, 10;
+ 	sc_start SC_MAGNIFICAT,360000,5;
+ 	sc_start SC_GLORIA,360000,5;
+ 	sc_start SC_IMPOSITIO,360000,5;
+	sc_start SC_ENDURE,360000,10;
+	sc_start SC_ANGELUS,360000,10;
+ 	sc_start SC_BLESSING,360000,10;
+	sc_start SC_INCREASEAGI,360000,10;
+  	repairall;
+	percentheal 100,100;
+	end;
+}
+if(BaseLevel == 99 && getgmlevel() >= 1) { // VIP
+	sc_start 46, 360000,5;
+ 	sc_start SC_MAGNIFICAT,360000,5;
+ 	sc_start SC_GLORIA,360000,5;
+ 	sc_start SC_IMPOSITIO,360000,5;
+	sc_start SC_ENDURE,360000,10;
+	sc_start SC_ANGELUS,360000,10;
+ 	sc_start SC_BLESSING,360000,10;
+	sc_start SC_INCREASEAGI,360000,10;
+  	repairall;
+	percentheal 100,100;
+	end;
+}
+if(getgmlevel() == 0) { // Não VIP
+	sc_start SC_BLESSING,180000,10;
+	sc_start SC_INCREASEAGI,180000,10;
+  	repairall;
+	percentheal 100,100;
+	end;
+	}
+}
+
+morocc,158,97,5	duplicate(HealerG)	Curandeira#hG1	936,2,2
+geffen,113,64,5	duplicate(HealerG)	Curandeira#hG2	936,2,2
+payon,169,226,5	duplicate(HealerG)	Curandeira#hG3	936,2,2
+alberta,185,149,5	duplicate(HealerG)	Curandeira#hG4	936,2,2
+izlude,125,118,5	duplicate(HealerG)	Curandeira#hG5	936,2,2
+aldebaran,135,118,5	duplicate(HealerG)	Curandeira#hG6	936,2,2
+xmas,149,136,5	duplicate(HealerG)	Curandeira#hG7	936,2,2
+comodo,204,150,5	duplicate(HealerG)	Curandeira#hG8	936,2,2
+yuno,162,51,5	duplicate(HealerG)	Curandeira#hG9	936,2,2
+amatsu,192,87,5	duplicate(HealerG)	Curandeira#hG10	936,2,2
+gonryun,161,122,5	duplicate(HealerG)	Curandeira#hG11	936,2,2
+umbala,90,159,5	duplicate(HealerG)	Curandeira#hG12	936,2,2
+louyang,215,104,5	duplicate(HealerG)	Curandeira#hG13	936,2,2
+new_1-1,51,114,5	duplicate(HealerG)	Curandeira#hG14	936,2,2
+jawaii,243,144,5	duplicate(HealerG)	Curandeira#hG15	936,2,2
+ayothaya,144,113,5	duplicate(HealerG)	Curandeira#hG16	936,2,2
+einbroch,63,203,5	duplicate(HealerG)	Curandeira#hG17	936,2,2
+lighthalzen,160,100,5	duplicate(HealerG)	Curandeira#hG18	936,2,2
+einbech,67,95,5	duplicate(HealerG)	Curandeira#hG19	936,2,2
+hugel,91,157,5	duplicate(HealerG)	Curandeira#hG20	936,2,2
+rachel,131,117,5	duplicate(HealerG)	Curandeira#hG21	936,2,2
+veins,224,123,5	duplicate(HealerG)	Curandeira#hG22	936,2,2
+moscovia,221,191,5	duplicate(HealerG)	Curandeira#hG23	936,2,2
+//
+// CASTELOS
+//
+sch_gld,104,194,2	duplicate(HealerG)	Curandeira#hGf1	936,2,2
+aru_gld,72,156,1	duplicate(HealerG)	Curandeira#hGf2	936,2,2
+prt_gld,138,71,6	duplicate(HealerG)	Curandeira#hGf3	936,2,2
+// BG
+bat_room,148,153,5	duplicate(HealerG)	Curandeira#hGbg1	936,2,2

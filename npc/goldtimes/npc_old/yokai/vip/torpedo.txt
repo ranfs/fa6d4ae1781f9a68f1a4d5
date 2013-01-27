@@ -1,0 +1,145 @@
+poring_w02,97,202,5	script	Torpedo VIP	888,{
+set .@n$, "[^CC99FFTorpedo Vip^000000]";
+
+if (getgmlevel()<1) goto novip;
+
+	mes .@n$;
+	mes "Olá ^CC99FF"+Strcharinfo(0)+"^000000, gostaria de mandar um torpedo para todo o servidor? ";
+	mes "Para mandar um torpedo irei precisar de 500.000 Zenys!";
+	next;
+	menu "- Sim",mandar,"- Não",sair;
+
+mandar:
+	if(zeny < 500000 )
+	{
+	mes .@n$;
+	mes "Você não tem 500.000 Zenys";
+	mes "para mandar seu torpedo.";
+	close;
+}
+
+	set zeny, zeny -500000;
+	mes .@n$;
+	mes "Escolha a cor do Torpedo";
+	next;
+	switch(select("^FF0000- Vermelho^000000:^008B00- Verde^000000:^000000- Preto^000000:^FFFF00- Amarelo^000000:^0000FF- Azul^000000:^778899- Cinza^000000:^A020F0- Roxo^000000 "))
+{
+
+case 1:
+	mes .@n$;
+	mes "Digite sua mensagem";
+	next;
+	input @mensagem$;
+	mes .@n$;
+	mes @mensagem$;
+	if(select("- Está Certo","- Está Errado")==2)
+	close;
+	announce "[Torpedo] "+Strcharinfo(0)+" diz: "+@mensagem$+" ",bc,0xD20000;
+	next;
+    mes .@n$;
+	mes "Sua Mensagem Foi Enviada!";
+	close;
+
+case 2:
+	mes .@n$;
+	mes "Digite sua mensagem";
+	next;
+	input @mensagem$;
+	mes .@n$;
+	mes @mensagem$;
+	if(select("- Está Certo","- Está Errado")==2)
+	close;
+	announce "[Torpedo] "+Strcharinfo(0)+" diz: "+@mensagem$+" ",bc,0x99CC00;
+	next;
+    mes .@n$;
+	mes "Sua Mensagem Foi Enviada!";
+	close;
+
+case 3:
+	mes .@n$;
+	mes "Digite sua mensagem";
+	next;
+	input @mensagem$;
+	mes .@n$;
+	mes @mensagem$;
+	if(select("- Está Certo","- Está Errado")==2)
+	close;
+	announce "[Torpedo] "+Strcharinfo(0)+" diz: "+@mensagem$+" ",bc,0x000000;
+	next;
+    mes .@n$;
+	mes "Sua Mensagem Foi Enviada!";
+	close;
+
+case 4:
+	mes .@n$;
+	mes "Digite sua mensagem";
+	next;
+	input @mensagem$;
+	mes .@n$;
+	mes @mensagem$;
+	if(select("- Está Certo","- Está Errado")==2)
+	close;
+	announce "[Torpedo] "+Strcharinfo(0)+" diz: "+@mensagem$+" ",bc_yellow;
+	next;
+    mes .@n$;
+	mes "Sua Mensagem Foi Enviada!";
+	close;
+
+case 5:
+	mes .@n$;
+	mes "Digite sua mensagem";
+	next;
+	input @mensagem$;
+	mes .@n$;
+	mes @mensagem$;
+	if(select("- Está Certo","- Está Errado")==2)
+	close;
+	announce "[Torpedo] "+Strcharinfo(0)+" diz: "+@mensagem$+" ",bc_blue;
+	next;
+    mes .@n$;
+	mes "Sua Mensagem Foi Enviada!";
+	close;
+
+case 6:
+	mes .@n$;
+	mes "Digite sua mensagem";
+	next;
+	input @mensagem$;
+	mes .@n$;
+	mes @mensagem$;
+	if(select("- Está Certo","- Está Errado")==2)
+	close;
+	announce "[Torpedo] "+Strcharinfo(0)+" diz: "+@mensagem$+" ",bc,0xCC00FF;
+	next;
+    mes .@n$;
+	mes "Sua Mensagem Foi Enviada!";
+	close;
+
+case 7:
+	mes .@n$;
+	mes "Digite sua mensagem";
+	next;
+	input @mensagem$;
+	mes .@n$;
+	mes @mensagem$;
+	if(select("- Está Certo","- Está Errado")==2)
+	close;
+	announce "[Torpedo] "+Strcharinfo(0)+" diz: "+@mensagem$+" ",bc,0xCC00FF;
+	next;
+	mes .@n$;
+	mes "Sua Mensagem Foi Enviada!";
+	close;
+
+novip:
+	mes .@n$;
+	mes "Lamento, mas você não é vip.";
+	mes "Acesse o site e veja como se torna um vip!";
+	mes "^FF0000www.ragnayokai.com^000000";
+	close;
+}
+
+sair:
+	mes .@n$;
+	mes "Ok, quando quiser mandar uma mensagem global venha falar comigo denovo.";
+	close;
+}

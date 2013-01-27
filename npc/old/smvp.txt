@@ -1,0 +1,20 @@
+morocc_mem,0,0,0,0	monster	Golden Thief Bug	1086,7,0,0,0
+morocc_mem,0,0,0,0	monster	Eddga 	1115,7,0,0,0
+morocc_mem,0,0,0,0	monster	Phreeoni 	1159,7,0,0,0
+morocc_mem,0,0,0,0	monster	Mistress 	1059,7,0,0,0
+morocc_mem,0,0,0,0	monster	Drake	1112,7,0,0,0
+morocc_mem,0,0,0,0	monster	Evil Snake Lord	1418,7,0,0,0
+morocc_mem,0,0,0,0	monster	Stormy Knight	1251,7,0,0,0
+morocc_mem,0,0,0,0	monster	Osiris	1038,7,0,0,0
+morocc_mem,0,0,0,0	monster	Pharaoh	1157,7,0,0,0
+morocc_mem,0,0,0,0	monster	Moonlight Flower	1150,7,0,0,0
+morocc_mem,0,0,0,0	monster	Orc Hero	1087,7,0,0,0
+morocc_mem,0,0,0,0	monster	Orc Lord	1190,7,0,0,0
+morocc_mem,0,0,0,0	monster	Garm	1252,7,0,0,0
+morocc_mem,0,0,0,0	monster	Incantation Samurai	1492,7,0,0,0
+morocc_mem,0,0,0,0	monster	Turtle General	1312,7,0,0,0
+morocc_mem,0,0,0,0	monster	Maya	1147,7,0,0,0
+morocc_mem,0,0,0,0	monster	Doppelganger	1046,7,0,0,0
+morocc_mem,0,0,0,0	monster	Dracula	1389,7,0,0,0
+morocc_mem,0,0,0,0	monster	Dark Lord	1272,7,0,0,0
+morocc_mem,0,0,0,0	monster	Baphomet	1039,7,0,0,0

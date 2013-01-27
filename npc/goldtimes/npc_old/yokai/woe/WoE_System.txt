@@ -1,0 +1,233 @@
+///	
+///		 /     /  )_/    '  (  _ _ ' _/ _ 
+///		(__.  (__/ /()/)/  __)( / //)/_)  
+///		                          /       
+/// //		
+///			  
+/// Descrição:
+/// Frescuragem de um servidor americano que os players do ragnaYokai choraram ao Gois.
+///
+/// Versão Atual: 1.0.0
+/// Autor: Leandro Otoni - L.Otoni
+/// Compatível com: Cronus SVN
+///
+/// Changelog:
+/// v1.0.0 : Desenvolvido o script.	[L.Otoni]
+///
+///========================================================
+/// Tabela SQL
+///========================================================
+/*
+
+	CREATE TABLE IF NOT EXISTS `woe_guilds` (
+	  `guild_id` int(11) NOT NULL,
+	  PRIMARY KEY (`guild_id`),
+	  UNIQUE KEY `guild_id` (`guild_id`)
+	) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+	
+*/
+/*========================================================
+ * Inicio NPC
+ *=======================================================*/
+prontera,151,193,5	script	Registro de Clã	113,{
+	// Nome do jogador, mude somente a cor.
+	set @name$, "^99CC00"+strcharinfo(0)+"^000000";
+	// ID do Jogador.
+	set @GID,getcharid(2);
+	
+	mes "Olá " + @name$ +"!";
+	if(!@GID){
+		mes "Você não pertence a nenhum clã. :/";
+		mes "Procure um e venha participar da Guerra do Emperium do RagnaYokai!";
+		mes "Até mais. ^.^";
+		close;
+	}
+	if(getguildmaster(@GID) != strcharinfo(0)){	
+			mes "Este sistema é somente para os lideres de clãs, fale com o lider do seu clã para dar uma passadinha aqui.";
+			mes "Até mais e um bom jogo!";
+			close;
+	}
+	
+	mes "Vejo que é o lider do clã " + getguildname(@GID) + ".";
+	
+	// QUERY SQL - Verificando se a guild já esta cadastrada.
+	query_sql("select count(guild_id) from woe_guilds where guild_id = "+@GID,.@c);
+	
+	// Cadastrar nova guild
+	if(!.@c){		
+		mes "Gostaria que seu clã participasse da Guerra do Emperium do RagnaYokai?";
+		if(select("- Mas é claro!:- Não, talvez depois.")==2){
+			mes "Pois bem, volte quando quiser participar.";
+			close;
+		}
+		next;
+		mes "É assim que se fala, mas antes tenho que explicar como funciona o sistema.";
+		mes "O sistema limita à entrada de 26 membros dentro do castelo, ou seja, somente 26 jogadores do seu clã vão conseguir entrar no castelo, caso o 27º jogador tente entrar, não irá conseguir.";
+		next;
+		mes "Gostaria que seu clã participasse da Guerra do Emperium?";
+		mes ""+@GID;
+		if(select("Sim, podemos continuar:Não, vamos ficar de fora")==2){
+			mes "Ah que pena, mas é você quem manda... Até mais :)";
+			close;
+		}
+		next;
+		
+		// Query SQL de Inserção
+		query_sql("insert into woe_guilds (guild_id) values (" + @GID + ")");
+		
+		mes "Prontinho o seu clã já esta cadastrado para a Guerra do Emperium do RagnaYokai.";
+		mes "Tenha um bom jogo e até mais. :)";
+		close;
+	}
+	mes "E o seu clã já esta cadastrado no nosso sistema de Guerra do Emperium.";
+	mes "O que gostaria de fazer?";
+	if(select("- Nada:- Gostaria de remove-lo do sistema.")==1){
+		mes "Certinho " + @name$ + " muito obrigado pela visita!";
+		mes "Bye~*";
+		close;
+	}
+	next;
+	mes "Tem certeza que quer remover o seu clã do nosso sistema de Guerra do Emperium?";
+	if(select("- Não, nem pensar!:- Sim, por favor!")==1){
+		mes "Ah sim, que bom que perguntei antes de fazer qualquer coisa.";
+		mes "Está tudo certo " + @name$ + " o seu clã continua cadastrado para as guerras";
+		mes "Volte quando precisar dos meus serviços";
+		close;
+	}
+	next;
+	
+	// QUERY SQL de Deleção
+	query_sql("DELETE FROM woe_guilds where guild_id="+@GID);
+	
+	mes "Prontinho " + @name + "o clã " + getguildname(@GID) + " foi removido do sistema de Guerra do Emperium.";
+	mes "Que pena que seu clã não vai mais participar da Gerra, mas caso queira voltar só falar comigo Ok?";
+	mes "Até mais. :)";
+	close;
+}
+
+/*========================================================
+ * Check Map
+ *=======================================================*/
+-	script	Check	-1,{
+OnPCLoadMapEvent:
+	set @GID,getcharid(2);
+	if( CallFunc("count",@GID) > 26 ){
+		warp "prontera",150,150;
+		end;
+	}
+}
+
+/*========================================================
+ * Portal de entrada Prontera.
+ *=======================================================*/
+prt_gld,129,65,0	script	Entrada#Prontera	45,1,1,{
+OnTouch:
+ set @GID,getcharid(2);
+ if(!@GID){
+		mes "Você não pertence a nenhum clã. :/";
+		mes "Procure um e venha participar da Guerra do Emperium do RagnaYokai!";
+		mes "Até mais. ^.^";
+		goto L_out;
+}
+ // QUERY SQL
+ query_sql("select count(guild_id) from woe_guilds where guild_id = "+@GID,.@q);
+ if( !.@q ){
+  mes "O seu clã não esta cadastrado no nosso sistema de Guerra do Emperium, por favor peça ao lider de seu clã para cadastra-lo.";
+  mes "Até mais.";
+  goto L_out;
+ }
+ else if( CallFunc("count",@GID) >= 26){
+    mes "Pelas novas regras da Guerra do Emperium, um clã só pode ter 26 membros participando.";
+    mes "Aguarde até alguem sair do castelo.";
+    goto L_out;
+ }
+ /* Warp de dentro do castelo de Arunafeltz */
+ warp "prtg_cas01",99,32; //... mudar aqui
+ end;
+L_out:
+close2;
+warp "prt_gld",134,65;
+end;
+}
+/*========================================================
+ * Portal de entrada Schwaltzvalt.
+ *=======================================================*/
+sch_gld,97,183,0	script	Entrada#Schwaltzvalt	45,1,1,{
+OnTouch:
+ set @GID,getcharid(2);
+ if(!@GID){
+		mes "Você não pertence a nenhum clã. :/";
+		mes "Procure um e venha participar da Guerra do Emperium do RagnaYokai!";
+		mes "Até mais. ^.^";
+		goto L_out;
+}
+ // QUERY SQL
+ query_sql("select count(guild_id) from woe_guilds where guild_id = "+@GID,.@q);
+ if( !.@q ){
+  mes "O seu clã não esta cadastrado no nosso sistema de Guerra do Emperium, por favor peça ao lider de seu clã para cadastra-lo.";
+  mes "Até mais.";
+  goto L_out;
+ }
+ else if( CallFunc("count",@GID) >= 26){
+    mes "Pelas novas regras da Guerra do Emperium, um clã só pode ter 26 membros participando.";
+    mes "Aguarde até alguem sair do castelo.";
+    goto L_out;
+ }
+ /* Warp de dentro do castelo de Arunafeltz */
+ warp "schg_cas03",337,330; //... mudar aqui
+ end;
+L_out:
+close2;
+warp "sch_gld",97,196;
+end;
+}
+
+/*========================================================
+ * Portal de entrada Arunafeltz.
+ *=======================================================*/
+aru_gld,68,150,0	script	Entrada#Arunafeltz	45,1,1,{
+OnTouch:
+ set @GID,getcharid(2);
+ if(!@GID){
+		mes "Você não pertence a nenhum clã. :/";
+		mes "Procure um e venha participar da Guerra do Emperium do RagnaYokai!";
+		mes "Até mais. ^.^";
+		goto L_out;
+}
+ // QUERY SQL
+ query_sql("select count(guild_id) from woe_guilds where guild_id = "+@GID,.@q);
+ if( !.@q ){
+  mes "O seu clã não esta cadastrado no nosso sistema de Guerra do Emperium, por favor peça ao lider de seu clã para cadastra-lo.";
+  mes "Até mais.";
+  goto L_out;
+ }
+ else if( CallFunc("count",@GID) >= 26){
+    mes "Pelas novas regras da Guerra do Emperium, um clã só pode ter 26 membros participando.";
+    mes "Aguarde até alguem sair do castelo.";
+    goto L_out;
+ }
+ /* Warp de dentro do castelo de Arunafeltz */
+ warp "arug_cas03",141,45; //... mudar aqui
+ end;
+L_out:
+close2;
+warp "aru_gld",68,155;
+end;
+}
+
+/*========================================================
+ * Função que contará o numero de players nos castelos.
+ *=======================================================*/
+function	script	count	{
+	//Definir os mapas que será feita a contagem.
+	setarray .mapas$[1],"prtg_cas01","schg_cas03","arug_cas03";
+	set @qtd, 0;
+	for( set .@i, 1; .@i <= getarraysize(.mapas$) - 1; set .@i, .@i + 1){
+		set @qtd, @qtd + getMapGuildUsers (.mapas$[.@i],GetArg(0));
+	}
+	return @qtd;
+}
+
+prtg_cas01	mapflag	loadevent
+schg_cas03	mapflag	loadevent
+arug_cas03	mapflag	loadevent

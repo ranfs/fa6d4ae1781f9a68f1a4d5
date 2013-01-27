@@ -1,0 +1,620 @@
+//===== eAthena Script =======================================
+//= Yokai Disguise NPC
+//===== By: ==================================================
+//= Justin Tynne
+//===== Current Version: =====================================
+//= 2.0
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= Just Wearing sprite Item 
+//===== Additional Comments: =================================
+//= PEDRO DO CORTIÇO FEZ ALTAS MODIFICAÇÕES AQUI
+//============================================================
+
+mora,185,172,4	script	Yokai Disguise	704,{
+L_start:
+	mes "[Yokai Disguise]";
+	mes "Em que eu posso ajudá-lo?";
+	next;
+	menu "Selecione",L_option,"Como é este trabalho?",L_info,"Redefinir Seleção",L_reset,"Nenhum",L_end;
+L_option:
+	mes "[Yokai Disguise]";
+	mes "Existem três tipos de chapelaria para escolher a disfarçar-se com.";
+	next;
+	menu "Topo",L_top,"Meio",L_mid,"Baixo",L_lower,"Nenhum",L_end;
+L_info:
+	mes "[Yokai Disguise]";
+	mes "Este NPC permite que os personagens usem um disfarce chapelaria uma vez que é obtido ou adquirido.";
+	next;
+	mes "[Yokai Disguise]";
+	mes "Estes disfarces não interferem com a defesa, cartões, runas ou o script de seu capacete normal, assim, eles garantem o equilíbrio completo.";
+	next;
+	mes "[Yokai Disguise]";
+	mes "Se você tiver alguma dúvida, por favor, leia sobre ou verifique as guias no quadro de mensagens!";
+	next;
+	goto L_start;
+
+L_top:	// Top Headgears
+	if (!getequipisequiped(EQI_HEAD_TOP)) {
+	mes "[Yokai Disguise]";
+	mes "Por favor, equipe um hat e volte aqui. O Sistema só funciona com o hat equipado.";
+	close;
+	}
+	mes "[Yokai Disguise]";
+	mes "Qual você quer?";
+	next;
+	menu "Next (76 - 150)",-," 1. 2nd Anniversary Hat",t1," 2. 2nd Anniversary Hat",t2," 3. 2nd Anniversary Party Hat",t3," 4. 4 Years Anniversary Hat",t4," 5. Academy 1st Stage Completion Hat",t5," 6. Academy Freshman Hat",t6," 7. Advanced Mini Propeller",t7," 8. Aerial",t8," 9. Alice Doll",t9," 10. Angel Blessing",t10," 11. Angel Helm",t11," 12. Angel Wing",t12," 13. Angel's Kiss",t13," 14. Angeling Hat",t14," 15. Angeling Pin",t15," 16. Antenna",t16," 17. Antlers",t17," 18. Apple of Archer",t18," 19. Army Cap",t19," 20. Australian Flag Hat",t20," 21. Autumn Leaves",t21," 22. Ayam",t22," 23. Balloon Hat",t23," 24. Banana Hat",t24," 25. Bandana",t25," 26. Bao Bao",t26," 27. Baphomet Horns",t27," 28. Baseball Cap",t28," 29. Beanie",t29," 30. Beer Hat",t30," 31. Bell Ribbon",t31," 32. Beret",t32," 33. Big Ribbon",t33," 34. Bird Nest",t34," 35. Biretta",t35," 36. Black Cat Ears",t36," 37. Black Ribbon",t37," 38. Black Tea Flaming Arrow Hat",t38," 39. Blue Beanie",t39," 40. Blue Bird",t40," 41. Blue Drooping Cat",t41," 42. Blue Fish",t42," 43. Blue Hairband",t43," 44. Blue Mage Hat",t44," 45. Blue Ribbon",t45," 46. Bogy Cap",t46," 47. Bomb Wick",t47," 48. Bone Head",t48," 49. Bone Helm",t49," 50. Bongun Hat",t50," 51. Boyfriend Hat",t51," 52. Boys Cap",t52," 53. Brazil Event Hat",t53," 54. Bride Mask",t54," 55. bRO 4th Anniversary Hat",t55," 56. Brown Paper Bag Hat",t56," 57. Bucket Hat",t57," 58. Bulb Band",t58," 59. Bullock Helm",t59," 60. Bunny Band",t60," 61. Bunny Top Hat",t61," 62. Cake Hat",t62," 63. Camp Fire Hat",t63," 64. Candle",t64," 65. Cap",t65," 66. Captain's Hat",t66," 67. Carnival Jester",t67," 68. Cat Helm",t68," 69. Chef Hat",t69," 70. Chick Hat",t70," 71. Chicken Hat",t71," 72. Circlet",t72," 73. Clarice Doll Hat",t73," 74. Close Helmet",t74," 75. Coif",t75,"Start Over",L_top,"Nevermind",L_end;
+	menu "Next (151 - 225)",-," 76. Coif",t76," 77. Cookie Hat",t77," 78. Coppola",t78," 79. Coronet",t79," 80. Corsair",t80," 81. Cowboy Hat",t81," 82. Crescent Helm",t82," 83. Cresent Hairpin",t83," 84. Cross Hat",t84," 85. Crown",t85," 86. Crown of Ancient Queen",t86," 87. Crown of Mistress",t87," 88. Crown Parrots",t88," 89. Cute Ribbon",t89," 90. Dark Bacilium",t90," 91. Dark Randgris Helm",t91," 92. Dark Wing",t92," 93. Decorative Golden Bell",t93," 94. Decorative Mushroom",t94," 95. Deporte Doll Hat",t95," 96. Deviling Hat",t96," 97. Deviruchi Hat",t97," 98. Doctor Band",t98," 99. Dokebi's Wig",t99," 100. Dragon Skull",t100," 101. Drooping Bunny",t101," 102. Drooping Cat",t102," 103. Drooping Lif",t103," 104. Drooping Nine Tail",t104," 105. Drooping Ninetails",t105," 106. Ear Muffs",t106," 107. Egg Shell",t107," 108. Elephant Hat",t108," 109. Emperor's Laurel Crown",t109," 110. Europe Baseball Cap",t110," 111. Evil Helm",t111," 112. Evil Snake Lord Hat",t112," 113. Evil Wing",t113," 114. Evolved Angel Wing",t114," 115. Evolved Blue Fish",t115," 116. Evolved Bunny Band",t116," 117. Evolved Decorative Golden Bell",t117," 118. Evolved Drooping Cat",t118," 119. Evolved Evil Wing",t119," 120. Evolved Helmet of Orc Hero",t120," 121. Evolved Majestic Goat",t121," 122. Executioner Hood",t122," 123. Fancy Flower",t123," 124. Fanta Grape Can Hat",t124," 125. Fanta Orange Can Hat",t125," 126. Fantastic Wig",t126," 127. Fashionable Glasses",t127," 128. Feather Beret",t128," 129. Feather Bonnet",t129," 130. Fish Head Hat",t130," 131. Flower Band",t131," 132. Flower Crown",t132," 133. Flower Hairpin",t133," 134. Flower Lily",t134," 135. Flying Angel",t135," 136. Flying Angeling",t136," 137. Flying Evil Wing",t137," 138. Fox Mask",t138," 139. France Holiday Hat",t139," 140. Friend Hat",t140," 141. Frigg's Circlet",t141," 142. Frozen Twin Pompom",t142," 143. Fruit of Love",t143," 144. Funeral Hat",t144," 145. Galapago Cap",t145," 146. Gambler Hat",t146," 147. Gemmed Sallet",t147," 148. Geographer Decoration",t148," 149. Ghost Bandana",t149," 150. Giant Band Aid",t150,"Start Over",L_top,"Nevermind",L_end;
+	menu "Next (226 - 300)",-," 151. Girlfriend Hat",t151," 152. Goggles",t152," 153. Goibne's Helm",t153," 154. Golden Gear",t154," 155. Golden Laurel",t155," 156. Golden Tiara",t156," 157. Grand Circlet",t157," 158. Gray Beanie",t158," 159. Gray Deviruchi Hat",t159," 160. Gray Drooping Cat",t160," 161. Gray Mage Hat",t161," 162. Green Feeler",t162," 163. Green Ribbon",t163," 164. Grief for Greed",t164," 165. Guild Recruiting Hat",t165," 166. Hair Band",t166," 167. Halo",t167," 168. Happy Wig",t168," 169. Hat",t169," 170. Hat of the Sun God",t170," 171. Headset",t171," 172. Heart Hairpin",t172," 173. Helm",t173," 174. Helm Of Abyss",t174," 175. Helm of Angel",t175," 176. Helm of Darkness",t176," 177. Helmet of Orc Hero",t177," 178. Hot-blooded Headband",t178," 179. Hukke's Blackcat Ears",t179," 180. Hunter Cap",t180," 181. Hyegun Hat",t181," 182. I Love China",t182," 183. Incubus Horn",t183," 184. Independence Memorial Hat",t184," 185. Indian Fillet",t185," 186. Indian Headband",t186," 187. iRO Baseball Cap",t187," 188. Jack be Dandy",t188," 189. Jasper Crest",t189," 190. Jewel Crown",t190," 191. Joker Jester",t191," 192. Judge Cap",t192," 193. Kabuki Mask",t193," 194. Kafra Band",t194," 195. Karada Meguricha Hat",t195," 196. Kawaii Ribbon",t196," 197. Kettle Hat",t197," 198. Kitsune Mask",t198," 199. Kitty Band",t199," 200. Koneko Hat",t200," 201. Laurel Crown",t201," 202. Lazy Smokie",t202," 203. Legionnaire Hat",t203," 204. Linguistic Book Hat",t204," 205. Lion Mask",t205," 206. Little Angel Doll",t206," 207. Lord Kaho's Horn",t207," 208. Lotus",t208," 209. Louise's Santa Hat",t209," 210. Louyang NewYear Hat",t210," 211. Love Dad Bandana",t211," 212. Love Flower Hat",t212," 213. Love Valentine's Hat",t213," 214. Mage Hat",t214," 215. Magic Eyes",t215," 216. Magician Hat",t216," 217. Magistrate Hat",t217," 218. Magni's Cap",t218," 219. Magnolia Hat",t219," 220. Majestic Goat",t220," 221. Mandragora Cap",t221," 222. Marionette Doll",t222," 223. Marvelous Wig",t223," 224. Mask Of Ifrit",t224," 225. Mine Hat",t225,"Start Over",L_top,"Nevermind",L_end;
+	menu "Next (301 - 375)",-," 226. Mini Propeller",t226," 227. Misstrance Crown",t227," 228. Model Training Hat",t228," 229. Monk Hat",t229," 230. Morpheus's Hood",t230," 231. Morrigane's Helm",t231," 232. Munak Hat",t232," 233. Mystic Rose",t233," 234. Mythical Lion Mask",t234," 235. Natalie's Poet Hat",t235," 236. National Holiday Hat",t236," 237. Neko Mimi",t237," 238. Nekomimi Kafra Headband",t238," 239. Nest Hat",t239," 240. New Year Suit Hat",t240," 241. Note Headphones",t241," 242. Novice False Eggshell",t242," 243. Nurse Cap",t243," 244. Nutshell",t244," 245. October Fest Cap",t245," 246. Old Bandana",t246," 247. Orange Ribbon",t247," 248. Orc Helm",t248," 249. Orc Hero Headdress",t249," 250. Orchid Hairband",t250," 251. Pagdayaw",t251," 252. Panda Hat",t252," 253. Parcel Hat",t253," 254. Party Hat",t254," 255. Party Hat",t255," 256. Pecopeco Hairband",t256," 257. Ph.D Hat",t257," 258. Phoenix Crown",t258," 259. Pink Beanie",t259," 260. Pink Drooping Cat",t260," 261. Pink Ribbon",t261," 262. Pirate Bandana",t262," 263. Poo Poo Hat",t263," 264. Pop Corn Hat",t264," 265. Poporing Hat",t265," 266. Poring Cake Hat",t266," 267. Poring Hat",t267," 268. Poring Tower",t268," 269. Pretend Murdered",t269," 270. Pumpkin Hat",t270," 271. Pumpkin-Head",t271," 272. Puppy Hat",t272," 273. Puppy Headband",t273," 274. Puppy Love",t274," 275. Purple Cowboy Hat",t275," 276. Rabbit Ears",t276," 277. Raccoon Hat",t277," 278. Rainbow Eggshell",t278," 279. Ramen Hat",t279," 280. Red Bandana",t280," 281. Red Bonnet",t281," 282. Red Deviruchi Hat",t282," 283. Red Mage Hat",t283," 284. Red Ribbon",t284," 285. Red Tailed Ribbon",t285," 286. Refined Apple of Archer",t286," 287. Refined Bunny Band",t287," 288. Refined Corsair",t288," 289. Refined Deviruchi Hat",t289," 290. Refined Drooping Cat",t290," 291. Refined Grand Circlet",t291," 292. Refined Helmet of Orc Hero",t292," 293. Refined Majestic Goat",t293," 294. Refined Sakkat",t294," 295. Refined Wing of Diablo",t295," 296. Renown Detective's Cap",t296," 297. Ribbon",t297," 298. Ribbon Hat",t298," 299. Rideword Hat",t299," 300. Romantic Gent",t300,"Start Over",L_top,"Nevermind",L_end;
+	menu "Next (376 - 380)",-," 301. RWC Anniversary Bread Envelope Hat",t301," 302. Safety Helmet",t302," 303. Sakkat",t303," 304. Sales Banner",t304," 305. Santa Hat",t305," 306. SantaPoring Cap",t306," 307. Sea-Otter Hat",t307," 308. Selendang",t308," 309. Shafka",t309," 310. Sheep Hat",t310," 311. Shiny Wig",t311," 312. Ship Captain's Hat",t312," 313. Silver Tiara",t313," 314. Smokie Leaf",t314," 315. Snake Head Hat",t315," 316. Solar Panels",t316," 317. Sombrero",t317," 318. Songkok",t318," 319. Sorin Doll Hat",t319," 320. Soul Ring",t320," 321. Soul Wing",t321," 322. Sphinx Hat",t322," 323. Spiky Band",t323," 324. Spore Hat",t324," 325. Squatting Poring",t325," 326. Stellar",t326," 327. Stop Post",t327," 328. Straw Hat",t328," 329. Striped Hairband",t329," 330. Succubus Horn",t330," 331. Summer Hat",t331," 332. Sunday Hat",t332," 333. Sunflower",t333," 334. Sunflower Hairpin",t334," 335. Super Novice Hat",t335," 336. Sweet Gent",t336," 337. Tailring Doll Hat",t337," 338. Teddybear Hat",t338," 339. Tiara",t339," 340. Tiger Mask",t340," 341. Tiraya Bonnet",t341," 342. Torch Cap",t342," 343. Tulip Hairpin",t343," 344. Turban",t344," 345. Twin Pompom By JB",t345," 346. Twin Ribbon",t346," 347. Ulle's Cap",t347," 348. Unicorn Horn",t348," 349. Upgraded Elephant Hat",t349," 350. Valkyrie Feather Band",t350," 351. Valkyrie Helm",t351," 352. Vane Hairpin",t352," 353. Vanilmirth Hat",t353," 354. Victorious Coronet",t354," 355. Victory Wings",t355," 356. Vinit Doll Hat",t356," 357. W Doll Hat",t357," 358. Wandering Minstrel Hat",t358," 359. Water Lily Crown",t359," 360. Wedding Veil",t360," 361. Western Grace",t361," 362. Whisper Mask",t362," 363. White Deviruchi Hat",t363," 364. White Drooping Cat",t364," 365. White Mage Hat",t365," 366. White Ribbon",t366," 367. White Snake Hat",t367," 368. White Wing",t368," 369. Wings of Diablo",t369," 370. Winter Hat",t370," 371. Wizard Hat",t371," 372. Wonder Nutshell",t372," 373. X Hairpin",t373," 374. Yellow Bandana",t374," 375. Yellow Drooping Cat",t375,"Start Over",L_top,"Nevermind",L_end;
+	menu " 376. Yellow Mage Hat",t376," 377. Yellow Ribbon",t377," 378. Yellow Ribbon",t378," 379. Yoyo Hat",t379," 380. Zherlthsh Mask",t380,"Start Over",L_top,"Nevermind",L_end;
+L_mid:	// Middle Headgears (incompleted)
+	if (!getequipisequiped(EQI_HEAD_MID)) {
+	mes "[Yokai Disguise]";
+	mes "Por favor, equipe um hat e volte aqui. O Sistema só funciona com o hat equipado.";
+	close;
+	}
+	mes "[Yokai Disguise]";
+	mes "Qual você quer?";
+	next;
+	menu " 1. Angel Wing Ears",m1," 2. Angled Glasses",m2," 3. Binoculars",m3," 4. Black Glasses",m4," 5. Blank Ear",m5," 6. Blank Eyes",m6," 7. Blinker",m7," 8. Blush",m8," 9. Blush of Groom",m9," 10. Censor Bar",m10," 11. Cyclop's Eye",m11," 12. Dark Blinder",m12," 13. Diver Goggles",m13," 14. Ears Of Ifrit",m14," 15. Elven Blinker",m15," 16. Elven Ears",m16," 17. Elven Sunglasses",m17," 18. Evil Wing Ears",m18," 19. Evolved Small Ribbons",m19," 20. Eye Patch",m20," 21. Father's Sunglasses",m21," 22. Fin Helm",m22," 23. Geek Glasses",m23," 24. Glasses",m24," 25. Human Blinker",m25," 26. Machoman's Glasses",m26," 27. Mask Of Goddess",m27," 28. Masquerade",m28," 29. Mini Glasses",m29," 30. Monocle",m30," 31. Naughty Fairy",m31," 32. Opera Phantom Mask",m32," 33. Pecopeco Ears",m33," 34. Pirate Eye Bandage",m34," 35. Purple Glasses",m35," 36. Red Glasses",m36," 37. Refined Dark Blinder",m37," 38. Refined Elven Ears",m38," 39. Refined Masquerade",m39," 40. Robo Eye",m40," 41. Robot Blinker",m41," 42. Robot Ear",m42," 43. Scuba Gear",m43," 44. Small Ribbons",m44," 45. Sunglasses",m45," 46. Takius's Blindfold",m46," 47. Zorro Masque",m47,"Nevermind",L_end;
+L_lower:	// Lower Headgears (incompleted)
+	if (!getequipisequiped(EQI_HEAD_LOW)) {
+	mes "[Yokai Disguise]";
+	mes "Por favor, equipe um hat e volte aqui. O Sistema só funciona com o hat equipado.";
+	close;
+	}	
+	mes "[Yokai Disguise]";
+	mes "Qual você quer?";
+	next;
+	menu " 1. Angry Snarl",l1," 2. Assassin Mask",l2," 3. Baby Pacifier",l3," 4. Bandit Beard",l4," 5. Beard",l5," 6. Cigarette",l6," 7. Clown Nose",l7," 8. Crunch Toast",l8," 9. Evolved Pipe",l9," 10. Father's Mask",l10," 11. Father's White Beard",l11," 12. Fish Mouth",l12," 13. Flu Mask",l13," 14. Gangster Mask",l14," 15. Ganster Scarf",l15," 16. Gentleman's Pipe",l16," 17. Grandpa Beard",l17," 18. Iron Cain",l18," 19. Leaves Of Grass",l19," 20. Ninja's Scroll",l20," 21. Oxygen Mask",l21," 22. Pipe",l22," 23. Pussy Cat Bell",l23," 24. Refined Romantic Flower",l24," 25. Romantic Flower",l25," 26. Romantic Leaf",l26," 27. Rudolf's Red Nose",l27," 28. Santa Beard",l28," 29. Sweet Candy",l29," 30. White Petal",l30,"Nevermind",L_end;
+
+t1:		callsub S_GetHeadgear,"top",30, "2nd Anniversary Hat",109;
+t2:		callsub S_GetHeadgear,"top",30, "2nd Anniversary Hat",144;
+t3:		callsub S_GetHeadgear,"top",30, "2nd Anniversary Party Hat",144;
+t4:		callsub S_GetHeadgear,"top",30, "4 Years Anniversary Hat",144;
+t5:		callsub S_GetHeadgear,"top",30, "Academy 1st Stage Completion Hat",410;
+t6:		callsub S_GetHeadgear,"top",30, "Academy Freshman Hat",409;
+t7:		callsub S_GetHeadgear,"top",30, "Advanced Mini Propeller",270;
+t8:		callsub S_GetHeadgear,"top",30, "Aerial",97;
+t9:		callsub S_GetHeadgear,"top",30, "Alice Doll",208;
+t10:		callsub S_GetHeadgear,"top",30, "Angel Blessing",260;
+t11:		callsub S_GetHeadgear,"top",30, "Angel Helm",290;
+t12:		callsub S_GetHeadgear,"top",30, "Angel Wing",38;
+t13:		callsub S_GetHeadgear,"top",30, "Angel's Kiss",255;
+t14:		callsub S_GetHeadgear,"top",30, "Angeling Hat",204;
+t15:		callsub S_GetHeadgear,"top",30, "Angeling Pin",222;
+t16:		callsub S_GetHeadgear,"top",30, "Antenna",347;
+t17:		callsub S_GetHeadgear,"top",30, "Antlers",71;
+t18:		callsub S_GetHeadgear,"top",30, "Apple of Archer",72;
+t19:		callsub S_GetHeadgear,"top",30, "Army Cap",48;
+t20:		callsub S_GetHeadgear,"top",30, "Australian Flag Hat",304;
+t21:		callsub S_GetHeadgear,"top",30, "Autumn Leaves",241;
+t22:		callsub S_GetHeadgear,"top",30, "Ayam",228;
+t23:		callsub S_GetHeadgear,"top",30, "Balloon Hat",385;
+t24:		callsub S_GetHeadgear,"top",30, "Banana Hat",197;
+t25:		callsub S_GetHeadgear,"top",30, "Bandana",6;
+t26:		callsub S_GetHeadgear,"top",30, "Bao Bao",127;
+t27:		callsub S_GetHeadgear,"top",30, "Baphomet Horns",380;
+t28:		callsub S_GetHeadgear,"top",30, "Baseball Cap",216;
+t29:		callsub S_GetHeadgear,"top",30, "Beanie",160;
+t30:		callsub S_GetHeadgear,"top",30, "Beer Hat",418;
+t31:		callsub S_GetHeadgear,"top",30, "Bell Ribbon",388;
+t32:		callsub S_GetHeadgear,"top",30, "Beret",226;
+t33:		callsub S_GetHeadgear,"top",30, "Big Ribbon",28;
+t34:		callsub S_GetHeadgear,"top",30, "Bird Nest",201;
+t35:		callsub S_GetHeadgear,"top",30, "Biretta",11;
+t36:		callsub S_GetHeadgear,"top",30, "Black Cat Ears",141;
+t37:		callsub S_GetHeadgear,"top",30, "Black Ribbon",242;
+t38:		callsub S_GetHeadgear,"top",30, "Black Tea Flaming Arrow Hat",428;
+t39:		callsub S_GetHeadgear,"top",30, "Blue Beanie",280;
+t40:		callsub S_GetHeadgear,"top",30, "Blue Bird",408;
+t41:		callsub S_GetHeadgear,"top",30, "Blue Drooping Cat",277;
+t42:		callsub S_GetHeadgear,"top",30, "Blue Fish",149;
+t43:		callsub S_GetHeadgear,"top",30, "Blue Hairband",136;
+t44:		callsub S_GetHeadgear,"top",30, "Blue Mage Hat",285;
+t45:		callsub S_GetHeadgear,"top",30, "Blue Ribbon",407;
+t46:		callsub S_GetHeadgear,"top",30, "Bogy Cap",430;
+t47:		callsub S_GetHeadgear,"top",30, "Bomb Wick",66;
+t48:		callsub S_GetHeadgear,"top",30, "Bone Head",401;
+t49:		callsub S_GetHeadgear,"top",30, "Bone Helm",103;
+t50:		callsub S_GetHeadgear,"top",30, "Bongun Hat",139;
+t51:		callsub S_GetHeadgear,"top",30, "Boyfriend Hat",352;
+t52:		callsub S_GetHeadgear,"top",30, "Boys Cap",102;
+t53:		callsub S_GetHeadgear,"top",30, "Brazil Event Hat",219;
+t54:		callsub S_GetHeadgear,"top",30, "Bride Mask",223;
+t55:		callsub S_GetHeadgear,"top",30, "bRO 4th Anniversary Hat",433;
+t56:		callsub S_GetHeadgear,"top",30, "Brown Paper Bag Hat",412;
+t57:		callsub S_GetHeadgear,"top",30, "Bucket Hat",195;
+t58:		callsub S_GetHeadgear,"top",30, "Bulb Band",119;
+t59:		callsub S_GetHeadgear,"top",30, "Bullock Helm",322;
+t60:		callsub S_GetHeadgear,"top",30, "Bunny Band",15;
+t61:		callsub S_GetHeadgear,"top",30, "Bunny Top Hat",384;
+t62:		callsub S_GetHeadgear,"top",30, "Cake Hat",109;
+t63:		callsub S_GetHeadgear,"top",30, "Camp Fire Hat",416;
+t64:		callsub S_GetHeadgear,"top",30, "Candle",113;
+t65:		callsub S_GetHeadgear,"top",30, "Cap",14;
+t66:		callsub S_GetHeadgear,"top",30, "Captain's Hat",236;
+t67:		callsub S_GetHeadgear,"top",30, "Carnival Jester",89;
+t68:		callsub S_GetHeadgear,"top",30, "Cat Helm",268;
+t69:		callsub S_GetHeadgear,"top",30, "Chef Hat",111;
+t70:		callsub S_GetHeadgear,"top",30, "Chick Hat",311;
+t71:		callsub S_GetHeadgear,"top",30, "Chicken Hat",432;
+t72:		callsub S_GetHeadgear,"top",30, "Circlet",18;
+t73:		callsub S_GetHeadgear,"top",30, "Clarice Doll Hat",355;
+t74:		callsub S_GetHeadgear,"top",30, "Close Helmet",203;
+t75:		callsub S_GetHeadgear,"top",30, "Coif",176;
+t76:		callsub S_GetHeadgear,"top",30, "Coif",177;
+t77:		callsub S_GetHeadgear,"top",30, "Cookie Hat",217;
+t78:		callsub S_GetHeadgear,"top",30, "Coppola",252;
+t79:		callsub S_GetHeadgear,"top",30, "Coronet",33;
+t80:		callsub S_GetHeadgear,"top",30, "Corsair",105;
+t81:		callsub S_GetHeadgear,"top",30, "Cowboy Hat",159;
+t82:		callsub S_GetHeadgear,"top",30, "Crescent Helm",213;
+t83:		callsub S_GetHeadgear,"top",30, "Cresent Hairpin",132;
+t84:		callsub S_GetHeadgear,"top",30, "Cross Hat",121;
+t85:		callsub S_GetHeadgear,"top",30, "Crown",45;
+t86:		callsub S_GetHeadgear,"top",30, "Crown of Ancient Queen",164;
+t87:		callsub S_GetHeadgear,"top",30, "Crown of Mistress",165;
+t88:		callsub S_GetHeadgear,"top",30, "Crown Parrots",419;
+t89:		callsub S_GetHeadgear,"top",30, "Cute Ribbon",34;
+t90:		callsub S_GetHeadgear,"top",30, "Dark Bacilium",364;
+t91:		callsub S_GetHeadgear,"top",30, "Dark Randgris Helm",379;
+t92:		callsub S_GetHeadgear,"top",30, "Dark Wing",39;
+t93:		callsub S_GetHeadgear,"top",30, "Decorative Golden Bell",175;
+t94:		callsub S_GetHeadgear,"top",30, "Decorative Mushroom",166;
+t95:		callsub S_GetHeadgear,"top",30, "Deporte Doll Hat",354;
+t96:		callsub S_GetHeadgear,"top",30, "Deviling Hat",298;
+t97:		callsub S_GetHeadgear,"top",30, "Deviruchi Hat",123;
+t98:		callsub S_GetHeadgear,"top",30, "Doctor Band",60;
+t99:		callsub S_GetHeadgear,"top",30, "Dokebi's Wig",302;
+t100:		callsub S_GetHeadgear,"top",30, "Dragon Skull",319;
+t101:		callsub S_GetHeadgear,"top",30, "Drooping Bunny",249;
+t102:		callsub S_GetHeadgear,"top",30, "Drooping Cat",142;
+t103:		callsub S_GetHeadgear,"top",30, "Drooping Lif",297;
+t104:		callsub S_GetHeadgear,"top",30, "Drooping Nine Tail",296;
+t105:		callsub S_GetHeadgear,"top",30, "Drooping Ninetails",296;
+t106:		callsub S_GetHeadgear,"top",30, "Ear Muffs",70;
+t107:		callsub S_GetHeadgear,"top",30, "Egg Shell",101;
+t108:		callsub S_GetHeadgear,"top",30, "Elephant Hat",215;
+t109:		callsub S_GetHeadgear,"top",30, "Emperor's Laurel Crown",261;
+t110:		callsub S_GetHeadgear,"top",30, "Europe Baseball Cap",216;
+t111:		callsub S_GetHeadgear,"top",30, "Evil Helm",291;
+t112:		callsub S_GetHeadgear,"top",30, "Evil Snake Lord Hat",372;
+t113:		callsub S_GetHeadgear,"top",30, "Evil Wing",39;
+t114:		callsub S_GetHeadgear,"top",30, "Evolved Angel Wing",38;
+t115:		callsub S_GetHeadgear,"top",30, "Evolved Blue Fish",149;
+t116:		callsub S_GetHeadgear,"top",30, "Evolved Bunny Band",15;
+t117:		callsub S_GetHeadgear,"top",30, "Evolved Decorative Golden Bell",175;
+t118:		callsub S_GetHeadgear,"top",30, "Evolved Drooping Cat",142;
+t119:		callsub S_GetHeadgear,"top",30, "Evolved Evil Wing",39;
+t120:		callsub S_GetHeadgear,"top",30, "Evolved Helmet of Orc Hero",178;
+t121:		callsub S_GetHeadgear,"top",30, "Evolved Majestic Goat",41;
+t122:		callsub S_GetHeadgear,"top",30, "Executioner Hood",326;
+t123:		callsub S_GetHeadgear,"top",30, "Fancy Flower",4;
+t124:		callsub S_GetHeadgear,"top",30, "Fanta Grape Can Hat",426;
+t125:		callsub S_GetHeadgear,"top",30, "Fanta Orange Can Hat",425;
+t126:		callsub S_GetHeadgear,"top",30, "Fantastic Wig",308;
+t127:		callsub S_GetHeadgear,"top",30, "Fashionable Glasses",131;
+t128:		callsub S_GetHeadgear,"top",30, "Feather Beret",224;
+t129:		callsub S_GetHeadgear,"top",30, "Feather Bonnet",104;
+t130:		callsub S_GetHeadgear,"top",30, "Fish Head Hat",386;
+t131:		callsub S_GetHeadgear,"top",30, "Flower Band",5;
+t132:		callsub S_GetHeadgear,"top",30, "Flower Crown",325;
+t133:		callsub S_GetHeadgear,"top",30, "Flower Hairpin",145;
+t134:		callsub S_GetHeadgear,"top",30, "Flower Lily",324;
+t135:		callsub S_GetHeadgear,"top",30, "Flying Angel",264;
+t136:		callsub S_GetHeadgear,"top",30, "Flying Angeling",348;
+t137:		callsub S_GetHeadgear,"top",30, "Flying Evil Wing",382;
+t138:		callsub S_GetHeadgear,"top",30, "Fox Mask",403;
+t139:		callsub S_GetHeadgear,"top",30, "France Holiday Hat",217;
+t140:		callsub S_GetHeadgear,"top",30, "Friend Hat",353;
+t141:		callsub S_GetHeadgear,"top",30, "Frigg's Circlet",251;
+t142:		callsub S_GetHeadgear,"top",30, "Frozen Twin Pompom",395;
+t143:		callsub S_GetHeadgear,"top",30, "Fruit of Love",140;
+t144:		callsub S_GetHeadgear,"top",30, "Funeral Hat",77;
+t145:		callsub S_GetHeadgear,"top",30, "Galapago Cap",192;
+t146:		callsub S_GetHeadgear,"top",30, "Gambler Hat",16;
+t147:		callsub S_GetHeadgear,"top",30, "Gemmed Sallet",0;
+t148:		callsub S_GetHeadgear,"top",30, "Geographer Decoration",238;
+t149:		callsub S_GetHeadgear,"top",30, "Ghost Bandana",61;
+t150:		callsub S_GetHeadgear,"top",30, "Giant Band Aid",147;
+t151:		callsub S_GetHeadgear,"top",30, "Girlfriend Hat",360;
+t152:		callsub S_GetHeadgear,"top",30, "Goggles",1;
+t153:		callsub S_GetHeadgear,"top",30, "Goibne's Helm",258;
+t154:		callsub S_GetHeadgear,"top",30, "Golden Gear",30;
+t155:		callsub S_GetHeadgear,"top",30, "Golden Laurel",434;
+t156:		callsub S_GetHeadgear,"top",30, "Golden Tiara",232;
+t157:		callsub S_GetHeadgear,"top",30, "Grand Circlet",93;
+t158:		callsub S_GetHeadgear,"top",30, "Gray Beanie",279;
+t159:		callsub S_GetHeadgear,"top",30, "Gray Deviruchi Hat",273;
+t160:		callsub S_GetHeadgear,"top",30, "Gray Drooping Cat",275;
+t161:		callsub S_GetHeadgear,"top",30, "Gray Mage Hat",284;
+t162:		callsub S_GetHeadgear,"top",30, "Green Feeler",85;
+t163:		callsub S_GetHeadgear,"top",30, "Green Ribbon",244;
+t164:		callsub S_GetHeadgear,"top",30, "Grief for Greed",107;
+t165:		callsub S_GetHeadgear,"top",30, "Guild Recruiting Hat",350;
+t166:		callsub S_GetHeadgear,"top",30, "Hair Band",9;
+t167:		callsub S_GetHeadgear,"top",30, "Halo",69;
+t168:		callsub S_GetHeadgear,"top",30, "Happy Wig",305;
+t169:		callsub S_GetHeadgear,"top",30, "Hat",16;
+t170:		callsub S_GetHeadgear,"top",30, "Hat of the Sun God",138;
+t171:		callsub S_GetHeadgear,"top",30, "Headset",87;
+t172:		callsub S_GetHeadgear,"top",30, "Heart Hairpin",126;
+t173:		callsub S_GetHeadgear,"top",30, "Helm",40;
+t174:		callsub S_GetHeadgear,"top",30, "Helm Of Abyss",371;
+t175:		callsub S_GetHeadgear,"top",30, "Helm of Angel",110;
+t176:		callsub S_GetHeadgear,"top",30, "Helm of Darkness",233;
+t177:		callsub S_GetHeadgear,"top",30, "Helmet of Orc Hero",178;
+t178:		callsub S_GetHeadgear,"top",30, "Hot-blooded Headband",154;
+t179:		callsub S_GetHeadgear,"top",30, "Hukke's Blackcat Ears",368;
+t180:		callsub S_GetHeadgear,"top",30, "Hunter Cap",389;
+t181:		callsub S_GetHeadgear,"top",30, "Hyegun Hat",375;
+t182:		callsub S_GetHeadgear,"top",30, "I Love China",424;
+t183:		callsub S_GetHeadgear,"top",30, "Incubus Horn",156;
+t184:		callsub S_GetHeadgear,"top",30, "Independence Memorial Hat",216;
+t185:		callsub S_GetHeadgear,"top",30, "Indian Fillet",96;
+t186:		callsub S_GetHeadgear,"top",30, "Indian Headband",155;
+t187:		callsub S_GetHeadgear,"top",30, "iRO Baseball Cap",263;
+t188:		callsub S_GetHeadgear,"top",30, "Jack be Dandy",58;
+t189:		callsub S_GetHeadgear,"top",30, "Jasper Crest",399;
+t190:		callsub S_GetHeadgear,"top",30, "Jewel Crown",88;
+t191:		callsub S_GetHeadgear,"top",30, "Joker Jester",89;
+t192:		callsub S_GetHeadgear,"top",30, "Judge Cap",377;
+t193:		callsub S_GetHeadgear,"top",30, "Kabuki Mask",214;
+t194:		callsub S_GetHeadgear,"top",30, "Kafra Band",106;
+t195:		callsub S_GetHeadgear,"top",30, "Karada Meguricha Hat",427;
+t196:		callsub S_GetHeadgear,"top",30, "Kawaii Ribbon",211;
+t197:		callsub S_GetHeadgear,"top",30, "Kettle Hat",318;
+t198:		callsub S_GetHeadgear,"top",30, "Kitsune Mask",153;
+t199:		callsub S_GetHeadgear,"top",30, "Kitty Band",2;
+t200:		callsub S_GetHeadgear,"top",30, "Koneko Hat",378;
+t201:		callsub S_GetHeadgear,"top",30, "Laurel Crown",237;
+t202:		callsub S_GetHeadgear,"top",30, "Lazy Smokie",168;
+t203:		callsub S_GetHeadgear,"top",30, "Legionnaire Hat",420;
+t204:		callsub S_GetHeadgear,"top",30, "Linguistic Book Hat",423;
+t205:		callsub S_GetHeadgear,"top",30, "Lion Mask",202;
+t206:		callsub S_GetHeadgear,"top",30, "Little Angel Doll",344;
+t207:		callsub S_GetHeadgear,"top",30, "Lord Kaho's Horn",99;
+t208:		callsub S_GetHeadgear,"top",30, "Lotus",210;
+t209:		callsub S_GetHeadgear,"top",30, "Louise's Santa Hat",20;
+t210:		callsub S_GetHeadgear,"top",30, "Louyang NewYear Hat",396;
+t211:		callsub S_GetHeadgear,"top",30, "Love Dad Bandana",374;
+t212:		callsub S_GetHeadgear,"top",30, "Love Flower Hat",5;
+t213:		callsub S_GetHeadgear,"top",30, "Love Valentine's Hat",397;
+t214:		callsub S_GetHeadgear,"top",30, "Mage Hat",112;
+t215:		callsub S_GetHeadgear,"top",30, "Magic Eyes",209;
+t216:		callsub S_GetHeadgear,"top",30, "Magician Hat",130;
+t217:		callsub S_GetHeadgear,"top",30, "Magistrate Hat",227;
+t218:		callsub S_GetHeadgear,"top",30, "Magni's Cap",250;
+t219:		callsub S_GetHeadgear,"top",30, "Magnolia Hat",373;
+t220:		callsub S_GetHeadgear,"top",30, "Majestic Goat",41;
+t221:		callsub S_GetHeadgear,"top",30, "Mandragora Cap",402;
+t222:		callsub S_GetHeadgear,"top",30, "Marionette Doll",212;
+t223:		callsub S_GetHeadgear,"top",30, "Marvelous Wig",307;
+t224:		callsub S_GetHeadgear,"top",30, "Mask Of Ifrit",421;
+t225:		callsub S_GetHeadgear,"top",30, "Mine Hat",116;
+t226:		callsub S_GetHeadgear,"top",30, "Mini Propeller",46;
+t227:		callsub S_GetHeadgear,"top",30, "Misstrance Crown",165;
+t228:		callsub S_GetHeadgear,"top",30, "Model Training Hat",157;
+t229:		callsub S_GetHeadgear,"top",30, "Monk Hat",35;
+t230:		callsub S_GetHeadgear,"top",30, "Morpheus's Hood",256;
+t231:		callsub S_GetHeadgear,"top",30, "Morrigane's Helm",257;
+t232:		callsub S_GetHeadgear,"top",30, "Munak Hat",51;
+t233:		callsub S_GetHeadgear,"top",30, "Mystic Rose",198;
+t234:		callsub S_GetHeadgear,"top",30, "Mythical Lion Mask",231;
+t235:		callsub S_GetHeadgear,"top",30, "Natalie's Poet Hat",67;
+t236:		callsub S_GetHeadgear,"top",30, "National Holiday Hat",217;
+t237:		callsub S_GetHeadgear,"top",30, "Neko Mimi",182;
+t238:		callsub S_GetHeadgear,"top",30, "Nekomimi Kafra Headband",392;
+t239:		callsub S_GetHeadgear,"top",30, "Nest Hat",235;
+t240:		callsub S_GetHeadgear,"top",30, "New Year Suit Hat",228;
+t241:		callsub S_GetHeadgear,"top",30, "Note Headphones",220;
+t242:		callsub S_GetHeadgear,"top",30, "Novice False Eggshell",101;
+t243:		callsub S_GetHeadgear,"top",30, "Nurse Cap",64;
+t244:		callsub S_GetHeadgear,"top",30, "Nutshell",122;
+t245:		callsub S_GetHeadgear,"top",30, "October Fest Cap",104;
+t246:		callsub S_GetHeadgear,"top",30, "Old Bandana",6;
+t247:		callsub S_GetHeadgear,"top",30, "Orange Ribbon",247;
+t248:		callsub S_GetHeadgear,"top",30, "Orc Helm",86;
+t249:		callsub S_GetHeadgear,"top",30, "Orc Hero Headdress",381;
+t250:		callsub S_GetHeadgear,"top",30, "Orchid Hairband",376;
+t251:		callsub S_GetHeadgear,"top",30, "Pagdayaw",303;
+t252:		callsub S_GetHeadgear,"top",30, "Panda Hat",115;
+t253:		callsub S_GetHeadgear,"top",30, "Parcel Hat",108;
+t254:		callsub S_GetHeadgear,"top",30, "Party Hat",144;
+t255:		callsub S_GetHeadgear,"top",30, "Party Hat",351;
+t256:		callsub S_GetHeadgear,"top",30, "Pecopeco Hairband",314;
+t257:		callsub S_GetHeadgear,"top",30, "Ph.D Hat",98;
+t258:		callsub S_GetHeadgear,"top",30, "Phoenix Crown",221;
+t259:		callsub S_GetHeadgear,"top",30, "Pink Beanie",281;
+t260:		callsub S_GetHeadgear,"top",30, "Pink Drooping Cat",276;
+t261:		callsub S_GetHeadgear,"top",30, "Pink Ribbon",245;
+t262:		callsub S_GetHeadgear,"top",30, "Pirate Bandana",74;
+t263:		callsub S_GetHeadgear,"top",30, "Poo Poo Hat",76;
+t264:		callsub S_GetHeadgear,"top",30, "Pop Corn Hat",415;
+t265:		callsub S_GetHeadgear,"top",30, "Poporing Hat",361;
+t266:		callsub S_GetHeadgear,"top",30, "Poring Cake Hat",417;
+t267:		callsub S_GetHeadgear,"top",30, "Poring Hat",120;
+t268:		callsub S_GetHeadgear,"top",30, "Poring Tower",299;
+t269:		callsub S_GetHeadgear,"top",30, "Pretend Murdered",80;
+t270:		callsub S_GetHeadgear,"top",30, "Pumpkin Hat",206;
+t271:		callsub S_GetHeadgear,"top",30, "Pumpkin-Head",206;
+t272:		callsub S_GetHeadgear,"top",30, "Puppy Hat",234;
+t273:		callsub S_GetHeadgear,"top",30, "Puppy Headband",199;
+t274:		callsub S_GetHeadgear,"top",30, "Puppy Love",94;
+t275:		callsub S_GetHeadgear,"top",30, "Purple Cowboy Hat",411;
+t276:		callsub S_GetHeadgear,"top",30, "Rabbit Ears",267;
+t277:		callsub S_GetHeadgear,"top",30, "Raccoon Hat",118;
+t278:		callsub S_GetHeadgear,"top",30, "Rainbow Eggshell",124;
+t279:		callsub S_GetHeadgear,"top",30, "Ramen Hat",320;
+t280:		callsub S_GetHeadgear,"top",30, "Red Bandana",62;
+t281:		callsub S_GetHeadgear,"top",30, "Red Bonnet",190;
+t282:		callsub S_GetHeadgear,"top",30, "Red Deviruchi Hat",271;
+t283:		callsub S_GetHeadgear,"top",30, "Red Mage Hat",282;
+t284:		callsub S_GetHeadgear,"top",30, "Red Ribbon",246;
+t285:		callsub S_GetHeadgear,"top",30, "Red Tailed Ribbon",167;
+t286:		callsub S_GetHeadgear,"top",30, "Refined Apple of Archer",72;
+t287:		callsub S_GetHeadgear,"top",30, "Refined Bunny Band",15;
+t288:		callsub S_GetHeadgear,"top",30, "Refined Corsair",105;
+t289:		callsub S_GetHeadgear,"top",30, "Refined Deviruchi Hat",123;
+t290:		callsub S_GetHeadgear,"top",30, "Refined Drooping Cat",142;
+t291:		callsub S_GetHeadgear,"top",30, "Refined Grand Circlet",93;
+t292:		callsub S_GetHeadgear,"top",30, "Refined Helmet of Orc Hero",178;
+t293:		callsub S_GetHeadgear,"top",30, "Refined Majestic Goat",41;
+t294:		callsub S_GetHeadgear,"top",30, "Refined Sakkat",67;
+t295:		callsub S_GetHeadgear,"top",30, "Refined Wing of Diablo",129;
+t296:		callsub S_GetHeadgear,"top",30, "Renown Detective's Cap",189;
+t297:		callsub S_GetHeadgear,"top",30, "Ribbon",17;
+t298:		callsub S_GetHeadgear,"top",30, "Ribbon Hat",265;
+t299:		callsub S_GetHeadgear,"top",30, "Rideword Hat",262;
+t300:		callsub S_GetHeadgear,"top",30, "Romantic Gent",31;
+t301:		callsub S_GetHeadgear,"top",30, "RWC Anniversary Bread Envelope Hat",429;
+t302:		callsub S_GetHeadgear,"top",30, "Safety Helmet",95;
+t303:		callsub S_GetHeadgear,"top",30, "Sakkat",67;
+t304:		callsub S_GetHeadgear,"top",30, "Sales Banner",183;
+t305:		callsub S_GetHeadgear,"top",30, "Santa Hat",20;
+t306:		callsub S_GetHeadgear,"top",30, "SantaPoring Cap",387;
+t307:		callsub S_GetHeadgear,"top",30, "Sea-Otter Hat",162;
+t308:		callsub S_GetHeadgear,"top",30, "Selendang",363;
+t309:		callsub S_GetHeadgear,"top",30, "Shafka",287;
+t310:		callsub S_GetHeadgear,"top",30, "Sheep Hat",205;
+t311:		callsub S_GetHeadgear,"top",30, "Shiny Wig",306;
+t312:		callsub S_GetHeadgear,"top",30, "Ship Captain's Hat",367;
+t313:		callsub S_GetHeadgear,"top",30, "Silver Tiara",218;
+t314:		callsub S_GetHeadgear,"top",30, "Smokie Leaf",148;
+t315:		callsub S_GetHeadgear,"top",30, "Snake Head Hat",393;
+t316:		callsub S_GetHeadgear,"top",30, "Solar Panels",266;
+t317:		callsub S_GetHeadgear,"top",30, "Sombrero",151;
+t318:		callsub S_GetHeadgear,"top",30, "Songkok",362;
+t319:		callsub S_GetHeadgear,"top",30, "Sorin Doll Hat",356;
+t320:		callsub S_GetHeadgear,"top",30, "Soul Ring",301;
+t321:		callsub S_GetHeadgear,"top",30, "Soul Wing",301;
+t322:		callsub S_GetHeadgear,"top",30, "Sphinx Hat",137;
+t323:		callsub S_GetHeadgear,"top",30, "Spiky Band",43;
+t324:		callsub S_GetHeadgear,"top",30, "Spore Hat",114;
+t325:		callsub S_GetHeadgear,"top",30, "Squatting Poring",349;
+t326:		callsub S_GetHeadgear,"top",30, "Stellar",81;
+t327:		callsub S_GetHeadgear,"top",30, "Stop Post",59;
+t328:		callsub S_GetHeadgear,"top",30, "Straw Hat",146;
+t329:		callsub S_GetHeadgear,"top",30, "Striped Hairband",133;
+t330:		callsub S_GetHeadgear,"top",30, "Succubus Horn",150;
+t331:		callsub S_GetHeadgear,"top",30, "Summer Hat",315;
+t332:		callsub S_GetHeadgear,"top",30, "Sunday Hat",117;
+t333:		callsub S_GetHeadgear,"top",30, "Sunflower",37;
+t334:		callsub S_GetHeadgear,"top",30, "Sunflower Hairpin",186;
+t335:		callsub S_GetHeadgear,"top",30, "Super Novice Hat",193;
+t336:		callsub S_GetHeadgear,"top",30, "Sweet Gent",29;
+t337:		callsub S_GetHeadgear,"top",30, "Tailring Doll Hat",357;
+t338:		callsub S_GetHeadgear,"top",30, "Teddybear Hat",143;
+t339:		callsub S_GetHeadgear,"top",30, "Tiara",19;
+t340:		callsub S_GetHeadgear,"top",30, "Tiger Mask",181;
+t341:		callsub S_GetHeadgear,"top",30, "Tiraya Bonnet",398;
+t342:		callsub S_GetHeadgear,"top",30, "Torch Cap",431;
+t343:		callsub S_GetHeadgear,"top",30, "Tulip Hairpin",161;
+t344:		callsub S_GetHeadgear,"top",30, "Turban",7;
+t345:		callsub S_GetHeadgear,"top",30, "Twin Pompom By JB",390;
+t346:		callsub S_GetHeadgear,"top",30, "Twin Ribbon",239;
+t347:		callsub S_GetHeadgear,"top",30, "Ulle's Cap",254;
+t348:		callsub S_GetHeadgear,"top",30, "Unicorn Horn",42;
+t349:		callsub S_GetHeadgear,"top",30, "Upgraded Elephant Hat",215;
+t350:		callsub S_GetHeadgear,"top",30, "Valkyrie Feather Band",300;
+t351:		callsub S_GetHeadgear,"top",30, "Valkyrie Helm",225;
+t352:		callsub S_GetHeadgear,"top",30, "Vane Hairpin",313;
+t353:		callsub S_GetHeadgear,"top",30, "Vanilmirth Hat",317;
+t354:		callsub S_GetHeadgear,"top",30, "Victorious Coronet",43;
+t355:		callsub S_GetHeadgear,"top",30, "Victory Wings",365;
+t356:		callsub S_GetHeadgear,"top",30, "Vinit Doll Hat",358;
+t357:		callsub S_GetHeadgear,"top",30, "W Doll Hat",359;
+t358:		callsub S_GetHeadgear,"top",30, "Wandering Minstrel Hat",240;
+t359:		callsub S_GetHeadgear,"top",30, "Water Lily Crown",312;
+t360:		callsub S_GetHeadgear,"top",30, "Wedding Veil",44;
+t361:		callsub S_GetHeadgear,"top",30, "Western Grace",32;
+t362:		callsub S_GetHeadgear,"top",30, "Whisper Mask",321;
+t363:		callsub S_GetHeadgear,"top",30, "White Deviruchi Hat",272;
+t364:		callsub S_GetHeadgear,"top",30, "White Drooping Cat",274;
+t365:		callsub S_GetHeadgear,"top",30, "White Mage Hat",283;
+t366:		callsub S_GetHeadgear,"top",30, "White Ribbon",248;
+t367:		callsub S_GetHeadgear,"top",30, "White Snake Hat",413;
+t368:		callsub S_GetHeadgear,"top",30, "White Wing",38;
+t369:		callsub S_GetHeadgear,"top",30, "Wings of Diablo",129;
+t370:		callsub S_GetHeadgear,"top",30, "Winter Hat",196;
+t371:		callsub S_GetHeadgear,"top",30, "Wizard Hat",36;
+t372:		callsub S_GetHeadgear,"top",30, "Wonder Nutshell",134;
+t373:		callsub S_GetHeadgear,"top",30, "X Hairpin",163;
+t374:		callsub S_GetHeadgear,"top",30, "Yellow Bandana",309;
+t375:		callsub S_GetHeadgear,"top",30, "Yellow Drooping Cat",278;
+t376:		callsub S_GetHeadgear,"top",30, "Yellow Mage Hat",286;
+t377:		callsub S_GetHeadgear,"top",30, "Yellow Ribbon",243;
+t378:		callsub S_GetHeadgear,"top",30, "Yellow Ribbon",310;
+t379:		callsub S_GetHeadgear,"top",30, "Yoyo Hat",391;
+t380:		callsub S_GetHeadgear,"top",30, "Zherlthsh Mask",200;
+
+m1:		callsub S_GetHeadgear,"mid",20, "Angel Wing Ears",158;
+m2:		callsub S_GetHeadgear,"mid",20, "Angled Glasses",63;
+m3:		callsub S_GetHeadgear,"mid",20, "Binoculars",83;
+m4:		callsub S_GetHeadgear,"mid",20, "Black Glasses",404;
+m5:		callsub S_GetHeadgear,"mid",20, "Blank Ear",73;
+m6:		callsub S_GetHeadgear,"mid",20, "Blank Eyes",185;
+m7:		callsub S_GetHeadgear,"mid",20, "Blinker",82;
+m8:		callsub S_GetHeadgear,"mid",20, "Blush",125;
+m9:		callsub S_GetHeadgear,"mid",20, "Blush of Groom",125;
+m10:		callsub S_GetHeadgear,"mid",20, "Censor Bar",229;
+m11:		callsub S_GetHeadgear,"mid",20, "Cyclop's Eye",207;
+m12:		callsub S_GetHeadgear,"mid",20, "Dark Blinder",187;
+m13:		callsub S_GetHeadgear,"mid",20, "Diver Goggles",10;
+m14:		callsub S_GetHeadgear,"mid",20, "Ears Of Ifrit",422;
+m15:		callsub S_GetHeadgear,"mid",20, "Elven Blinker",288;
+m16:		callsub S_GetHeadgear,"mid",20, "Elven Ears",73;
+m17:		callsub S_GetHeadgear,"mid",20, "Elven Sunglasses",289;
+m18:		callsub S_GetHeadgear,"mid",20, "Evil Wing Ears",152;
+m19:		callsub S_GetHeadgear,"mid",20, "Evolved Small Ribbons",169;
+m20:		callsub S_GetHeadgear,"mid",20, "Eye Patch",13;
+m21:		callsub S_GetHeadgear,"mid",20, "Father's Sunglasses",12;
+m22:		callsub S_GetHeadgear,"mid",20, "Fin Helm",100;
+m23:		callsub S_GetHeadgear,"mid",300, "Geek Glasses",27;
+m24:		callsub S_GetHeadgear,"mid",300, "Glasses",3;
+m25:		callsub S_GetHeadgear,"mid",300, "Human Blinker",82;
+m26:		callsub S_GetHeadgear,"mid",300, "Machoman's Glasses",92;
+m27:		callsub S_GetHeadgear,"mid",300, "Mask Of Goddess",394;
+m28:		callsub S_GetHeadgear,"mid",300, "Masquerade",78;
+m29:		callsub S_GetHeadgear,"mid",300, "Mini Glasses",47;
+m30:		callsub S_GetHeadgear,"mid",300, "Monocle",23;
+m31:		callsub S_GetHeadgear,"mid",300, "Naughty Fairy",405;
+m32:		callsub S_GetHeadgear,"mid",300, "Opera Phantom Mask",128;
+m33:		callsub S_GetHeadgear,"mid",300, "Pecopeco Ears",366;
+m34:		callsub S_GetHeadgear,"mid",300, "Pirate Eye Bandage",13;
+m35:		callsub S_GetHeadgear,"mid",300, "Purple Glasses",26;
+m36:		callsub S_GetHeadgear,"mid",300, "Red Glasses",316;
+m37:		callsub S_GetHeadgear,"mid",300, "Refined Dark Blinder",187;
+m38:		callsub S_GetHeadgear,"mid",300, "Refined Elven Ears",73;
+m39:		callsub S_GetHeadgear,"mid",300, "Refined Masquerade",78;
+m40:		callsub S_GetHeadgear,"mid",300, "Robo Eye",345;
+m41:		callsub S_GetHeadgear,"mid",300, "Robot Blinker",82;
+m42:		callsub S_GetHeadgear,"mid",300, "Robot Ear",73;
+m43:		callsub S_GetHeadgear,"mid",300, "Scuba Gear",400;
+m44:		callsub S_GetHeadgear,"mid",300, "Small Ribbons",169;
+m45:		callsub S_GetHeadgear,"mid",300, "Sunglasses",12;
+m46:		callsub S_GetHeadgear,"mid",300, "Takius's Blindfold",184;
+m47:		callsub S_GetHeadgear,"mid",300, "Zorro Masque",50;
+
+l1:			callsub S_GetHeadgear,"low",150, "Angry Snarl",194;
+l2:			callsub S_GetHeadgear,"low",150, "Assassin Mask",180;
+l3:			callsub S_GetHeadgear,"low",150, "Baby Pacifier",191;
+l4:			callsub S_GetHeadgear,"low",150, "Bandit Beard",21;
+l5:			callsub S_GetHeadgear,"low",150, "Beard",24;
+l6:			callsub S_GetHeadgear,"low",150, "Cigarette",54;
+l7:			callsub S_GetHeadgear,"low",150, "Clown Nose",49;
+l8:			callsub S_GetHeadgear,"low",150, "Crunch Toast",188;
+l9:			callsub S_GetHeadgear,"low",150, "Evolved Pipe",55;
+l10:		callsub S_GetHeadgear,"low",150, "Father's Mask",8;
+l11:		callsub S_GetHeadgear,"low",150, "Father's White Beard",25;
+l12:		callsub S_GetHeadgear,"low",150, "Fish Mouth",406;
+l13:		callsub S_GetHeadgear,"low",150, "Flu Mask",8;
+l14:		callsub S_GetHeadgear,"low",150, "Gangster Mask",52;
+l15:		callsub S_GetHeadgear,"low",150, "Ganster Scarf",369;
+l16:		callsub S_GetHeadgear,"low",150, "Gentleman's Pipe",383;
+l17:		callsub S_GetHeadgear,"low",150, "Grandpa Beard",25;
+l18:		callsub S_GetHeadgear,"low",150, "Iron Cain",53;
+l19:		callsub S_GetHeadgear,"low",150, "Leaves Of Grass",57;
+l20:		callsub S_GetHeadgear,"low",150, "Ninja's Scroll",370;
+l21:		callsub S_GetHeadgear,"low",150, "Oxygen Mask",90;
+l22:		callsub S_GetHeadgear,"low",150, "Pipe",55;
+l23:		callsub S_GetHeadgear,"low",150, "Pussy Cat Bell",135;
+l24:		callsub S_GetHeadgear,"low",150, "Refined Romantic Flower",56;
+l25:		callsub S_GetHeadgear,"low",150, "Romantic Flower",56;
+l26:		callsub S_GetHeadgear,"low",150, "Romantic Leaf",57;
+l27:		callsub S_GetHeadgear,"low",150, "Rudolf's Red Nose",49;
+l28:		callsub S_GetHeadgear,"low",150, "Santa Beard",25;
+l29:		callsub S_GetHeadgear,"low",150, "Sweet Candy",414;
+l30:		callsub S_GetHeadgear,"low",150, "White Petal",259;
+
+L_reset:
+	switch(select("Redefinir Topo:Redefinir Meio:Redefinir Baixo")) {
+			case 1:
+				if(getequipid(EQI_HEAD_TOP) > 0) {
+				setlook 4,getiteminfo(getequipid(EQI_HEAD_TOP),11); 
+				set hastop,0;
+				} else { 
+				changelook 4,0; 
+				set hastop,0;
+				}
+				mes "[Yokai Disguise]";
+				mes "Opções foram redefinidas.";
+				close;
+			case 2:
+				if(getequipid(EQI_HEAD_MID) > 0) {
+				setlook 5,getiteminfo(getequipid(EQI_HEAD_MID),11);
+				set hasmid,0;
+				} else { 
+				changelook 5,0;
+				set hasmid,0;
+				}
+				mes "[Yokai Disguise]";
+				mes "Opções foram redefinidas.";
+				close;
+			case 3:
+				if(getequipid(EQI_HEAD_LOW) > 0) {
+				setlook 3,getiteminfo(getequipid(EQI_HEAD_LOW),11);
+				set haslow,0;
+				} else { 
+				changelook 3,0; 
+				set haslow,0;
+				}
+				mes "[Yokai Disguise]";
+				mes "Opções foram redefinidas.";
+				close;
+		}
+L_end:
+	close;
+
+S_GetHeadgear:
+// getarg(0) = type ("top", "mid", or "low")
+// getarg(1) = cost in Reward Coins
+// getarg(2) = "item name"
+// getarg(3) = view_id
+		if (getgmlevel() >= 1) {
+		mes "[Yokai Disguise]";
+		mes "Você é jogador ViP, pode usar o sistema de graça.";
+		if(select("Sim:Não") == 2) close;
+		goto disguiseeu;
+		}
+		else if (#disyokai == 1) {
+		mes "[Yokai Disguise]";
+		mes "Gostaria de comprar o acesso para "+getarg(1)+" "+getitemname(.@trok)+"?";
+		next;
+		if (select("Sim:Não")==2) close;
+		goto disguiseeu;
+		}
+		mes "[Yokai Disguise]";
+		mes "Desculpe, você ainda não comprou ou desbloqueado este capacete.";
+		mes "Gostaria de comprar o acesso para "+getarg(1)+" por 100 Kafra Point's?";
+		next;
+		if (select("Sim:Não")==2) close;
+		else if (#KAFRAPOINTS < 100) {
+		mes "[Yokai Disguise]";
+		mes "Desculpe, você não tem moedas suficientes. Volte quando tiver!";
+		close; 
+		}
+		set #disyokai,1;
+		mes "[Yokai Disguise]";
+		mes "Tudo bem, obrigado! Agora você pode acessar o "+getarg(2)+" chapelaria.";
+		disguiseeu:
+		setd "tem"+getarg(0),1;
+		setd "premium"+getarg(0),getarg(3);
+	     if (getarg(0) == "top") { changelook 4,getarg(3); set hastop,1; } // LOOK_HEAD_TOP
+	else if (getarg(0) == "mid") { changelook 5,getarg(3); set hasmid,1; }// LOOK_HEAD_MID
+	else if (getarg(0) == "low") { changelook 3,getarg(3); set haslow,1; }// LOOK_HEAD_BOTTOM
+		mes "[Yokai Disguise]";
+		mes "Novo disfarce aplicada a "+getarg(0)+" chapelaria.";
+		set #KAFRAPOINTS, #KAFRAPOINTS -100;
+		close;
+
+OnPCLoginEvent:
+	if (hastop == 1) changelook 4,premiumtop; 
+	if (hasmid == 1) changelook 5,premiummid; 
+	if (haslow == 1) changelook 3,premiumlow;
+	end;
+}

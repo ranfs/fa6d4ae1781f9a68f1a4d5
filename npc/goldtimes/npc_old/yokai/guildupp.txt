@@ -1,0 +1,16 @@
+prontera,146,171,5	script	Up Guild	751,{
+mes "["+strnpcinfo(1)+"]";
+if(strcharinfo(0) != getguildmaster(getcharid(2))) {
+mes "Somente o Líder pode upar o clã";
+close;
+}
+if(.guild) {
+mes "Você já utilizou meus serviços.";
+close;
+}
+mes "Olá  "+strcharinfo(0)+" líder da "+getguildname((getcharid(2))+" deseja upar seu clã?";
+if(select("sim:não") == 2) close;
+atcommand "@guildlvup 10";
+set .guild,getguildname((getcharid(2));
+close;
+}

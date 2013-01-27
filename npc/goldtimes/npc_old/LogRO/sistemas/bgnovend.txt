@@ -1,0 +1,1 @@
+bat_room	mapflag	novending

@@ -1,0 +1,91 @@
+//============================================================
+//=
+//=      
+//=       __        __ 
+//=       \ \      / /  
+//=        \ \    / /
+//=         \ \  / / _______   _______   _     _
+//=          \ \/ / |  _____| |  ___  | | |   | |
+//=           |  |  | |___    | |   | | | |___| |
+//=           |  |  |  ___|   | |___| | |  ___  |
+//=           |  |  | |_____  |  ___  | | |   | |
+//=           |__|  |_______| |_|   |_| |_|   |_|
+//=           
+//=
+//=
+//=
+//===== Nome do evento: ======================================
+//= Usador de Caixa de Presente
+//===== Emulador Compatível: =================================
+//= Cronus / brAthena
+//===== Por: =================================================
+//= Yeah
+//===== Versão Atual: ========================================
+//= 1.0
+//===== Descrição: ===========================================
+//= Um presente que gosta de abrir caixas, e está disposto
+//= a ajudar seus jogadores a abrir muitas caixas de presente.
+//===== Changelog: ===========================================
+//= 1.0 Criado o NPC [Yeah]
+//============================================================
+
+rent_mb,157,118,6	script	Caixas de Presente	1249,{
+
+set .name$, "^0000FF[ Caixas de Presente ]^000000";
+mes .name$;
+mes "Olá!";
+mes "Eu posso usar várias caixas de Presente ao mesmo tempo para você.";
+mes "Vai querer uma ajuda?";
+menu "- Sim",-,"- Não, obrigado",sair;
+next;
+mes .name$;
+mes "Me fale quantas vai querer abrir:";
+mes "Eu só consigo abrir 200 caixas ao mesmo tempo";
+input @caixaqt;
+if (@caixaqt > 200){
+next;
+mes .name$;
+mes "Não posso abrir mais que 70 caixas ao mesmo tempo.";
+close;
+}
+if (countitem(644) < @caixaqt) goto Semitem;
+
+	next;
+	set @count,0;
+	L_Usacaixa:
+	if(@count == @caixaqt) goto L_Acabocaixa;
+	if (checkweight(21002,3000) == 0 ) goto Pesado;
+	getinventorylist;
+	if (@inventorylist_count > 80) goto Mtoitem;
+	getitem groupranditem (IG_GiftBox),1;
+	delitem 644,1;
+	set @count,@count+1;
+	goto L_Usacaixa;
+
+L_Acabocaixa:
+mes .name$;
+mes "Acabou as caixas, espero que tenha conseguido o que queria.";
+close;
+
+Semitem:
+next;
+mes .name$;
+mes "Você não possui a quantidade necessária de Caixas de Presente";
+close;
+
+Mtoitem:
+mes .name$;
+mes "Você está carregando muito item, guarde-os no armazem.";
+close;
+
+Pesado:
+mes .name$;
+mes "Você está muito pesado. Guarde alguma coisa no armazém.";
+close;
+
+sair:
+next;
+mes .name$;
+mes "Volte quando quiser";
+close;
+}

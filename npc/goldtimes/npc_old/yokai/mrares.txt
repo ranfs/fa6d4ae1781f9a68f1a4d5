@@ -1,0 +1,158 @@
+prontera,155,177,5	script	Huginn I#1	 988,{
+// Reset de Atributos:
+set .@atrib,0;
+//====================================
+// Reset de Habilidades:
+set .@habil,0;
+//====================================
+// Reset de Ambos:
+set .@ambos,0;
+//====================================
+	mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+	mes "Olá "+strcharinfo(o)+",";
+	mes "sou a rei do ragna^FF0000YOKAI^000000";
+	mes "O que posso fazer por você?";
+	next;
+	switch( select("- Serviço de Aluguel","- Resetar","- Shopping","- Abrir Armazém do Clã","- Cancelar")){
+	case 1:
+	function exit;
+	setarray .classes[0],	5, 10, 18, 23, 4006, 4011, 4019, 4028, 4033, 4041, 4045, -1,
+				11, 4012, 4034, -1,
+				7,13, 14,21, 4008,4014, 4015,4022, 4030,4036, 4037,4044;
+
+	mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+	mes "Aqui você pode pegar carrinhos, falcões ou pecopecos depedendo da sua vocação.";
+	next;
+	mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+	if (checkcart()) exit ("Você já possui carrinho."); else
+	if (checkfalcon()) exit ("Você já possui falcão."); else
+	if (checkriding()) exit ("Você já possui peco.");
+	set .@skill, .classes;
+	for (set .@i, 0; .@i < GetArraySize (.classes); set .@i, .@i +1) {
+		if (.classes[.@i] < 0)
+			set .@delimiter, .@delimiter +1;
+		if (Class != .classes[.@i]) continue;
+			if (! getskilllv (39) && ! getskilllv (127) && ! getskilllv (63))
+				exit ("Você não possui a habilidade requerida.");
+			if (!.@delimiter) setcart; else
+			if (!(.@delimiter-1)) setfalcon; else
+			if (!(.@delimiter-2)) setriding;
+			exit ("Volte quando necessitar novamente dos meus serviços.");
+	}
+	exit ("Desculpe mas não posso ajudá-lo.");
+
+	function	exit	{
+		mes getarg (0);
+		close;
+	}
+
+
+	case 2:
+	set @hab,500000;
+	set @sta,500000;
+	set @amb,900000;
+
+	mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+	if ((agitcheck() == 1)){
+	goto SAFADO;
+	close;
+        }
+        else{
+	
+SAFADO:	
+	if (getgmlevel() >= 1) { 
+	mes "Vejo que você é VIP e por isso não precisa pagar nada para resetar";
+	next;
+	mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+	mes "Escolha o que deseja resetar.";
+	goto VIP;
+}
+	mes "Escolha o que deseja resetar.";
+	next;
+	switch(select("^FF3355Resetar Habilidades (500k)","^FF3355Resetar Atributos (500k)","^FF3355Resetar Ambos (900k)","^000000Cancelar")){
+	if(@menu == 4) close;
+		case 1:
+		if(Zeny < @hab) goto faltazeny;
+			mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+			mes "Pronto, resetado. Fale comigo mais vezes se precisar!";
+			ResetSkill;
+			set Zeny, Zeny - 500000;
+			close;
+		case 2:
+		if(Zeny < @sta) goto faltazeny;
+			mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+	                ResetStatus;
+	                mes "Pronto, resetado. Fale comigo mais vezes se precisar!";
+	                set Zeny, Zeny - 500000;
+			break;
+		case 3:
+		if(Zeny < @amb) goto faltazeny;
+			mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+			ResetStatus;
+			ResetSkill;
+	                mes "Pronto, resetado. Fale comigo mais vezes se precisar!";
+			set Zeny, Zeny - 900000;
+			break;
+}
+close;
+//=========================VIP=========================	
+VIP:
+switch(select("^FF3355Resetar Habilidades","^FF3355Resetar Atributos","^FF3355Resetar Ambos","^000000Cancelar")){
+		if(@menu == 4) close;
+		case 1:
+		next;
+		mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+		mes "Já que você é Vip, resetarei você de graça";
+		next;
+		mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+		ResetSkill;
+		mes "Pronto, resetado. Fale comigo mais vezes se precisar!";
+		break;
+
+		case 2:
+		next;
+		mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+		mes "Já que você é Vip, resetarei você de graça";
+		next;
+		mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+		ResetStatus;
+		mes "Pronto, resetado. Fale comigo mais vezes se precisar!";
+	      	break;
+
+		case 3:
+		next;
+		mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+		mes "Já que você é Vip, resetarei você de graça";
+		next;
+		mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+		ResetStatus;
+		ResetSkill;
+		mes "Pronto, resetado. Fale comigo mais vezes se precisar!";
+		break;	
+		
+	}
+	close;
+}
+
+faltazeny:
+	mes "Está faltando zeny, volte quando tiver o dinheiro certo.";
+	close;
+
+	case 3:
+warp "ra_in01",246,267;
+close;
+end;
+
+	
+	case 4:
+		mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+		mes "Seu armazém será aberto.";
+		guildopenstorage;
+		close;
+
+	case 5:
+		mes "[^0000FF"+strnpcinfo(1)+"^000000]";
+		mes "Ok, volte quando precisar.";
+		close;
+	}
+}

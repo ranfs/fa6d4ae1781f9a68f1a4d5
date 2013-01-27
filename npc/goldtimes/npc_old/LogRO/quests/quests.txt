@@ -1,0 +1,189 @@
+//
+//		 /     /  )_/    '  (  _ _ ' _/ _ 
+//		(__.  (__/ /()/)/  __)( / //)/_)  
+//		                          /       
+//				  
+// Descrição:
+// Npc de Quests dinamico. [SQL]
+//
+// Versão Atual: 1.0.0
+// Autor: Leandro Otoni - L.Otoni
+// Compatível com: Cronus SVN
+//
+// Changelog:
+// v1.0.0 : Desenvolvido o script.	[L.Otoni]
+//
+//========================================================
+// Tabela SQL
+//========================================================
+/*
+
+	-- v1.0.0
+	CREATE TABLE IF NOT EXISTS `quests` (
+	  `quest_id` int(11) NOT NULL AUTO_INCREMENT,
+	  `quest_name` varchar(30) NOT NULL DEFAULT 'Quest Name',
+	  `item_desc` text NOT NULL,
+	  `reward` int(11) NOT NULL DEFAULT '0',
+	  `amount_reward` int(11) NOT NULL DEFAULT '0',
+	  `zeny_required` int(11) NOT NULL DEFAULT '0',
+	  `item_required1` int(11) NOT NULL DEFAULT '0',
+	  `item_amount1` int(11) DEFAULT '0',
+	  `item_required2` int(11) DEFAULT '0',
+	  `item_amount2` int(11) DEFAULT '0',
+	  `item_required3` int(11) DEFAULT '0',
+	  `item_amount3` int(11) DEFAULT '0',
+	  `item_required4` int(11) DEFAULT '0',
+	  `item_amount4` int(11) DEFAULT '0',
+	  `item_required5` int(11) DEFAULT '0',
+	  `item_amount5` int(11) DEFAULT '0',
+	  `item_required6` int(11) DEFAULT '0',
+	  `item_amount6` int(11) DEFAULT '0',
+	  `item_required7` int(11) DEFAULT '0',
+	  `item_amount7` int(11) DEFAULT '0',
+	  `item_required8` int(11) DEFAULT '0',
+	  `item_amount8` int(11) DEFAULT '0',
+	  `item_required9` int(11) DEFAULT '0',
+	  `item_amount9` int(11) DEFAULT '0',
+	  `item_required10` int(11) DEFAULT '0',
+	  `item_amount10` int(11) DEFAULT '0',
+	  PRIMARY KEY (`quest_id`)
+	) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+	
+
+*/
+
+prontera,156,188,5	script	Menina das Quests	719,{
+	// Nome do NPC.
+	set .name$, "^ff0000[ Menina das Quests ]^000000";
+	
+	mes .name$;
+	mes "Olá sou uma jovem viajante, e em minhas viajens aprendi a fazer diversos tipos de itens, gostaria que eu fizesse algum pra você?";
+	next;
+	if(select("Sim, por favor!:Não, talvez em uma outra hora..")==1){
+		/* For mara repetição do MENU */
+		for(;;){
+			mes .name$;
+			mes "Hihi~ Vamos lá então.";
+			mes "Qual você quer que eu faça pra você?";
+			next;
+			
+			set .@quest_lvl, select("Nível 1","Nível 2","Nível 3");
+		
+			/* Imprime o Menu de Quests e retorna o ID da quest selecionada */
+			set .@quest_id, callfunc("showMenu",.@quest_lvl);		
+			
+			mes .name$;
+			mes "Ótima escolha!";
+			mes "Para eu fazer este item, vou necessitar de alguns materiais...";
+			mes "Aqui esta a lista:";
+			
+			/* Consulta SQL e Impressão da lista de itens */
+			callfunc("imprimeLista",.@quest_id);
+			
+			next;
+			mes .name$;
+			mes "E então você possui todos os itens?";
+			next;
+			switch(select("[Ativar QuestLog]:Sim possuo todos:Não, não possuo:Voltar ao menu de Quests")){			
+				case 1:		
+					/* Adiciona a quest ao QuestLog (Alt + U) */
+					setquest .@quest_id;
+					mes .name$;
+					mes "Prontinho, a quest já esta adicionada ao seu QuestLog. (:";
+					mes "Boa caçada. hihi~";
+					close;
+				case 2:
+					/* Checa se o player possui os itens necessarios para a quest */
+					callfunc("checkItens",.name$,.@quest_id);
+					mes .name$;
+					mes "Vejo que tem todos os itens necessarios.";
+					mes "Vamos lá então..";
+					mes "Esse item vai aqui, esse ali~";
+					mes "^ff0000*Paf *puf *creck^000000";
+					mes "Prontinho aqui esta o seu item!";
+					close2;
+					/* Entrega a recompensa */
+					callfunc("giveReward",.@quest_id);
+					/* Completa a quest no QuestLog */
+					if (checkquest(.@quest_id)== 1) completequest .@quest_id;
+					end;
+				break;
+				case 3:
+					mes .name$;
+					mes "Não tem problema, volte quando conseguÍ-los.";
+					close;
+				break;
+				case 4:
+					continue;
+				break;
+			}
+		}			
+	}
+	else {
+		mes .name$;
+		mes "Ah você quem sabe. (:";
+		mes "Mas quando quiser é só dar uma passadinha aqui. hihi~";
+		close;
+	}
+}
+
+/* Função responsavel pela impressão do menu e retornar o ID da quest selecionada. */
+function	script	showMenu	{			
+		set .@menu$,"";
+		query_sql("select quest_id, quest_name from quests where quest_lvl = "+ GetArg(0),.@quest_id, .@quest_names$);
+		
+		for ( set .@i,0; .@i <= getarraysize(.@quest_names$);set .@i,.@i + 1)
+			set .@menu$, .@menu$ + .@quest_names$[.@i] + ":";
+	
+		return .@quest_id[select(.@menu$)-1];
+		end;
+}
+
+/* função responsavel por entregar a recompensa ao Player */
+function	script	giveReward	{
+		for ( set .@i,1; .@i <= 10;set .@i,.@i + 1){
+			query_sql("select item_required" + .@i + ", item_amount" + .@i + " from quests where quest_id = "+ GetArg(0) ,.@item_required, .@item_amount);
+			delitem .@item_required,.@item_amount;
+		}
+		query_sql("select zeny_required, reward, amount_reward from quests where quest_id = "+ GetArg(0) ,.@zeny_required, .@reward, .@amount_reward);
+		if(.@zeny_required) set zeny, zeny - .@zeny_required;
+		getitem .@reward, .@amount_reward;
+		return;
+}
+
+/* Função que imprime a lista de intes necessarios para a quest. */
+function	script	imprimeLista	{
+	/* Consulta SQL e Impressão da lista de itens */
+	for ( set .@i,1; .@i <= 10;set .@i,.@i + 1){
+		query_sql("select item_required" + .@i + ", item_amount" + .@i + ", zeny_required from quests where quest_id = "+ GetArg(0) ,.@item_required, .@item_amount, .@zeny_required);
+		if(.@item_amount && .@item_required) mes "^FF0000- " + getitemname(.@item_required) + " [" + countitem(.@item_required) + "/" + .@item_amount + "]^000000";
+	}
+	query_sql("select zeny_required, item_desc from quests where quest_id = "+ GetArg(0) ,.@zeny_required,.@item_desc$);
+	if(.@zeny_required) mes "^FF0000- " + .@zeny_required + " zenys ^000000";
+	mes " ";
+	mes "- Status:";
+	mes "^00becc" + .@item_desc$ + "^000000";
+	return;
+}
+
+/* Função responsavel pela checagem de itens necessarios para a quest. */
+function	script	checkItens	{
+	/* Checa se o personagem tem os itens necessarios para terminar a quest */
+	for ( set .@i,1; .@i <= 10;set .@i,.@i + 1){
+		query_sql("select item_required" + .@i + ", item_amount" + .@i + " from quests where quest_id = "+ GetArg(1) ,.@item_required, .@item_amount);
+		if(!.@item_required)
+			if(countitem(.@item_required) < .@item_amount) {  set .@fail, 1; break; } 
+	}
+	query_sql("select zeny_required from quests where quest_id = "+ GetArg(1) ,.@zeny_required);
+	if( zeny < .@zeny_required && !.@fail ) set .@fail, 1;
+	
+	if (.@fail) {
+		next;
+		mes GetArg(0);
+		mes	"Acho que está faltando algo...";
+		mes	"Confira se você tem os seguintes itens:";
+		callfunc("imprimeLista",GetArg(1));
+		close;	
+	}
+	else return;
+}

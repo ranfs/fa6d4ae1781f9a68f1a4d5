@@ -1,0 +1,414 @@
+//===== RagnaPROJECT Script ================================== 
+//= GVG Arena
+//===== By: ================================================== 
+//= Timexy
+//===== Current Version: ===================================== 
+//= 0.1
+//===== Compatible With: ===================================== 
+//= eAthena SVN
+//===== Description: ========================================= 
+//= 
+//===== Additional Comments: ================================= 
+//=
+//===== To Do List: ==========================================
+//= 
+//============================================================
+
+payold,100,117,3	script	Arena GVG#RWC	997,{
+
+	mes "[ Arena GVG ]";
+	mes "O que gostaria de fazer?";
+	switch(select("Criar uma Partida","Resetar Arena")) {
+		case 1:
+			next;
+			mes "[ Arena GVG ]";
+			mes "Observe que para criar uma";
+			mes "partida, ambos Grupos devem estar";
+			mes "prontos, sendo necesário 7v7.";
+			next;
+			mes "[ Arena GVG ]";
+			mes "Você e seu Adversário estão prontos?";
+			switch(select("Ainda não","Sim, estamos")) {
+				case 1:
+					mes "Volte quando estiverem";
+					close;
+				case 2:
+				
+					//Verificações básicas
+					if(getcharid(1) == 0) {
+						mes "Você precisa estar em um Grupo.";
+						close;
+					}
+					if(getpartyleader(getcharid(1),2) != getcharid(0)) {
+						mes "Apenas o líder do grupo pode registrar-los.";
+						close;
+					}
+					if(getcharid(2) == 0) {
+						mes "Você precisa estar em um Clã.";
+						close;
+					}
+					getpartymember(getcharid(1));
+					if($@partymembercount != 7) {
+						mes "Seu Grupo deve ter exatamente 7 jogadores para participarem.";
+						close;
+					}
+					
+					//Verifica se algum Clã já está se registrando, para evitar overlaps.
+					if($@ARE_Waiting) {
+						mes "Um Clã já está se registrando.";
+						mes "Tente novamente em alguns instantes.";
+						close;
+					}
+					
+					if($ARE_GVG_Using) {
+						mes "A Arena já está em uso";
+						close;
+					}
+					
+					set $@ARE_Waiting,1;
+					callsub CHECKPARTY,getcharid(3),getcharid(1),getcharid(2),getcharid(3);
+					
+					next;
+					mes "[ Arena GVG ]";
+					mes "Digite o nome do Líder do outro Grupo.";
+					input .@nome_lider$;
+					
+					if(getcharid(1,.@nome_lider$) == 0) {
+						mes "Ele não está em um Grupo.";
+						set $@ARE_Waiting,0;
+						close;
+					}
+					if(getpartyleader(getcharid(1,.@nome_lider$),2) != getcharid(0,.@nome_lider$)) {
+						mes "Ele não é o líder do grupo em que se encontra.";
+						set $@ARE_Waiting,0;
+						close;
+					}
+					if(getcharid(2,.@nome_lider$) == 0) {
+						mes "Ele não está em um Clã.";
+						set $@ARE_Waiting,0;
+						close;
+					}
+					getpartymember(getcharid(1,.@nome_lider$));
+					if($@partymembercount != 7) {
+						mes "Seu Grupo deve ter exatamente 7 jogadores para participarem.";
+						set $@ARE_Waiting,0;
+						close;
+					}
+					if(getcharid(2,.@nome_lider$) == getcharid(2)) {
+						mes "Ambos Grupos pertencem ao mesmo Clã.";
+						set $@ARE_Waiting,0;
+						close;
+					}
+					
+					callsub CHECKPARTY,getcharid(3),getcharid(1,.@nome_lider$),getcharid(2,.@nome_lider$),getcharid(3,.@nome_lider$);
+					
+					next;
+					mes "[ Arena GVG ]";
+					mes "Tudo pronto!";
+					mes "Ao fechar ambos Grupos serão Teleportados!";
+					close2;
+					set $@ARE_Waiting,0;
+					set $ARE_GVG_Using,1;
+					set $ARE_GVG_Acc[1],getcharid(3);				//ID do Líder do Grupo
+					set $ARE_GVG_Cla[1],getcharid(2);				//ID do Clã
+					set $ARE_GVG_Party[1],getcharid(1);				//ID do Grupo
+					set $ARE_GVG_Char[1],getcharid(0);				//ID do Líder
+					set $ARE_GVG_Acc[2],getcharid(3,.@nome_lider$);	//ID do Líder do Grupo
+					set $ARE_GVG_Cla[2],getcharid(2,.@nome_lider$);	//ID do Clã
+					set $ARE_GVG_Party[2],getcharid(1,.@nome_lider$);	//ID do Grupo
+					set $ARE_GVG_Char[2],getcharid(0,.@nome_lider$);	//ID do Líder
+					gvgon "2008rwc_04";
+					donpcevent "ControlAREGVG#04::OnArenaInit";
+					callsub PTWARP,$ARE_GVG_Acc[1],$ARE_GVG_Acc[2];
+					end;
+			}
+		case 2:
+			if(getgmlevel() < 90) {
+				mes "Indisponível";
+				close;
+			}
+			next;
+			mes "[ Arena GVG ]";
+			mes "Isso irá resetar a Arena e cancelar qualquer partida em Andamento, tem certeza?";
+			switch(select("Não","Sim")) {
+				case 1:
+					close;
+				case 2:
+					stopnpctimer "ControlAREGVG#04";
+					mapwarp "2008rwc_04","prontera",155,155;
+					set $ARE_GVG_Using,0;
+					set $ARE_GVG_Acc[1],0;	//ID do Líder do Grupo
+					set $ARE_GVG_Cla[1],0;	//ID do Clã
+					set $ARE_GVG_Party[1],0;	//ID do Grupo
+					set $ARE_GVG_Char[1],0;	//ID do Líder
+					set $ARE_GVG_Acc[2],0;	//ID do Líder do Grupo
+					set $ARE_GVG_Cla[2],0;	//ID do Clã
+					set $ARE_GVG_Party[2],0;	//ID do Grupo
+					set $ARE_GVG_Char[2],0;	//ID do Líder
+					set $ARE_GVG_SUB,0;
+					set $@ARE_Waiting,0;
+					mes "Resetado";
+					close;
+			}
+	}
+
+CHECKPARTY:
+	//Resetando contagem de Classes
+	set .@ARE_KN,0;	set .@ARE_PR,0;	set .@ARE_WZ,0;	set .@ARE_BS,0;	set .@ARE_HN,0;	set .@ARE_AS,0;	set .@ARE_CR,0;	set .@ARE_MO,0;	set .@ARE_SA,0;
+	set .@ARE_RO,0;	set .@ARE_AL,0;	set .@ARE_BA,0;	set .@ARE_DA,0;	set .@ARE_SN,0;	set .@ARE_GS,0;	set .@ARE_NJ,0;	set .@ARE_TK,0;	set .@ARE_SG,0;
+	set .@ARE_SL,0;
+	
+	set .@ARE_Save,getarg(0);		//ID para Voltar
+	set .@ARE_CH1,getarg(1);		//ID do Grupo do Char a Verificar
+	set .@ARE_CH2,getarg(2);		//ID do Clã do Char a Verificar
+	set .@ARE_CH3,getarg(3);		//ID da Conta do Char a Verificar
+	
+	attachrid(.@ARE_CH3);
+	getpartymember(getcharid(1));
+	for (set .@k,0; .@k < $@partymembercount; set .@k,.@k+1) {
+		if(isloggedin(getcharid(3,$@partymembername$[.@k]))) {
+			attachrid(getcharid(3,$@partymembername$[.@k]));
+						
+			//Verificando se o Char pertence ao Clã
+			if(getcharid(2) != .@ARE_CH2) {				
+				set .@ARE_Save3$,strcharinfo(0);
+				attachrid(.@ARE_Save);
+				if(.@ARE_CH3 == getcharid(3)) { mes "O Player ^0000FF"+.@ARE_Save3$+"^000000 não faz parte do seu Clã."; }
+				else { mes "O Player ^0000FF"+.@ARE_Save3$+"^000000 não faz parte do Clã "+getguildname(.@ARE_CH3)+"."; }
+				set $@ARE_Waiting,0;
+				close;
+			}
+			
+			//Bloqueando 1-1, 1-1-1, Novice, Xmas e Wedding
+			if(Class <= 6 || (Class >= 4001 && Class <= 4007) || (Class >= 4023 && Class <= 4045) || Class == 22 || Class == 26) {
+				set .@ARE_Save3$,strcharinfo(0);
+				attachrid(.@ARE_Save);
+				if(.@ARE_CH3 == getcharid(3)) { mes "Desculpe mas a Classe do "+.@ARE_Save3$+" não é permitida."; }
+				else { mes "Desculpe mas a Classe do "+.@ARE_Save3$+" (do outro Grupo) não é permitida."; }
+				set $@ARE_Waiting,0;
+				close;
+			}
+			
+			if(countitem(678) > 0 && Class != 4013) {
+				set .@ARE_Save3$,strcharinfo(0);
+				attachrid(.@ARE_Save);
+				if(.@ARE_CH3 == getcharid(3)) { mes "Desculpe mas o "+.@ARE_Save3$+" está portando Poison Bottles e não é um Assassin Cross."; }
+				else { mes "Desculpe mas o "+.@ARE_Save3$+" (do outro Grupo) está portando Poison Bottles e não é um Assassin Cross."; }
+				set $@ARE_Waiting,0;
+				close;
+			}
+			if(countitem(678) > 3 && Class == 4013) {
+				set .@ARE_Save3$,strcharinfo(0);
+				attachrid(.@ARE_Save);
+				if(.@ARE_CH3 == getcharid(3)) { mes "Desculpe mas o "+.@ARE_Save3$+" está portando mais que 3 Poison Bottles."; }
+				else { mes "Desculpe mas o "+.@ARE_Save3$+" está portando mais que 3 Poison Bottles."; }
+				set $@ARE_Waiting,0;
+				close;
+			}
+			
+			//Somando Classe ao Contador
+			if(Class == 7 || Class == 13 || Class == 4008 || Class == 4014) set .@ARE_KN,.@ARE_KN+1; 	//Knight		||	Lord Knight
+			if(Class == 8 || Class == 4009) set .@ARE_PR,.@ARE_PR+1;									//Priest		||	High Priest
+			if(Class == 9 || Class == 4010) set .@ARE_WZ,.@ARE_WZ+1;									//Wizard		||	High Wizard
+			if(Class == 10 || Class == 4011) set .@ARE_BS,.@ARE_BS+1;									//Blacksmith	||	Withesmith
+			if(Class == 11 || Class == 4012) set .@ARE_HN,.@ARE_HN+1;									//Hunter		||	Sniper
+			if(Class == 12 || Class == 4013) set .@ARE_AS,.@ARE_AS+1;									//Assasin		||	Assasin Cross
+			if(Class == 14 || Class == 21 || Class == 4015 || Class == 4022) set .@ARE_CR,.@ARE_CR+1;	//Crusader		||	Paladin
+			if(Class == 15 || Class == 4016) set .@ARE_MO,.@ARE_MO+1;									//Monk			||	Champion
+			if(Class == 16 || Class == 4017) set .@ARE_SA,.@ARE_SA+1;									//Sage			||	Professor
+			if(Class == 17 || Class == 4018) set .@ARE_RO,.@ARE_RO+1;									//Rogue		||	Stalker
+			if(Class == 18 || Class == 4019) set .@ARE_AL,.@ARE_AL+1;									//Alchemist	||	Creator
+			if(Class == 19 || Class == 4020) set .@ARE_BA,.@ARE_BA+1;									//Bard			||	Clown
+			if(Class == 20 || Class == 4021) set .@ARE_DA,.@ARE_DA+1;									//Dancer		||	Gypsy
+			if(Class == 23) set .@ARE_SN,.@ARE_SN+1;													//Super Novice
+			if(Class == 24) set .@ARE_GS,.@ARE_GS+1;													//Gunslinger
+			if(Class == 25) set .@ARE_NJ,.@ARE_NJ+1;													//Ninja
+			if(Class == 4046) set .@ARE_TK,.@ARE_TK+1;												//Taekwon
+			if(Class == 4047 || Class == 4048) set .@ARE_SG,.@ARE_SG+1;								//Star Gladiator
+			if(Class == 4049) set .@ARE_SL,.@ARE_SL+1;												//Soul Linker
+		} else {
+			attachrid(.@ARE_Save);
+			if(.@ARE_CH3 == getcharid(3)) mes "Desculpe mas alguém do seu Grupo não se encontra Online.";
+			else { mes "Desculpe mas alguém do seu Grupo não se encontra Online."; }
+			set .@ARE_Waiting,0;
+			close;
+		}
+	}
+	attachrid(.@ARE_Save);
+	return;
+	
+PTWARP:
+	attachrid(getarg(0));
+	getpartymember(getcharid(1));
+	for (set .@k,0; .@k < $@partymembercount; set .@k,.@k+1) {
+		if(isloggedin(getcharid(3,$@partymembername$[.@k]))) {
+			attachrid(getcharid(3,$@partymembername$[.@k]));
+			for(set .@i,0; .@i <= 284; set .@i,.@i+1) {
+				if(.@i == 106) continue;
+				sc_end .@i;
+			}
+			//sc_end SC_ALL;
+			warp "2008rwc_04",16,78;
+		}
+	}
+	attachrid(getarg(1));
+	getpartymember(getcharid(1));
+	for (set .@k,0; .@k < $@partymembercount; set .@k,.@k+1) {
+		if(isloggedin(getcharid(3,$@partymembername$[.@k]))) {
+			attachrid(getcharid(3,$@partymembername$[.@k]));
+			for(set .@i,0; .@i <= 284; set .@i,.@i+1) {
+				if(.@i == 106) continue;
+				sc_end .@i;
+			}
+			//sc_end SC_ALL;
+			warp "2008rwc_04",83,19;
+		}
+	}
+	return;
+
+OnInit:
+	waitingroom "Arena GVG - RWC",0;
+	set $ARE_GVG_Using,0;
+	set $ARE_GVG_Acc[1],0;	//ID do Líder do Grupo
+	set $ARE_GVG_Cla[1],0;	//ID do Clã
+	set $ARE_GVG_Party[1],0;	//ID do Grupo
+	set $ARE_GVG_Char[1],0;	//ID do Líder
+	set $ARE_GVG_Acc[2],0;	//ID do Líder do Grupo
+	set $ARE_GVG_Cla[2],0;	//ID do Clã
+	set $ARE_GVG_Party[2],0;	//ID do Grupo
+	set $ARE_GVG_Char[2],0;	//ID do Líder
+	set $ARE_GVG_SUB,0;
+	set $@ARE_Waiting,0;
+	end;
+}
+
+// Controlador das Batalhas
+// ====================================================================================================
+2008rwc_04,1,1,1	script	ControlAREGVG#04	-1,{
+	end;
+
+OnArenaInit:
+	setcell "2008rwc_04",28,64,40,89,cell_walkable,0;
+	setcell "2008rwc_04",10,40,27,63,cell_walkable,0;
+	setcell "2008rwc_04",54,12,69,35,cell_walkable,0;
+	setcell "2008rwc_04",70,36,87,51,cell_walkable,0;
+	initnpctimer;
+	end;
+
+OnTimer30000:
+	if($ARE_GVG_SUB == 1) end;							//Caso seja Morte Súbita
+	set $ARE_GVG_Alive[1],getareausers("2008rwc_04",10,40,40,89);
+	set $ARE_GVG_Alive[2],getareausers("2008rwc_04",54,12,87,51);
+	if($ARE_GVG_Alive[1] == 0 && $ARE_GVG_Alive[2] == 0) {	//Caso ambos percam por W.O.
+		stopnpctimer;
+		announce "Arena GVG: Ambos os Clãs "+getguildname($ARE_GVG_Cla[1])+" e "+getguildname($ARE_GVG_Cla[2])+" desqualificados por desistencia.",bc_all;
+		callsub ResetArena;
+		end;
+	}
+	if($ARE_GVG_Alive[1] == 0) {							//Caso o G01 perca por W.O.
+		stopnpctimer;
+		announce "Arena GVG: O Clã "+getguildname($ARE_GVG_Cla[2])+" venceu por W.O.",bc_all;
+		callsub ResetArena;
+		end;
+	}
+	if($ARE_GVG_Alive[2] == 0) {							//Caso o G02 perca por W.O.
+		stopnpctimer;
+		announce "Arena GVG: O Clã "+getguildname($ARE_GVG_Cla[1])+" venceu por W.O.",bc_all;
+		callsub ResetArena;
+		end;
+	}
+	//Caso não existam W.O., continua normalmente
+	mapannounce "2008rwc_04","A Partida entre os Clãs "+getguildname($ARE_GVG_Cla[1])+" e "+getguildname($ARE_GVG_Cla[2])+" será iniciada em 30 segundos!",bc_map | bc_blue;
+	end;
+
+OnTimer60000:
+	if($ARE_GVG_SUB == 1) end;							//Caso seja Morte Súbita
+	setcell "2008rwc_04",28,64,40,89,cell_walkable,1;
+	setcell "2008rwc_04",10,40,27,63,cell_walkable,1;
+	setcell "2008rwc_04",54,12,69,35,cell_walkable,1;
+	setcell "2008rwc_04",70,36,87,51,cell_walkable,1;
+	mapannounce "2008rwc_04","Partida Iniciada!",bc_map | bc_blue;
+	end;
+
+OnTimer300000:
+	if($ARE_GVG_SUB == 0) end;							//Caso NÃO seja Morte Súbita
+	gvgoff "2008rwc_04";
+	stopnpctimer;
+	mapannounce "2008rwc_04","Partida Encerrada! Empate!",bc_map | bc_blue;
+	callsub ResetArena;
+	end;
+	
+OnTimer660000:
+	if($ARE_GVG_Alive[1] == $ARE_GVG_Alive[2]) {				//Caso Esteja empatado
+		if($ARE_GVG_SUB == 1) {							//Se JÁ estiver em Morte Súbita (nunca deve ocorrer)
+			gvgoff "2008rwc_04";
+			stopnpctimer;
+			mapannounce "2008rwc_04","Partida Encerrada! Empate!",bc_map | bc_blue;
+			callsub ResetArena;
+			end;
+		} else {
+			set $ARE_GVG_SUB,1;
+			mapannounce "2008rwc_04","Morte Súbita! 5 Minutos! Caso ninguém morra, ambos perdem.",bc_map | bc_blue;
+			stopnpctimer;
+			initnpctimer;
+			end;
+		}
+	}
+	if($ARE_GVG_Alive[1] > $ARE_GVG_Alive[2]) {				//Caso G01 tenha mais vivos que G02
+		gvgoff "2008rwc_04";
+		stopnpctimer;
+		mapannounce "2008rwc_04","O Clã "+getguildname($ARE_GVG_Cla[1])+" venceu o Clã "+getguildname($ARE_GVG_Cla[2])+"!",bc_map | bc_blue;
+		callsub ResetArena;
+		end;
+	}
+	if($ARE_GVG_Alive[1] < $ARE_GVG_Alive[2]) {				//Caso G02 tenha mais vivos que G02
+		gvgoff "2008rwc_04";
+		stopnpctimer;
+		mapannounce "2008rwc_04","O Clã "+getguildname($ARE_GVG_Cla[2])+" venceu o Clã "+getguildname($ARE_GVG_Cla[1])+"!",bc_map | bc_blue;
+		callsub ResetArena;
+		end;
+	}
+
+ResetArena:
+	sleep 5000;
+	mapwarp "2008rwc_04","prontera",155,155;
+	set $ARE_GVG_Using,0;
+	set $ARE_GVG_Acc[1],0;	//ID do Líder do Grupo
+	set $ARE_GVG_Cla[1],0;	//ID do Clã
+	set $ARE_GVG_Party[1],0;	//ID do Grupo
+	set $ARE_GVG_Char[1],0;	//ID do Líder
+	set $ARE_GVG_Acc[2],0;	//ID do Líder do Grupo
+	set $ARE_GVG_Cla[2],0;	//ID do Clã
+	set $ARE_GVG_Party[2],0;	//ID do Grupo
+	set $ARE_GVG_Char[2],0;	//ID do Líder
+	set $ARE_GVG_SUB,0;
+	end;
+	
+OnPCKillEvent:
+	if($ARE_GVG_Using != 1) end;	//Ativo?
+	getmapxy .map$,.x,.y,0;
+	if(.map$ == "2008rwc_04") {
+		if($ARE_GVG_Cla[1] == getcharid(2)) {
+			set $ARE_GVG_Alive[2],$ARE_GVG_Alive[2]-1;
+			if($ARE_GVG_Alive[2] == 0 || $ARE_GVG_SUB == 1) {
+				gvgoff "2008rwc_04";
+				stopnpctimer;
+				mapannounce "2008rwc_04","O Clã "+getguildname($ARE_GVG_Cla[1])+" venceu o Clã "+getguildname($ARE_GVG_Cla[2])+"!",bc_map | bc_blue;
+				callsub ResetArena;
+				end;
+			}
+		}
+		if($ARE_GVG_Cla[2] == getcharid(2)) {
+			set $ARE_GVG_Alive[1],$ARE_GVG_Alive[1]-1;
+			if($ARE_GVG_Alive[1] == 0 || $ARE_GVG_SUB == 1) {
+				gvgoff "2008rwc_04";
+				stopnpctimer;
+				mapannounce "2008rwc_04","O Clã "+getguildname($ARE_GVG_Cla[2])+" venceu o Clã "+getguildname($ARE_GVG_Cla[1])+"!",bc_map | bc_blue;
+				callsub ResetArena;
+				end;
+			}
+		}
+	}
+	end;
+
+}

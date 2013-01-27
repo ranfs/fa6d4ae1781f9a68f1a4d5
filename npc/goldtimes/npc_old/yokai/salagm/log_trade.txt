@@ -1,0 +1,60 @@
+//===== Cronus Script ========================================
+//= Trade Log
+//===== Por: =================================================
+//= Moyco
+//===== Descrição: ===========================================
+//= Esse NPC irá mostrar o log de trade do personagem para GMs
+//===== Comentários Adicionais: ==============================
+//= 1.0 - Criado NPC
+//============================================================
+
+lhz_in01,264,259,6	script	Trade Log	86,{
+
+	if(getgmlevel() <= 20)end;
+	mes "[Trade Log]";
+	mes "Você vai digitar o nome ou ID do char?";
+	next;
+	switch(select("ID:Nome:Nada")){
+
+		case 1:
+			mes "[Trade Log]";
+			mes "Digite o ID do Personagem.";
+			input .@input;
+			query_sql "SELECT `name` FROM `char` WHERE `char_id`='"+.@input+"'",.@name$;
+			if(.@name$ == ""){mes "Não existe nenhum personagem com esse ID."; close;}
+			query_logsql "SELECT `time`,`nameid`,`amount`,`refine`,`card0`,`card1`,`card2`,`card3`,`map` FROM `picklog` WHERE `char_id`='"+.@input+"' AND `type`='T'",.@time$,.@nameid,.@amount,.@refine,.@card0,.@card1,.@card2,.@card3,.@map$;
+			next;
+			dispbottom "Legenda:";
+			dispbottom "<Ano>/-<Mes>-<Dia> <Hora>:<Minuto>:<Segundo> <Mapa> * <Quantidade> <Nome do Item>";
+			dispbottom "Ou";
+			dispbottom "<Ano>/-<Mes>-<Dia> <Hora>:<Minuto>:<Segundo> <Mapa> * <Quantidade> <Refinamento> <Nome do Item> - <Carta 1> - <Carta 2> - <Carta 3> - <Carta 4>";
+			mes "[Trade Log ^FF8C00"+.@name$+"^000000]";
+			for (set .@i,0; .@i < getarraysize(.@nameid); set .@i,.@i+1) {
+				mes "^FF0000"+.@time$[.@i]+"^000000 ^0000FF"+.@map$[.@i]+"^000000 * ^DAA520"+.@amount[.@i]+"^000000"+( (.@refine[.@i]) ? " ^339966+"+.@refine[.@i]+"^000000" : "")+" ^800080"+getitemname(.@nameid[.@i])+"^000000"+( (.@card0[.@i]) ? " - ^008000"+getitemname(.@card0[.@i])+"^000000" : "")+""+( (.@card1[.@i]) ? " - ^008000"+getitemname(.@card1[.@i])+"^000000" : "")+""+( (.@card2[.@i]) ? " - ^008000"+getitemname(.@card2[.@i])+"^000000" : "")+""+( (.@card3[.@i]) ? " - ^008000"+getitemname(.@card3[.@i])+"^000000" : "")+"";
+			}
+			close;
+
+		case 2:
+			mes "[Trade Log]";
+			mes "Digite o Nome do Personagem.";
+			input .@input$;
+			query_sql "SELECT `char_id` FROM `char` WHERE `name`='"+.@input$+"'",.@char_id;
+			if(.@char_id == 0){mes "Não existe nenhum personagem com esse nome."; close;}
+			query_logsql "SELECT `time`,`nameid`,`amount`,`refine`,`card0`,`card1`,`card2`,`card3`,`map` FROM `picklog` WHERE `char_id`='"+.@char_id+"' AND `type`='T'",.@time$,.@nameid,.@amount,.@refine,.@card0,.@card1,.@card2,.@card3,.@map$;
+			next;
+			dispbottom "Legenda:";
+			dispbottom "<Ano>/-<Mes>-<Dia> <Hora>:<Minuto>:<Segundo> <Mapa> * <Quantidade> <Nome do Item>";
+			dispbottom "Ou";
+			dispbottom "<Ano>/-<Mes>-<Dia> <Hora>:<Minuto>:<Segundo> <Mapa> * <Quantidade> <Refinamento> <Nome do Item> - <Carta 1> - <Carta 2> - <Carta 3> - <Carta 4>";
+			mes "[Trade Log ^FF8C00"+.@input$+"^000000]";
+			for (set .@i,0; .@i < getarraysize(.@nameid); set .@i,.@i+1) {
+				mes "^FF0000"+.@time$[.@i]+"^000000 ^0000FF"+.@map$[.@i]+"^000000 * ^DAA520"+.@amount[.@i]+"^000000"+( (.@refine[.@i]) ? " ^339966+"+.@refine[.@i]+"^000000" : "")+" ^800080"+getitemname(.@nameid[.@i])+"^000000"+( (.@card0[.@i]) ? " - ^008000"+getitemname(.@card0[.@i])+"^000000" : "")+""+( (.@card1[.@i]) ? " - ^008000"+getitemname(.@card1[.@i])+"^000000" : "")+""+( (.@card2[.@i]) ? " - ^008000"+getitemname(.@card2[.@i])+"^000000" : "")+""+( (.@card3[.@i]) ? " - ^008000"+getitemname(.@card3[.@i])+"^000000" : "")+"";
+			}
+			close;
+
+		case 3:
+			mes "[Trade Log]";
+			mes "Até mais.";
+			close;
+	}
+}

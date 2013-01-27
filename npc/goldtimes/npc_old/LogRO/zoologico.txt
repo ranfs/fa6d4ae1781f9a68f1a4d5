@@ -1,0 +1,171 @@
+prontera,149,194,5	script	Zoológico	70,{
+mes "[^FF0000^FF0000Zoo^000000^000000]";
+mes "Olá "+StrCharInfo(0)+", gostaria de visitar o Zoológico do servidor ragna^CC6600YOKAI^000000?";
+mes "Você poderá conhecer muitos monstros legais ~~";
+next;
+if(select("- Sim:- Não") == 2) close;
+next;
+mes "[^FF0000^FF0000Zoo^000000^000000]";
+mes "Até mais";
+warp "sec_in02",133,162;
+close;
+}
+
+
+sec_in02,135,156,5	script	Zoológico#saida	70,{
+mes "[^FF0000^FF0000Zoo^000000^000000]";
+mes "Deseja retornar à cidade de Prontera?";
+mes "Ficou cansadinho do passeio? :~";
+next;
+if(select("- Sim:- Não") == 2) close;
+next;
+mes "[^FF0000^FF0000Zoo^000000^000000]";
+mes "Até mais"+StrCharInfo(0)+"!";
+warp "prontera",156,191;
+close;
+}
+
+
+
+
+
+//Zoológico
+sec_in02,149,183,5	script	Atroce#zoo	1785,{
+OnInit:
+initnpctimer;
+npcspeed 300;
+end;
+OnTimer3000:
+npcwalkto rand(143,152),rand(182,187);
+initnpctimer;
+end;
+}
+
+sec_in02,181,183,5	script	Naght Sieger#zoo	1956,{
+OnInit:
+initnpctimer;
+npcspeed 300;
+end;
+OnTimer3000:
+npcwalkto rand(175,187),rand(180,187);
+initnpctimer;
+end;
+}
+
+sec_in02,169,144,5	script	Sombra de Nidhogg#zoo	2022,{
+OnInit:
+initnpctimer;
+npcspeed 300;
+end;
+OnTimer3000:
+npcwalkto rand(164,170),rand(140,145);
+initnpctimer;
+end;
+}
+
+sec_in02,181,153,5	script	Satan Morroc#zoo	1917,{
+OnInit:
+initnpctimer;
+npcspeed 300;
+end;
+OnTimer3000:
+npcwalkto rand(180,187),rand(147,157);
+initnpctimer;
+end;
+}
+
+sec_in02,181,174,5	script	Thanatos#zoo	1708,{
+OnInit:
+initnpctimer;
+npcspeed 300;
+end;
+OnTimer3000:
+npcwalkto rand(181,187),rand(169,178);
+initnpctimer;
+end;
+}
+
+sec_in02,162,183,5	script	Ktullanux#zoo	1779,{
+OnInit:
+initnpctimer;
+npcspeed 300;
+end;
+OnTimer3000:
+npcwalkto rand(159,168),rand(182,187);
+initnpctimer;
+end;
+}
+
+sec_in02,149,183,5	script	Valkyrie Randgis#zoo	1751,{
+OnInit:
+initnpctimer;
+npcspeed 300;
+end;
+OnTimer3000:
+npcwalkto rand(143,185),rand(152,187);
+initnpctimer;
+end;
+}
+
+sec_in02,163,183,5	script	Ifrit#zoo	1832,{
+OnInit:
+initnpctimer;
+npcspeed 300;
+end;
+OnTimer3000:
+npcwalkto rand(159,183),rand(168,187);
+initnpctimer;
+end;
+}
+
+sec_in02,175,185,5	script	Freeoni#zoo	1159,{
+OnInit:
+initnpctimer;
+npcspeed 300;
+end;
+OnTimer3000:
+npcwalkto rand(187,182),rand(175,186);
+initnpctimer;
+end;
+}
+
+sec_in02,180,155,5	script	Bafomé#zoo	1039,{
+OnInit:
+initnpctimer;
+npcspeed 300;
+end;
+OnTimer3000:
+npcwalkto rand(184,170),rand(183,178);
+initnpctimer;
+end;
+}
+
+sec_in02,183,174,5	script	Maya#zoo	1147,{
+
+OnInit:
+initnpctimer;
+npcspeed 300;
+end;
+OnTimer3000:
+npcwalkto rand(180,149),rand(187,154);
+initnpctimer;
+end;
+}
+
+sec_in02,167,145,5	script	Belzebu#zoo	1874,{
+OnInit:
+initnpctimer;
+npcspeed 300;
+end;
+OnTimer3000:
+npcwalkto rand(164,142),rand(170,141);
+initnpctimer;
+end;
+}
+
+sec_in02,135,167,4	shop	Menina do Zoológico	725,558:1,12018:2
+
+
+
+sec_in02	mapflag	noskill
+sec_in02	mapflag	nobranch

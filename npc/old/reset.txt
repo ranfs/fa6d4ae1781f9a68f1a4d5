@@ -1,0 +1,39 @@
+//===== Cronus Script ========================================
+//= Resetadora
+//===== Por: =================================================
+//= Mehah
+//===== Vers?o Atual: ========================================
+//= 2.2
+//===== Descri??o: ===========================================
+//= Reseta os pontos de Habilidades e Atributos do personagem
+//===== Changelog: ===========================================
+//= 1.0 Script inicial [Mehah]
+//= 2.0 Otimizado e trocado vari?veis pelas do npc_athena.conf [RoM]
+//= 2.1 Removidas as vari?veis do npc_athena.conf (ele n?o existe mais). [RoM]
+//= 2.1a Removido show [Keoy]
+//= 2.2 Otimizado script [mkbu95]
+//============================================================
+
+payold,83,118,6	script	Resetadora	878,{
+
+	// == Configura??o dos Pre?os ==
+	// O primeiro valor ? o pre?o para atributos, o segundo para habilidades,
+	// e o terceiro ? para ambos. Coloque apenas n?mero inteiros e positivos.
+	setarray .reset[0], 0, 0, 0;
+
+	mes "[Resetadora]";
+	mes "Olá, "+strcharinfo(0)+", o que você deseja resetar?";
+	next;
+	if (select ("Resetar Atributos ["+.reset[0]+"z]:Resetar Habilidades ["+.reset[1]+"z]:Resetar Ambos ["+.reset[2]+"z]:Cancelar") == 4) close;
+	mes "[Resetadora]";
+	if (Zeny < .reset[(@menu - 1)])
+	{
+		mes "Me desculpe, mas você não possui o Zeny necessário.";
+		close;
+	}
+	set Zeny, Zeny - .reset[(@menu - 1)];
+	if (@menu == 1 || @menu == 3) resetstatus;
+	if (@menu >= 2) resetskill;
+	mes "Pronto, resetado. Fale comigo mais vezes se precisar!";
+	close;
+}

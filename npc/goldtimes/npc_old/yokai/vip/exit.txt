@@ -1,0 +1,17 @@
+poring_w02,99,194,0	script	Saida	57,{
+
+mes "[ Saida ]";
+mes "Olá "+strcharinfo(0)+".";
+mes "Gostaria de sair da sala VIP?";
+if(select("- Sim, Por favor:- Não, Obrigado")==2) close;
+	next;
+	mes "[ Saida ]";
+	mes "Te levarei até a saida!";
+	next;
+	mes "[ Saida ]";
+	mes "Até mais!";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+	
+}

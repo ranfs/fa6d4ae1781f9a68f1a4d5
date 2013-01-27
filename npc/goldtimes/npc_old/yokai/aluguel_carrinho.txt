@@ -1,0 +1,21 @@
+sec_in01,90,176,3	script	Aluguel de Carrinhos	920,{
+
+        mes "[^cc0000"+strnpcinfo(0)+"^000000]";
+        mes "Olá "+strcharinfo(0)+", deseja Aluga um Carrinho ?";
+        Menu "Sim",-,"Não",nao;
+        If (getgmlevel() < 1) {
+        mes "Você não é vip, para mais informações";
+		mes "acesse o site do servidor :";
+		mes "^0000FF[ http://www.ragnayokai.com ]^000000";
+        Close;
+        } else {
+        atcommand "@option 0 0 8";
+	next;
+	mes "Até Logo !";
+        }
+        Close;
+
+        nao:
+        mes "Tchau!";
+        Close;
+}
